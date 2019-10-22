@@ -115,7 +115,6 @@
 
       const response = await fetch('https://stock-timing.appspot.com/ping', {
         method: 'GET',
-        mode: 'cors'
       });
       const myJson = await response.json();
       console.log(JSON.stringify(myJson));
