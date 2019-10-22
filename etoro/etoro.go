@@ -27,5 +27,14 @@ func RetrieveCandle(instrumentID int, period int) ([]model.Candle, error) {
 	if len(etoroCandles.Candles) != 1 {
 		return nil, errors.New("outer candle count must be 1")
 	}
-	return etoroCandles.Candles[0].Candles, nil
+	return reverseCandles(etoroCandles.Candles[0].Candles), nil
+}
+
+func reverseCandles(candles []model.Candle) []model.Candle {
+	size := len(candles)
+	reversed := make([]model.Candle, size)
+	for i := range candles {
+		reversed[size-i-1] = candles[i]
+	}
+	return reversed
 }

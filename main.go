@@ -1,8 +1,10 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 
+	"github.com/tianhai82/stock-timing/analyzer"
 	"github.com/tianhai82/stock-timing/etoro"
 )
 
@@ -13,25 +15,16 @@ func main() {
 	// 	fmt.Println(err)
 	// 	return
 	// }
-	// for _, in := range instruments {
-	// 	if in.InstrumentTypeID == 5 {
-	// 		fmt.Printf("Type: %d. ID: %d. Name: %s\n", in.InstrumentTypeID, in.InstrumentID, in.InstrumentDisplayName)
-	// 	}
-	// }
+	// json.NewEncoder(w io.Writer)
+
 	candles, err := etoro.RetrieveCandle(2360, 60)
 	if err != nil {
 		fmt.Println(err)
-
+		return
 	}
-	for _, candle := range candles {
-		fmt.Println(candle.FromDate, candle.Close)
-	}
-	candles, err = etoro.RetrieveCandle(2360, 60)
-	if err != nil {
-		fmt.Println(err)
-
-	}
-	for _, candle := range candles {
-		fmt.Println(candle.FromDate, candle.Close)
-	}
+	candles[len(candles)-2].Close = 14.49
+	candles[len(candles)-3].Close = 14.50
+	analysis := analyzer.AnalyzerCandles(candles)
+	b, _ := json.Marshal(analysis)
+	fmt.Println(string(b))
 }

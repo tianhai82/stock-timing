@@ -34,3 +34,21 @@ type CandleOuter struct {
 	RangeHigh    float64  `json:"RangeHigh"`
 	RangeLow     float64  `json:"RangeLow"`
 }
+type TradeSignal int
+
+const (
+	Hold = iota
+	Buy
+	Sell
+)
+
+type TradeAnalysis struct {
+	Period        int
+	Mean          float64
+	StdDev        float64
+	MaxDev        float64
+	LimitDev      float64
+	CurrentDev    float64
+	CurrentCandle Candle
+	Signal        TradeSignal
+}
