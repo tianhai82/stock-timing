@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/gin-contrib/cors"
+	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,10 +14,18 @@ func main() {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins: []string{"https://stock-timing.web.app"},
 	}))
+
+	if gin.Mode() == gin.DebugMode {
+		r.Use(static.Serve("/", static.LocalFile("./web/public", false)))
+	}
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	err := r.Run()
+	if err != nil {
+		fmt.Println(err)
+	}
 }
