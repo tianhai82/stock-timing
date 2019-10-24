@@ -16,7 +16,7 @@ func main() {
 	}))
 
 	if gin.Mode() == gin.DebugMode {
-		r.Use(static.Serve("/", static.LocalFile("./web/public", false)))
+		r.Use(static.Serve("/", static.LocalFile("./public", false)))
 	}
 
 	r.GET("/ping", func(c *gin.Context) {

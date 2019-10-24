@@ -22,7 +22,7 @@ export default {
     sourcemap: true,
     format: "iife",
     name: "app",
-    file: "public/bundle.js"
+    file: "../public/bundle.js"
   },
   plugins: [
     svelte({
@@ -30,12 +30,12 @@ export default {
       // enable run-time checks when not in production
       dev: !production,
       css: css => {
-        css.write("public/components.css");
+        css.write("../public/components.css");
       }
     }),
     postcss({
       plugins: require("./postcss.config.js")(production),
-      extract: "public/utils.css"
+      extract: "../public/utils.css"
     }),
 
     // If you have external dependencies installed from
@@ -48,7 +48,7 @@ export default {
 
     // Watch the `public` directory and refresh the
     // browser on changes when not in production
-    !production && livereload("public"),
+    !production && livereload("../public"),
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
