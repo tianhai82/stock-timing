@@ -7,6 +7,6 @@ steps:
   - name: 'gcr.io/cloud-builders/yarn:node-10.10.0'
     dir: "web"
     args: [ 'build' ]
-  - name: 'gcr.io/stock-timing/firebase'
+  - name: 'tianhai/firebase'
     args: [ 'deploy', '--only', 'hosting', '--token', '$_FIREBASE_TOKEN']
 timeout: "900s"
