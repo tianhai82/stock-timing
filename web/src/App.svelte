@@ -1,10 +1,12 @@
 <script>
-  import { Select } from "smelte";
+  import { Select, Button } from "smelte";
+  import Signin from "./components/Signin.svelte";
 
   export let name;
+  let showSignIn = false;
   let stock;
   let instruments = ["Apple", "Amazon"];
-  fetch("https://stock-timing.appspot.com/ping")
+  fetch("/ping")
     .then(resp => resp.json())
     .then(message => {
       console.log(message);
@@ -19,8 +21,10 @@
         alt="logo"
         class="object-contain h-10 mx-4 mt-1" />
       <h4>Stock Timing</h4>
+      <Button on:click={() => (showSignIn = true)}>Sign In</Button>
     </div>
   </header>
+  <Signin bind:showSignIn />
   <div class="p-4">
     <Select
       bind:value={stock}
