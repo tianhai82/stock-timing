@@ -9,7 +9,7 @@ import (
 )
 
 var config = &firebase.Config{
-	StorageBucket: "<BUCKET_NAME>.appspot.com",
+	StorageBucket: "stock-timing.appspot.com",
 }
 
 func AddRpcs(router *gin.RouterGroup) {
