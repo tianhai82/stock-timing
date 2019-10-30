@@ -6,7 +6,7 @@
   let showSignIn = false;
   let stock;
   let instruments = ["Apple", "Amazon"];
-  fetch("/ping")
+  fetch("https://stock-timing.web.app/rpc/instruments")
     .then(resp => resp.json())
     .then(message => {
       console.log(message);
