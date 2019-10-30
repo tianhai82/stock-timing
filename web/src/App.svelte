@@ -6,7 +6,9 @@
   let showSignIn = false;
   let stock;
   let instruments = ["Apple", "Amazon"];
-  fetch("https://stock-timing.web.app/rpc/instruments")
+  fetch("https://stock-timing.appspot.com/rpc/instruments",{
+    method: 'POST',
+  })
     .then(resp => resp.json())
     .then(message => {
       console.log(message);
