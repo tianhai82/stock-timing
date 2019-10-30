@@ -5,13 +5,17 @@
   export let name;
   let showSignIn = false;
   let stock;
-  let instruments = ["Apple", "Amazon"];
-  fetch("https://stock-timing.appspot.com/rpc/instruments",{
-    method: 'POST',
+  let instruments;
+  // fetch("/rpc/instruments", {
+  fetch("https://stock-timing.appspot.com/rpc/instruments", {
+    method: "POST"
   })
     .then(resp => resp.json())
-    .then(message => {
-      console.log(message);
+    .then(data => {
+      instruments = data.map(i => ({
+        value: i.InstrumentID,
+        text: i.InstrumentDisplayName
+      }));
     });
 </script>
 

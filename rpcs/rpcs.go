@@ -35,6 +35,6 @@ func AddRpcs(router *gin.RouterGroup) {
 			c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 			return
 		}
-		c.DataFromReader(200, -1, "application/json", reader, make(map[string]string))
+		c.DataFromReader(200, reader.Attrs.Size, "application/json", reader, make(map[string]string))
 	})
 }

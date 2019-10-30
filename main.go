@@ -14,14 +14,15 @@ const domain = "https://stock-timing.web.app"
 func main() {
 	fmt.Println("Stock Timing starting")
 	r := gin.Default()
-	r.Use(cors.New(cors.Config{
-		AllowOrigins: []string{domain},
-	}))
-
+	domains := []string{domain}
 	if gin.Mode() == gin.DebugMode {
 		r.Use(static.Serve("/", static.LocalFile("./public", false)))
+		domains = append(domains, "http://localhost:8080")
 	}
 
+	r.Use(cors.New(cors.Config{
+		AllowOrigins: domains,
+	}))
 	rpcsRouter := r.Group("/rpc")
 	rpcs.AddRpcs(rpcsRouter)
 
