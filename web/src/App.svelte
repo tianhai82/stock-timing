@@ -1,22 +1,26 @@
 <script>
   import { Select, Button } from "smelte";
   import Signin from "./components/Signin.svelte";
+  import { retrieveInstruments, retrieveCandles } from "./api/api";
+  import CandleChart from "./components/CandleChart.svelte";
 
   export let name;
   let showSignIn = false;
   let stock;
   let instruments;
-  // fetch("/rpc/instruments", {
-  fetch("https://stock-timing.appspot.com/rpc/instruments", {
-    method: "POST"
-  })
-    .then(resp => resp.json())
-    .then(data => {
-      instruments = data.map(i => ({
-        value: i.InstrumentID,
-        text: i.InstrumentDisplayName
-      }));
+  let candles;
+
+  retrieveInstruments().then(data => {
+    instruments = data.map(i => ({
+      value: i.InstrumentID,
+      text: i.InstrumentDisplayName
+    }));
+  });
+  function stockChanged() {
+    retrieveCandles(stock).then(data => {
+      candles = data;
     });
+  }
 </script>
 
 <div class="container mx-auto h-full items-center">
@@ -34,10 +38,12 @@
   <div class="p-4">
     <Select
       bind:value={stock}
+      on:change={stockChanged}
       outlined
       autocomplete
       label="Enter Company Name"
       items={instruments} />
-    {stock}
+    <CandleChart {candles} />
   </div>
+
 </div>
