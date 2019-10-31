@@ -1,7 +1,6 @@
 package analyzer
 
 import (
-	"fmt"
 	"math"
 
 	"github.com/tianhai82/stock-timing/model"
@@ -36,7 +35,6 @@ func getSignal(candles []model.Candle, analysis model.TradeAnalysis, candleVal f
 		lastCandle := candles[len(candles)-1]
 		secondLastCandle := candles[len(candles)-2]
 		thirdLastCandle := candles[len(candles)-3]
-		fmt.Println(candleVal(thirdLastCandle), candleVal(secondLastCandle), candleVal(lastCandle))
 		if analysis.CurrentDev > 0 {
 			if candleVal(lastCandle) < candleVal(secondLastCandle) && candleVal(secondLastCandle) < candleVal(thirdLastCandle) {
 				return model.Sell

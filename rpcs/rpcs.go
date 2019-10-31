@@ -8,17 +8,53 @@ import (
 
 	firebase "firebase.google.com/go"
 	"github.com/gin-gonic/gin"
+	"github.com/tianhai82/stock-timing/analyzer"
 	"github.com/tianhai82/stock-timing/etoro"
+	"github.com/tianhai82/stock-timing/model"
 )
 
 var config = &firebase.Config{
 	StorageBucket: "stock-timing.appspot.com",
 }
+var period = 50
 
 // AddRpcs adds API handlers to the gin router
 func AddRpcs(router *gin.RouterGroup) {
-	router.POST("/instruments", retrieveInstruments)
-	router.POST("/candles/:instrumentID", retrieveCandles)
+	router.GET("/instruments", retrieveInstruments)
+	router.GET("/candles/:instrumentID", retrieveCandles)
+	router.GET("/signals/:instrumentID", analyseInstrument)
+}
+
+func analyseInstrument(c *gin.Context) {
+	instrumentID := c.Param("instrumentID")
+	if instrumentID == "" {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
+		return
+	}
+	id, err := strconv.Atoi(instrumentID)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
+		return
+	}
+	candles, err := etoro.RetrieveCandle(id, 180)
+	if err != nil {
+		fmt.Println(err)
+		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
+		return
+	}
+	advices := make([]model.TradeAdvice, 0)
+	for i := 0; i < len(candles)-period; i++ {
+		analysis := analyzer.AnalyzerCandles(candles[i : i+period])
+		if analysis.Signal == model.Buy || analysis.Signal == model.Sell {
+			advice := model.TradeAdvice{
+				Date:   analysis.CurrentCandle.FromDate,
+				Price:  analysis.CurrentCandle.Close,
+				Signal: analysis.Signal,
+			}
+			advices = append(advices, advice)
+		}
+	}
+	c.JSON(200, advices)
 }
 
 func retrieveCandles(c *gin.Context) {
@@ -32,7 +68,7 @@ func retrieveCandles(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, 60)
+	candles, err := etoro.RetrieveCandle(id, 120)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")

@@ -3,17 +3,35 @@
   import ECharts from "echarts-for-svelte";
 
   export let candles = [];
+  export let signals = [];
+  let buys = [];
+  let sells = [];
   let dates = [];
   let data = [];
   let option = {};
   $: {
+    console.log(signals);
+  }
+  $: {
     dates = candles.map(c => c.FromDate.substr(0, 10));
     data = candles.map(c => [c.Open, c.Close, c.Low, c.High]);
+    console.log(signals);
+    buys = signals
+      .filter(s => s.Signal === 1)
+      .map(s => [s.Date.substr(0, 10), s.Price]);
+    sells = signals
+      .filter(s => s.Signal === 2)
+      .map(s => [s.Date.substr(0, 10), s.Price]);
+    console.log(buys, sells);
+    const candleSeries = { ...optionTemplate.series[0], data };
+    const buySeries = { ...optionTemplate.series[1], data: buys };
+    const sellSeries = { ...optionTemplate.series[2], data: sells };
     option = {
       ...optionTemplate,
       xAxis: { ...optionTemplate.xAxis, data: dates },
-      series: { ...optionTemplate.series, data }
+      series: [candleSeries, buySeries, sellSeries]
     };
+    console.log(option);
   }
 
   const colorList = [
@@ -120,25 +138,47 @@
       width: 300,
       bounding: "raw"
     },
-    series: {
-      type: "candlestick",
-      name: "Price",
-      data: [],
-      itemStyle: {
-        normal: {
-          color: "#14b143",
-          color0: "#ef232a",
-          borderColor: "#14b143",
-          borderColor0: "#ef232a"
-        },
-        emphasis: {
-          color: "black",
-          color0: "#444",
-          borderColor: "black",
-          borderColor0: "#444"
+    series: [
+      {
+        type: "candlestick",
+        name: "Price",
+        data: [],
+        itemStyle: {
+          normal: {
+            color: "#14b143",
+            color0: "#ef232a",
+            borderColor: "#14b143",
+            borderColor0: "#ef232a"
+          },
+          emphasis: {
+            color: "black",
+            color0: "#444",
+            borderColor: "black",
+            borderColor0: "#444"
+          }
         }
+      },
+      {
+        type: "scatter",
+        name: "Buys",
+        symbolSize: 20,
+        symbol: "arrow",
+        itemStyle: {
+          color: ""
+        },
+        data: buys
+      },
+      {
+        type: "scatter",
+        name: "Sells",
+        symbolSize: 20,
+        symbol: "diamond",
+        itemStyle: {
+          color: ""
+        },
+        data: sells
       }
-    }
+    ]
   };
 </script>
 

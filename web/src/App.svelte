@@ -1,7 +1,7 @@
 <script>
   import { Select, Button } from "smelte";
   import Signin from "./components/Signin.svelte";
-  import { retrieveInstruments, retrieveCandles } from "./api/api";
+  import { retrieveInstruments, retrieveCandles, retrieveSignals } from "./api/api";
   import CandleChart from "./components/CandleChart.svelte";
 
   export let name;
@@ -9,6 +9,7 @@
   let stock;
   let instruments;
   let candles;
+  let signals;
 
   retrieveInstruments().then(data => {
     instruments = data.map(i => ({
@@ -20,6 +21,9 @@
     stock = e.detail;
     retrieveCandles(stock).then(data => {
       candles = data;
+    });
+    retrieveSignals(stock).then(data => {
+      signals = data;
     });
   }
 
@@ -54,7 +58,7 @@
       items={instruments} />
   </div>
   <div class={candleClass}>
-    <CandleChart {candles} />
+    <CandleChart {candles} {signals}/>
   </div>
 
 </div>

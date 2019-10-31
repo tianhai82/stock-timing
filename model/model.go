@@ -52,3 +52,9 @@ type TradeAnalysis struct {
 	CurrentCandle Candle
 	Signal        TradeSignal
 }
+
+type TradeAdvice struct {
+	Date   time.Time
+	Price  float64
+	Signal TradeSignal
+}
