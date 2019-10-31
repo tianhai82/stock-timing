@@ -22,7 +22,15 @@
       candles = data;
     });
   }
+
+  $: candleClass = !!candles && candles.length > 0 ? "px-4" : "hidden";
 </script>
+
+<style>
+  .hidden {
+    display: none;
+  }
+</style>
 
 <div class="container mx-auto h-full items-center">
   <header class="bg-teal-200 p-3 shadow">
@@ -36,7 +44,7 @@
     </div>
   </header>
   <Signin bind:showSignIn />
-  <div class="p-4">
+  <div class="px-4 pt-4 pb-2">
     <Select
       bind:value={stock}
       on:change={stockChanged}
@@ -44,6 +52,8 @@
       autocomplete
       label="Enter Company Name"
       items={instruments} />
+  </div>
+  <div class={candleClass}>
     <CandleChart {candles} />
   </div>
 
