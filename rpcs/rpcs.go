@@ -16,7 +16,9 @@ import (
 var config = &firebase.Config{
 	StorageBucket: "stock-timing.appspot.com",
 }
-var period = 50
+
+const period = 22
+const candlePeriod = 120
 
 // AddRpcs adds API handlers to the gin router
 func AddRpcs(router *gin.RouterGroup) {
@@ -36,7 +38,7 @@ func analyseInstrument(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, 180)
+	candles, err := etoro.RetrieveCandle(id, candlePeriod-period)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
@@ -68,7 +70,7 @@ func retrieveCandles(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, 120)
+	candles, err := etoro.RetrieveCandle(id, candlePeriod)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")

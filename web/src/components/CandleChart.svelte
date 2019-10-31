@@ -9,20 +9,18 @@
   let dates = [];
   let data = [];
   let option = {};
-  $: {
-    console.log(signals);
-  }
+
   $: {
     dates = candles.map(c => c.FromDate.substr(0, 10));
     data = candles.map(c => [c.Open, c.Close, c.Low, c.High]);
-    console.log(signals);
+
     buys = signals
       .filter(s => s.Signal === 1)
       .map(s => [s.Date.substr(0, 10), s.Price]);
     sells = signals
       .filter(s => s.Signal === 2)
       .map(s => [s.Date.substr(0, 10), s.Price]);
-    console.log(buys, sells);
+
     const candleSeries = { ...optionTemplate.series[0], data };
     const buySeries = { ...optionTemplate.series[1], data: buys };
     const sellSeries = { ...optionTemplate.series[2], data: sells };
@@ -31,7 +29,6 @@
       xAxis: { ...optionTemplate.xAxis, data: dates },
       series: [candleSeries, buySeries, sellSeries]
     };
-    console.log(option);
   }
 
   const colorList = [
