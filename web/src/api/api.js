@@ -2,10 +2,6 @@ const url = {
   instruments: "https://stock-timing.appspot.com/rpc/instruments",
   candles: "https://stock-timing.appspot.com/rpc/candles",
 };
-// const url = {
-//   instruments: "/rpc/instruments",
-//   candles: "/rpc/candles",
-// };
 
 function retrieveInstruments() {
   return fetch(url.instruments, {

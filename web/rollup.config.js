@@ -5,6 +5,7 @@ import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import postcss from "rollup-plugin-postcss";
 import getPreprocessor from "svelte-preprocess";
+import modify from 'rollup-plugin-modify'
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -25,6 +26,9 @@ export default {
     file: "../public/bundle.js"
   },
   plugins: [
+    !production && modify({
+      'https://stock-timing.appspot.com': ''
+    }),
     svelte({
       preprocess,
       // enable run-time checks when not in production

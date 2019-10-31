@@ -16,7 +16,8 @@
       text: i.InstrumentDisplayName
     }));
   });
-  function stockChanged() {
+  function stockChanged(e) {
+    stock = e.detail;
     retrieveCandles(stock).then(data => {
       candles = data;
     });
