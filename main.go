@@ -6,6 +6,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
+	"github.com/tianhai82/stock-timing/authen"
 	"github.com/tianhai82/stock-timing/rpcs"
 )
 
@@ -24,7 +25,9 @@ func main() {
 		AllowOrigins: domains,
 	}))
 	rpcsRouter := r.Group("/rpc")
-	rpcs.AddRpcs(rpcsRouter)
+	rpcs.AddEtoroRpcs(rpcsRouter)
+	authRouter := rpcsRouter.Group("/auth", authen.AuthCheck)
+	rpcs.AddSubscriptionRpcs(authRouter)
 
 	err := r.Run()
 	if err != nil {

@@ -58,3 +58,8 @@ type TradeAdvice struct {
 	Price  float64
 	Signal TradeSignal
 }
+
+type UserAccount struct {
+	Email         string `json:"email"`
+	EmailVerified bool   `json:"email_verified"`
+}

@@ -9,7 +9,7 @@ import (
 func AnalyzerCandles(candles []model.Candle) model.TradeAnalysis {
 	periodMean := calcMean(candles, getClose)
 	stdDev, maxDev := calcStdMaxDev(candles, periodMean, getClose)
-	limitDev := (stdDev + maxDev) / 2.0
+	limitDev := (stdDev + maxDev) * 0.4
 	period := len(candles)
 	currentDev := getClose(candles[period-1]) - periodMean
 
@@ -36,11 +36,11 @@ func getSignal(candles []model.Candle, analysis model.TradeAnalysis, candleVal f
 		secondLastCandle := candles[len(candles)-2]
 		// thirdLastCandle := candles[len(candles)-3]
 		if analysis.CurrentDev > 0 {
-			if candleVal(lastCandle) <= candleVal(secondLastCandle) && lastCandle.Close < lastCandle.Open {
+			if candleVal(lastCandle) <= candleVal(secondLastCandle) && lastCandle.Close <= lastCandle.Open {
 				return model.Sell
 			}
 		} else {
-			if candleVal(lastCandle) >= candleVal(secondLastCandle) && lastCandle.Close > lastCandle.Open {
+			if candleVal(lastCandle) >= candleVal(secondLastCandle) && lastCandle.Close >= lastCandle.Open {
 				return model.Buy
 			}
 		}

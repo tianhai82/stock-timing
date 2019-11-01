@@ -7,6 +7,8 @@ import (
 	"strconv"
 
 	firebase "firebase.google.com/go"
+	auth "firebase.google.com/go/auth"
+	storage "firebase.google.com/go/storage"
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/analyzer"
 	"github.com/tianhai82/stock-timing/etoro"
@@ -16,12 +18,35 @@ import (
 var config = &firebase.Config{
 	StorageBucket: "stock-timing.appspot.com",
 }
+var app *firebase.App
+var AuthClient *auth.Client
+var StorageClient *storage.Client
 
-const period = 25
+func init() {
+	var err error
+	ctx := context.Background()
+	app, err = firebase.NewApp(ctx, config)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	AuthClient, err = app.Auth(ctx)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	StorageClient, err = app.Storage(ctx)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+}
+
+const period = 24
 const candlePeriod = 250
 
 // AddRpcs adds API handlers to the gin router
-func AddRpcs(router *gin.RouterGroup) {
+func AddEtoroRpcs(router *gin.RouterGroup) {
 	router.GET("/instruments", retrieveInstruments)
 	router.GET("/candles/:instrumentID", retrieveCandles)
 	router.GET("/signals/:instrumentID", analyseInstrument)
@@ -80,18 +105,12 @@ func retrieveCandles(c *gin.Context) {
 }
 
 func retrieveInstruments(c *gin.Context) {
-	app, err := firebase.NewApp(context.Background(), config)
-	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
+	if StorageClient == nil {
+		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
 
-	client, err := app.Storage(context.Background())
-	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
-		return
-	}
-	bucket, err := client.DefaultBucket()
+	bucket, err := StorageClient.DefaultBucket()
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 		return

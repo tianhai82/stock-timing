@@ -4,37 +4,28 @@
   import { auth } from "../fire.js";
 
   export let showSignIn;
-  function signIn() {
+  function signInGoogle() {
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase
       .auth()
       .signInWithPopup(provider)
-      .then(function(result) {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        var token = result.credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
-        console.log(token, user);
-        // ...
+      .then(() => {
+        showSignIn = false;
       })
       .catch(function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
         var errorMessage = error.message;
-        // The email of the user's account used.
         var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
-        console.log(errorCode);
-        // ...
+        alert(`Login failed. Account: ${email}. Error: ${errorMessage}`);
       });
   }
 </script>
 
 <Dialog bind:value={showSignIn}>
-  <h5 slot="title">Sign in</h5>
-  <Button on:click={signIn} color="pink" light block>
-    <Image src="/images/google.svg" alt="Google" width={15}/>
-    Sign in with Google
+  <h6 slot="title">Log in</h6>
+  <Button on:click={signInGoogle} color="white" block>
+    <div class="flex flex-row justify-between inline-block align-middle">
+      <Image src="/images/google.svg" alt="Google" width={18} />
+      <span class="text-gray-900 ml-2 font-normal normal-case">Google</span>
+    </div>
   </Button>
 </Dialog>

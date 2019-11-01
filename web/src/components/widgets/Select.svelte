@@ -7,6 +7,7 @@
   export let items = [];
   let className = "";
   export { className as class };
+  export let minChar = 1;
   export let value = "";
   export let text = "";
   export let label = "";
@@ -74,6 +75,11 @@
 
   function filterItems({ target }) {
     const targetValue = target.value.toLowerCase();
+    if (targetValue.length < minChar) {
+      showList = false;
+      return;
+    }
+    showList = true;
     if (filter) {
       filteredItems = items.filter(i => filter(i, targetValue));
     } else {
@@ -98,10 +104,6 @@
       {labelClasses}
       {inputClasses}
       {prependClasses}
-      on:click={e => {
-        e.stopPropagation();
-        showList = true;
-      }}
       on:click
       on:input={filterItems}
       append="arrow_drop_down"
