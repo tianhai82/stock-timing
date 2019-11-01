@@ -22,7 +22,8 @@ func main() {
 	}
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins: domains,
+		AllowOrigins:     domains,
+		AllowCredentials: true,
 	}))
 	rpcsRouter := r.Group("/rpc")
 	rpcs.AddEtoroRpcs(rpcsRouter)
