@@ -39,8 +39,7 @@ function addSubscription({ idToken, instrument }) {
     credentials: "include",
     mode: "cors",
     headers: {
-      'Content-Type': 'application/json',
-      idToken,
+      Authorization: `Bearer ${idToken}`
     },
   })
     .then((response) => {

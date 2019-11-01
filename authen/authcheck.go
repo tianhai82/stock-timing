@@ -13,12 +13,12 @@ func AuthCheck(c *gin.Context) {
 	if rpcs.AuthClient == nil {
 		return
 	}
-	idToken := c.GetHeader("idToken")
+	idToken := c.GetHeader("Authorization")
 	if idToken == "" {
 		return
 	}
 	ctx := context.Background()
-	token, err := rpcs.AuthClient.VerifyIDTokenAndCheckRevoked(ctx, idToken)
+	token, err := rpcs.AuthClient.VerifyIDTokenAndCheckRevoked(ctx, idToken[len("Bearer "):])
 	if err != nil {
 		fmt.Println(err)
 		return

@@ -24,7 +24,7 @@ func main() {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     domains,
 		AllowCredentials: true,
-		AllowHeaders:     []string{"idToken"},
+		AllowHeaders:     []string{"Authorization"},
 	}))
 	rpcsRouter := r.Group("/rpc")
 	rpcs.AddEtoroRpcs(rpcsRouter)
