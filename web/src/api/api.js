@@ -36,6 +36,8 @@ function addSubscription({ idToken, instrument }) {
   return fetch(url.subscribe, {
     method: "POST",
     body: JSON.stringify(instrument),
+    credentials: "include",
+    mode: "cors",
     headers: {
       'Content-Type': 'application/json',
       idToken,
