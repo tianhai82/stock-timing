@@ -1,7 +1,12 @@
 <script>
-  import { Select, Button } from "smelte";
+  import { Button } from "smelte";
+  import Select from "./components/widgets/Select.svelte";
   import Signin from "./components/Signin.svelte";
-  import { retrieveInstruments, retrieveCandles, retrieveSignals } from "./api/api";
+  import {
+    retrieveInstruments,
+    retrieveCandles,
+    retrieveSignals
+  } from "./api/api";
   import CandleChart from "./components/CandleChart.svelte";
 
   export let name;
@@ -13,6 +18,7 @@
 
   retrieveInstruments().then(data => {
     instruments = data.map(i => ({
+      symbol: i.SymbolFull,
       value: i.InstrumentID,
       text: i.InstrumentDisplayName
     }));
@@ -26,6 +32,9 @@
       signals = data;
     });
   }
+  const filterStocks = (stock, inputValue) =>
+    stock.text.toLowerCase().includes(inputValue) ||
+    stock.symbol.toLowerCase().includes(inputValue);
 
   $: candleClass = !!candles && candles.length > 0 ? "px-4" : "hidden";
 </script>
@@ -42,14 +51,15 @@
       <img
         src="/images/time-money.png"
         alt="logo"
-        class="object-contain h-10 mx-4 mt-1" />
-      <h4>Stock Timing</h4>
+        class="object-contain h-8 mx-4 mt-1" />
+      <h5>Stock Timing</h5>
       <Button on:click={() => (showSignIn = true)}>Sign In</Button>
     </div>
   </header>
   <Signin bind:showSignIn />
   <div class="px-4 pt-4 pb-2">
     <Select
+      filter={filterStocks}
       bind:value={stock}
       on:change={stockChanged}
       outlined
@@ -58,7 +68,7 @@
       items={instruments} />
   </div>
   <div class={candleClass}>
-    <CandleChart {candles} {signals}/>
+    <CandleChart {candles} {signals} />
   </div>
 
 </div>

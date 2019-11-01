@@ -90,6 +90,7 @@
     ],
     xAxis: {
       type: "category",
+      splitNumber: 5,
       data: [],
       boundaryGap: false,
       axisLine: { lineStyle: { color: "#777" } },
@@ -101,7 +102,6 @@
       min: "dataMin",
       max: "dataMax",
       axisPointer: {
-        type: "shadow",
         label: { show: false },
         triggerTooltip: true,
         handle: {
@@ -113,7 +113,7 @@
     },
     yAxis: {
       scale: true,
-      splitNumber: 2,
+      splitNumber: 5,
       axisLine: { lineStyle: { color: "#777" } },
       splitLine: { show: true },
       axisTick: { show: false },
@@ -126,7 +126,7 @@
       left: 2,
       right: 8,
       top: 5,
-      height: 260
+      height: 340
     },
     graphic: {
       type: "group",
@@ -161,7 +161,7 @@
         symbolSize: 20,
         symbol: "arrow",
         itemStyle: {
-          color: ""
+          color: "#5ccc7e"
         },
         data: buys
       },
@@ -169,9 +169,10 @@
         type: "scatter",
         name: "Sells",
         symbolSize: 20,
-        symbol: "diamond",
+        symbolRotate: 180,
+        symbol: "arrow",
         itemStyle: {
-          color: ""
+          color: "#ff8673"
         },
         data: sells
       }
@@ -179,4 +180,4 @@
   };
 </script>
 
-<ECharts {echarts} {option} style="height:330px" />
+<ECharts {echarts} {option} style="height:400px" />

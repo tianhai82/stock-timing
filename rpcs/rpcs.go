@@ -18,7 +18,7 @@ var config = &firebase.Config{
 }
 
 const period = 25
-const candlePeriod = 120
+const candlePeriod = 250
 
 // AddRpcs adds API handlers to the gin router
 func AddRpcs(router *gin.RouterGroup) {

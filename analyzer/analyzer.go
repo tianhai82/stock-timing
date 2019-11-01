@@ -36,11 +36,11 @@ func getSignal(candles []model.Candle, analysis model.TradeAnalysis, candleVal f
 		secondLastCandle := candles[len(candles)-2]
 		// thirdLastCandle := candles[len(candles)-3]
 		if analysis.CurrentDev > 0 {
-			if candleVal(lastCandle) <= candleVal(secondLastCandle) {
+			if candleVal(lastCandle) <= candleVal(secondLastCandle) && lastCandle.Close < lastCandle.Open {
 				return model.Sell
 			}
 		} else {
-			if candleVal(lastCandle) >= candleVal(secondLastCandle) {
+			if candleVal(lastCandle) >= candleVal(secondLastCandle) && lastCandle.Close > lastCandle.Open {
 				return model.Buy
 			}
 		}
