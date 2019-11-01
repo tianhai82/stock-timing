@@ -9,6 +9,7 @@ import (
 	"github.com/tianhai82/stock-timing/rpcs"
 )
 
+// AuthCheck is a middleware that extracts and verify the idToken and put the user in gin context
 func AuthCheck(c *gin.Context) {
 	if rpcs.AuthClient == nil {
 		return
