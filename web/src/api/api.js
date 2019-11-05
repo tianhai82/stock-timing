@@ -1,8 +1,8 @@
 const url = {
-  instruments: "https://stock-timing.appspot.com/rpc/instruments",
-  candles: "https://stock-timing.appspot.com/rpc/candles",
-  signals: "https://stock-timing.appspot.com/rpc/signals",
-  subscribe: "https://stock-timing.appspot.com/rpc/auth/subscribe",
+  instruments: "/rpc/instruments",
+  candles: "/rpc/candles",
+  signals: "/rpc/signals",
+  subscribe: "/rpc/auth/subscribe",
 };
 
 function retrieveInstruments() {
@@ -47,8 +47,7 @@ function addSubscription({ idToken, instrument }) {
         return response;
       }
       throw new Error(`${response.statusText} : ${response.status}`);
-    })
-    .then(resp => resp.json())
+    });
 }
 
 export {

@@ -63,3 +63,13 @@ type UserAccount struct {
 	Email         string `json:"email"`
 	EmailVerified bool   `json:"email_verified"`
 }
+type Stock struct {
+	Symbol                string `json:"symbol"`
+	InstrumentID          int    `json:"instrumentID"`
+	InstrumentDisplayName string `json:"instrumentDisplayName"`
+}
+type StockSubscription struct {
+	Stock         `json:",inline"`
+	UserID        string    `json:"email"`
+	LastUpdatedAt time.Time `json:"lastUpdatedAt"`
+}

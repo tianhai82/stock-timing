@@ -124,9 +124,9 @@
     },
     grid: {
       left: 2,
-      right: 8,
-      top: 5,
-      height: 340
+      right: 5,
+      top: 30,
+      height: 315
     },
     graphic: {
       type: "group",

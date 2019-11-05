@@ -1,8 +1,12 @@
 package rpcs
 
 import (
+	"context"
 	"fmt"
 	"net/http"
+	"strconv"
+	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/model"
@@ -20,5 +24,21 @@ func subscribe(c *gin.Context) {
 	}
 	loginUser := user.(model.UserAccount)
 	fmt.Println(loginUser.Email)
-	c.JSON(200, "Implementing soon!!")
+	var stock model.Stock
+	err := c.BindJSON(&stock)
+	if err != nil {
+		c.AbortWithStatus(http.StatusBadRequest)
+		return
+	}
+	subscription := model.StockSubscription{
+		Stock:         stock,
+		UserID:        loginUser.Email,
+		LastUpdatedAt: time.Now(),
+	}
+	key := strings.ToLower(loginUser.Email) + "|" + strconv.Itoa(stock.InstrumentID)
+	_, err = FirestoreClient.Collection("subscription").Doc(key).Set(context.Background(), subscription)
+	if err != nil {
+		c.AbortWithStatus(http.StatusInternalServerError)
+		return
+	}
 }

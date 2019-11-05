@@ -26,10 +26,10 @@ export default {
     file: "../public/bundle.js"
   },
   plugins: [
-    !production && replace({
+    production && replace({
       exclude: '**/node_modules/*',
       include: '**/src/api/*.js',
-      'https://stock-timing.appspot.com': '',
+      '/rpc/': 'https://stock-timing.appspot.com/rpc/',
       delimiters: ['', ''],
     }),
     svelte({

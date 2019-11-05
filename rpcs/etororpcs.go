@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"cloud.google.com/go/firestore"
 	firebase "firebase.google.com/go"
 	auth "firebase.google.com/go/auth"
 	storage "firebase.google.com/go/storage"
@@ -21,6 +22,7 @@ var config = &firebase.Config{
 var app *firebase.App
 var AuthClient *auth.Client
 var StorageClient *storage.Client
+var FirestoreClient *firestore.Client
 
 func init() {
 	var err error
@@ -40,10 +42,15 @@ func init() {
 		fmt.Println(err)
 		return
 	}
+	FirestoreClient, err = app.Firestore(ctx)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 }
 
-const period = 24
-const candlePeriod = 250
+const period = 40
+const candlePeriod = 350
 
 // AddRpcs adds API handlers to the gin router
 func AddEtoroRpcs(router *gin.RouterGroup) {
@@ -63,7 +70,7 @@ func analyseInstrument(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, candlePeriod+period)
+	candles, err := etoro.RetrieveCandle(id, candlePeriod)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")

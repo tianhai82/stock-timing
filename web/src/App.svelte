@@ -1,5 +1,5 @@
 <script>
-  import { Button } from "smelte";
+  import { Button, ProgressCircular } from "smelte";
   import Select from "./components/widgets/Select.svelte";
   import Signin from "./components/Signin.svelte";
   import {
@@ -53,8 +53,15 @@
     }
 
     loginUser.getIdToken(true).then(idToken => {
-      addSubscription({ idToken, instrument: stockFound })
-        .then(data => alert(data))
+      addSubscription({
+        idToken,
+        instrument: {
+          symbol: stockFound.symbol,
+          instrumentID: stockFound.value,
+          instrumentDisplayName: stockFound.text
+        }
+      })
+        .then(data => alert(`You are subscribed to trading signals for "${stockFound.text}"!`))
         .catch(err => alert(err));
     });
   }
@@ -66,14 +73,18 @@
       text: i.InstrumentDisplayName
     }));
   });
+
+  let loadChartPromise;
+
   function stockChanged(e) {
     stock = e.detail;
-    retrieveCandles(stock).then(data => {
+    const candlePromise = retrieveCandles(stock).then(data => {
       candles = data;
     });
-    retrieveSignals(stock).then(data => {
+    const signalPromise = retrieveSignals(stock).then(data => {
       signals = data;
     });
+    loadChartPromise = Promise.all([candlePromise, signalPromise]);
   }
   const filterStocks = (stock, inputValue) =>
     stock.text.toLowerCase().includes(inputValue) ||
@@ -125,16 +136,23 @@
       label="Enter Company Name"
       items={instruments} />
   </div>
-  <div class={candleClass}>
-    <CandleChart {candles} {signals} />
-    <div class="mt-2">
-      {#if loginUser}
-        <Button block outline on:click={subcribe}>Subscribe</Button>
-      {:else}
-        <Button block outline on:click={() => (showSignIn = true)}>
-          Login to subscribe
-        </Button>
-      {/if}
+  {#await loadChartPromise}
+    <div class="px-4">
+      Analyzing...
+      <ProgressCircular />
     </div>
-  </div>
+  {:then}
+    <div class={candleClass}>
+      <CandleChart {candles} {signals} />
+      <div class="mt-2">
+        {#if loginUser}
+          <Button block outline on:click={subcribe}>Subscribe</Button>
+        {:else}
+          <Button block outline on:click={() => (showSignIn = true)}>
+            Login to subscribe
+          </Button>
+        {/if}
+      </div>
+    </div>
+  {/await}
 </div>
