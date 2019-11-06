@@ -1,0 +1,5 @@
+cron:
+- description: "stock subscriptions"
+  url: /cron/stockSubscriptions
+  schedule: every 12 hours synchronized 
+

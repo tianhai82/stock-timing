@@ -73,3 +73,7 @@ type StockSubscription struct {
 	UserID        string    `json:"email"`
 	LastUpdatedAt time.Time `json:"lastUpdatedAt"`
 }
+type UserSubscription struct {
+	UserID        string
+	InstrumentIDs []int
+}
