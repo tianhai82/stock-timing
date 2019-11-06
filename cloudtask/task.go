@@ -10,8 +10,17 @@ import (
 	taskspb "google.golang.org/genproto/googleapis/cloud/tasks/v2"
 )
 
-// createTask creates a new task in your App Engine queue.
-func CreateTask(projectID, locationID, queueID, message gin.H) (*taskspb.Task, error) {
+// AddCloudTasks add cloud task handlers to router
+func AddCloudTasks(router *gin.RouterGroup) {
+	router.GET("/analyze-stocks", analyzeStock)
+}
+
+func analyzeStock(c *gin.Context) {
+
+}
+
+// CreateTask creates a new task in your App Engine queue.
+func CreateTask(projectID, locationID, queueID string, message gin.H) (*taskspb.Task, error) {
 	// Create a new Cloud Tasks client instance.
 	// See https://godoc.org/cloud.google.com/go/cloudtasks/apiv2
 	ctx := context.Background()
@@ -32,7 +41,7 @@ func CreateTask(projectID, locationID, queueID, message gin.H) (*taskspb.Task, e
 			MessageType: &taskspb.Task_AppEngineHttpRequest{
 				AppEngineHttpRequest: &taskspb.AppEngineHttpRequest{
 					HttpMethod:  taskspb.HttpMethod_POST,
-					RelativeUri: "/task_handler",
+					RelativeUri: "/task/" + queueID,
 				},
 			},
 		},

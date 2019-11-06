@@ -8,10 +8,12 @@ import (
 
 	"cloud.google.com/go/firestore"
 	"github.com/gin-gonic/gin"
+	"github.com/tianhai82/stock-timing/cloudtask"
 	"github.com/tianhai82/stock-timing/model"
 	"github.com/tianhai82/stock-timing/rpcs"
 )
 
+// AddCronJobs adds cron job handler to router group
 func AddCronJobs(router *gin.RouterGroup) {
 	router.GET("/stockSubscriptions", stockSubscriptions)
 }
@@ -41,7 +43,11 @@ func stockSubscriptions(c *gin.Context) {
 			fmt.Println(errSet, subs)
 		}
 	}
-	// cloudtask.CreateTask()
+	_, err = cloudtask.CreateTask("stock-timing", "asia-south1", "analyze-stocks", nil)
+	if err != nil {
+		fmt.Println(err)
+		c.AbortWithStatus(http.StatusInternalServerError)
+	}
 	// create cloud task for Analyse Stock
 }
 

@@ -7,6 +7,7 @@ import (
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/authen"
+	"github.com/tianhai82/stock-timing/cloudtask"
 	"github.com/tianhai82/stock-timing/cron"
 	"github.com/tianhai82/stock-timing/rpcs"
 )
@@ -31,6 +32,7 @@ func main() {
 	rpcs.AddEtoroRpcs(rpcsRouter)
 	authRouter := rpcsRouter.Group("/auth", authen.AuthCheck)
 	rpcs.AddSubscriptionRpcs(authRouter)
+
 	cronRouter := r.Group("/cron")
 	if gin.Mode() != gin.DebugMode {
 		cronRouter.Use(func(c *gin.Context) {
@@ -41,6 +43,17 @@ func main() {
 		})
 	}
 	cron.AddCronJobs(cronRouter)
+
+	taskRouter := r.Group("/task")
+	if gin.Mode() != gin.DebugMode {
+		taskRouter.Use(func(c *gin.Context) {
+			taskHeader := c.GetHeader("X-Appengine-Taskname")
+			if taskHeader == "" {
+				c.Abort()
+			}
+		})
+	}
+	cloudtask.AddCloudTasks(taskRouter)
 
 	err := r.Run()
 	if err != nil {
