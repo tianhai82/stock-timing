@@ -12,7 +12,7 @@ import (
 
 // AddCloudTasks add cloud task handlers to router
 func AddCloudTasks(router *gin.RouterGroup) {
-	router.GET("/analyze-stocks", analyzeStock)
+	router.POST("/analyze-stocks", analyzeStock)
 }
 
 func analyzeStock(c *gin.Context) {
