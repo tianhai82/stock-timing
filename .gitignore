@@ -67,3 +67,4 @@ public/bundle.*
 public/components.*
 public/utils.*
 *.exe
+*.exe~

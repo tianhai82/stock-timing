@@ -90,6 +90,16 @@ func emailSubscribers(c *gin.Context) {
 			}
 		}
 	}
+	dailyAnalysisDocs, err := rpcs.FirestoreClient.Collection("dailyAnalysis").DocumentRefs(ctx).GetAll()
+	if err == nil {
+		for _, dailyAnalysis := range dailyAnalysisDocs {
+			_, errDel := dailyAnalysis.Delete(ctx)
+			if errDel != nil {
+				fmt.Println("error deleting", dailyAnalysis.ID, errDel)
+			}
+		}
+	}
+
 	c.Status(200)
 }
 
