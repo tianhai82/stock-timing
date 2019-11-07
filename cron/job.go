@@ -23,7 +23,7 @@ func stockSubscriptions(c *gin.Context) {
 	iter := rpcs.FirestoreClient.Collection("subscription").Documents(ctx)
 	docs, err := iter.GetAll()
 	if err != nil {
-		fmt.Println(err)
+		fmt.Println("unable to retrieve subscriptions", err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
@@ -52,39 +52,28 @@ func stockSubscriptions(c *gin.Context) {
 }
 
 func groupUsers(docs []*firestore.DocumentSnapshot) []model.UserSubscription {
-	userSub := make(map[string][]int)
+	userSub := make(map[string][]model.Stock)
 	for _, doc := range docs {
-		id, err := doc.DataAt("InstrumentID")
+		var stockSub model.StockSubscription
+		err := doc.DataTo(&stockSub)
 		if err != nil {
 			fmt.Println(err)
 			continue
 		}
-		idInt, ok := id.(int64)
-		if !ok {
-			fmt.Println("id not int64", id)
-			continue
-		}
-		userID, err := doc.DataAt("UserID")
-		if err != nil {
-			continue
-		}
-		userIDStr, ok := userID.(string)
-		if !ok {
-			continue
-		}
-		sub, found := userSub[userIDStr]
+
+		sub, found := userSub[stockSub.UserID]
 		if !found {
-			userSub[userIDStr] = []int{int(idInt)}
+			userSub[stockSub.UserID] = []model.Stock{stockSub.Stock}
 		} else {
-			sub = append(sub, int(idInt))
-			userSub[userIDStr] = sub
+			sub = append(sub, stockSub.Stock)
+			userSub[stockSub.UserID] = sub
 		}
 	}
 	userSubscriptions := make([]model.UserSubscription, 0, len(userSub))
 	for userID, subs := range userSub {
 		userSubscription := model.UserSubscription{
-			UserID:        userID,
-			InstrumentIDs: subs,
+			UserID:      userID,
+			Instruments: subs,
 		}
 		userSubscriptions = append(userSubscriptions, userSubscription)
 	}

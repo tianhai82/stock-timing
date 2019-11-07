@@ -49,8 +49,8 @@ func init() {
 	}
 }
 
-const period = 40
-const candlePeriod = 350
+const Period = 35
+const CandlePeriod = 350
 
 // AddRpcs adds API handlers to the gin router
 func AddEtoroRpcs(router *gin.RouterGroup) {
@@ -70,15 +70,15 @@ func analyseInstrument(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, candlePeriod)
+	candles, err := etoro.RetrieveCandle(id, CandlePeriod+Period/2)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
 		return
 	}
 	advices := make([]model.TradeAdvice, 0)
-	for i := 0; i < len(candles)-period; i++ {
-		analysis := analyzer.AnalyzerCandles(candles[i : i+period])
+	for i := 0; i < len(candles)-Period; i++ {
+		analysis := analyzer.AnalyzerCandles(candles[i : i+Period])
 		if analysis.Signal == model.Buy || analysis.Signal == model.Sell {
 			advice := model.TradeAdvice{
 				Date:   analysis.CurrentCandle.FromDate,
@@ -102,7 +102,7 @@ func retrieveCandles(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, candlePeriod)
+	candles, err := etoro.RetrieveCandle(id, CandlePeriod)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")

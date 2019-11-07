@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Email struct {
@@ -12,12 +14,12 @@ type Email struct {
 	Name  string `json:"name"`
 }
 type Payload struct {
-	HTMLContent string            `json:"htmlContent"`
-	Sender      Email             `json:"sender"`
-	ReplyTo     Email             `json:"replyTo"`
-	TemplateID  int               `json:"templateId"`
-	Params      map[string]string `json:"params"`
-	To          []Email           `json:"to"`
+	HTMLContent string  `json:"htmlContent"`
+	Sender      Email   `json:"sender"`
+	ReplyTo     Email   `json:"replyTo"`
+	TemplateID  int     `json:"templateId"`
+	Params      gin.H   `json:"params"`
+	To          []Email `json:"to"`
 }
 type TemplateID int
 
@@ -35,18 +37,21 @@ type sendInBlueResp struct {
 	Message   string `json:"message"`
 }
 
-func Sendmail(url string, apiKey string, templateId TemplateID, params map[string]string, recipients []Email) error {
+const url = "https://api.sendinblue.com/v3/smtp/email"
+
+func Sendmail(apiKey string, templateId TemplateID, params gin.H, recipients []Email) error {
 	payload := Payload{
-		Params: params,
+		HTMLContent: "-",
+		Params:      params,
 		Sender: Email{
-			Name:  "MRC Asia Bot",
-			Email: "bot@mrc-asia.com",
+			Name:  "Tan Yin Loo",
+			Email: "tianhai@gmail.com",
 		},
 		To:         recipients,
 		TemplateID: int(templateId),
 		ReplyTo: Email{
-			Name:  "MRC Asia Bot",
-			Email: "bot@mrc-asia.com",
+			Name:  "Tan Yin Loo",
+			Email: "tianhai@gmail.com",
 		},
 	}
 	s, _ := json.Marshal(payload)

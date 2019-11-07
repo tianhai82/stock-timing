@@ -74,6 +74,18 @@ type StockSubscription struct {
 	LastUpdatedAt time.Time `json:"lastUpdatedAt"`
 }
 type UserSubscription struct {
-	UserID        string
-	InstrumentIDs []int
+	UserID      string
+	Instruments []Stock
+}
+type EmailAnalysis struct {
+	BuyOrSell             string  `json:"buyOrSell"`
+	InstrumentDisplayName string  `json:"instrumentDisplayName"`
+	InstrumentSymbol      string  `json:"instrumentSymbol"`
+	Period                int     `json:"period"`
+	Mean                  float64 `json:"mean"`
+	StdDev                float64 `json:"stdDev"`
+	MaxDev                float64 `json:"maxDev"`
+	LimitDev              float64 `json:"limitDev"`
+	CurrentDev            float64 `json:"currentDev"`
+	CurrentPrice          float64 `json:"currentPrice"`
 }

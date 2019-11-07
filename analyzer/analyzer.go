@@ -7,11 +7,11 @@ import (
 )
 
 func AnalyzerCandles(candles []model.Candle) model.TradeAnalysis {
-	periodMean := calcMean(candles, getClose)
-	stdDev, maxDev := calcStdMaxDev(candles, periodMean, getClose)
-	limitDev := (stdDev + maxDev) * 0.4
+	periodMean := calcMean(candles, getMid)
+	stdDev, maxDev := calcStdMaxDev(candles, periodMean, getMid)
+	limitDev := (stdDev + maxDev) * 0.56
 	period := len(candles)
-	currentDev := getClose(candles[period-1]) - periodMean
+	currentDev := getMid(candles[period-1]) - periodMean
 
 	analysis := model.TradeAnalysis{
 		Period:        period,
@@ -22,25 +22,27 @@ func AnalyzerCandles(candles []model.Candle) model.TradeAnalysis {
 		LimitDev:      limitDev,
 		CurrentDev:    currentDev,
 	}
-	signal := getSignal(candles, analysis, getClose)
+	signal := getSignal(candles, analysis)
 	analysis.Signal = signal
 	return analysis
 }
 
-func getSignal(candles []model.Candle, analysis model.TradeAnalysis, candleVal func(model.Candle) float64) model.TradeSignal {
+func getSignal(candles []model.Candle, analysis model.TradeAnalysis) model.TradeSignal {
 	if len(candles) < 3 {
 		return model.Hold
 	}
 	if math.Abs(analysis.CurrentDev) >= analysis.LimitDev {
 		lastCandle := candles[len(candles)-1]
-		secondLastCandle := candles[len(candles)-2]
+		// secondLastCandle := candles[len(candles)-2]
 		// thirdLastCandle := candles[len(candles)-3]
 		if analysis.CurrentDev > 0 {
-			if /*candleVal(lastCandle) <= candleVal(secondLastCandle) &&*/ lastCandle.Close <= lastCandle.Open && secondLastCandle.Close <= secondLastCandle.Open {
+			if lastCandle.Close <= lastCandle.Open {
+				// if /*candleVal(lastCandle) <= candleVal(secondLastCandle) &&*/ lastCandle.Close <= lastCandle.Open && secondLastCandle.Close <= secondLastCandle.Open {
 				return model.Sell
 			}
 		} else {
-			if /*candleVal(lastCandle) >= candleVal(secondLastCandle) &&*/ lastCandle.Close >= lastCandle.Open && secondLastCandle.Close >= secondLastCandle.Open {
+			if lastCandle.Close >= lastCandle.Open {
+				// if /*candleVal(lastCandle) >= candleVal(secondLastCandle) &&*/ lastCandle.Close >= lastCandle.Open && secondLastCandle.Close >= secondLastCandle.Open {
 				return model.Buy
 			}
 		}
@@ -50,6 +52,10 @@ func getSignal(candles []model.Candle, analysis model.TradeAnalysis, candleVal f
 
 func getClose(candle model.Candle) float64 {
 	return candle.Close
+}
+
+func getMid(candle model.Candle) float64 {
+	return (candle.Open + candle.Close) / 2
 }
 
 func calcStdMaxDev(candles []model.Candle, mean float64, candleVal func(model.Candle) float64) (float64, float64) {
