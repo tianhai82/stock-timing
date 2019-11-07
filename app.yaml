@@ -2,7 +2,7 @@ runtime: go113
 
 env_variables:
   GIN_MODE: "release"
-  MAIL_API_KEY: "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"
+  MAIL_API_KEY: ""
 
 handlers:
   - url: /.*
