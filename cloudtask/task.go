@@ -81,6 +81,7 @@ func emailSubscribers(c *gin.Context) {
 		if err != nil {
 			fmt.Println("error sending mail", err)
 		}
+		_, _ = rpcs.FirestoreClient.Collection("usersToEmail").Doc(idStr).Delete(ctx)
 		if u != len(users)-1 {
 			duration := time.Since(start)
 			if duration.Minutes() > 8.0 {
