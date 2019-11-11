@@ -72,7 +72,7 @@
       {
         type: "slider",
         realtime: false,
-        start: 40,
+        // start: 40,
         end: 100,
         top: 5,
         height: 20,
@@ -82,7 +82,7 @@
       },
       {
         type: "inside",
-        start: 50,
+        // start: 50,
         end: 70,
         top: 30,
         height: 20

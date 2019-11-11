@@ -21,8 +21,8 @@ function retrieveCandles(instrumentID) {
     .then(resp => resp.json());
 }
 
-function retrieveSignals(instrumentID) {
-  return fetch(`${url.signals}/${instrumentID}`)
+function retrieveSignals(instrumentID, period) {
+  return fetch(`${url.signals}/${instrumentID}/period/${period}`)
     .then((response) => {
       if (response.ok) {
         return response;
@@ -32,8 +32,8 @@ function retrieveSignals(instrumentID) {
     .then(resp => resp.json());
 }
 
-function addSubscription({ idToken, instrument }) {
-  return fetch(url.subscribe, {
+function addSubscription({ idToken, instrument, period }) {
+  return fetch(`${url.subscribe}/period/${period}`, {
     method: "POST",
     body: JSON.stringify(instrument),
     credentials: "include",

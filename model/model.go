@@ -71,21 +71,18 @@ type Stock struct {
 type StockSubscription struct {
 	Stock         `json:",inline"`
 	UserID        string    `json:"email"`
+	Period        int       `json:"period"`
 	LastUpdatedAt time.Time `json:"lastUpdatedAt"`
 }
 type UserSubscription struct {
-	UserID      string
-	Instruments []Stock
+	UserID        string
+	Subscriptions []StockSubscription
 }
 type EmailAnalysis struct {
 	BuyOrSell             string  `json:"buyOrSell"`
 	InstrumentDisplayName string  `json:"instrumentDisplayName"`
 	InstrumentSymbol      string  `json:"instrumentSymbol"`
 	Period                int     `json:"period"`
-	Mean                  float64 `json:"mean"`
-	StdDev                float64 `json:"stdDev"`
-	MaxDev                float64 `json:"maxDev"`
-	LimitDev              float64 `json:"limitDev"`
-	CurrentDev            float64 `json:"currentDev"`
 	CurrentPrice          float64 `json:"currentPrice"`
+	PricePercentile       float64 `json:"PricePercentile"`
 }

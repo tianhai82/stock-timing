@@ -68,3 +68,4 @@ public/components.*
 public/utils.*
 *.exe
 *.exe~
+.vscode

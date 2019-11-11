@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/http"
-	"strconv"
 
 	"cloud.google.com/go/firestore"
 	"github.com/gin-gonic/gin"
@@ -27,14 +26,7 @@ func stockSubscriptions(c *gin.Context) {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
-	ids := distinctInstrumentID(docs)
-	instrumentCol := rpcs.FirestoreClient.Collection("instrumentsToAnalyse")
-	for _, id := range ids {
-		_, errSet := instrumentCol.Doc(strconv.Itoa(id)).Set(ctx, map[string]int{"id": id})
-		if errSet != nil {
-			fmt.Println(errSet, id)
-		}
-	}
+
 	userSubscriptions := groupUsers(docs)
 	usersToEmailCol := rpcs.FirestoreClient.Collection("usersToEmail")
 	for _, subs := range userSubscriptions {
@@ -48,11 +40,10 @@ func stockSubscriptions(c *gin.Context) {
 		fmt.Println(err)
 		c.AbortWithStatus(http.StatusInternalServerError)
 	}
-	// create cloud task for Analyse Stock
 }
 
 func groupUsers(docs []*firestore.DocumentSnapshot) []model.UserSubscription {
-	userSub := make(map[string][]model.Stock)
+	userSub := make(map[string][]model.StockSubscription)
 	for _, doc := range docs {
 		var stockSub model.StockSubscription
 		err := doc.DataTo(&stockSub)
@@ -63,36 +54,19 @@ func groupUsers(docs []*firestore.DocumentSnapshot) []model.UserSubscription {
 
 		sub, found := userSub[stockSub.UserID]
 		if !found {
-			userSub[stockSub.UserID] = []model.Stock{stockSub.Stock}
+			userSub[stockSub.UserID] = []model.StockSubscription{stockSub}
 		} else {
-			sub = append(sub, stockSub.Stock)
+			sub = append(sub, stockSub)
 			userSub[stockSub.UserID] = sub
 		}
 	}
 	userSubscriptions := make([]model.UserSubscription, 0, len(userSub))
 	for userID, subs := range userSub {
 		userSubscription := model.UserSubscription{
-			UserID:      userID,
-			Instruments: subs,
+			UserID:        userID,
+			Subscriptions: subs,
 		}
 		userSubscriptions = append(userSubscriptions, userSubscription)
 	}
 	return userSubscriptions
-}
-
-func distinctInstrumentID(docs []*firestore.DocumentSnapshot) []int {
-	ids := make([]int, 0, len(docs))
-	for _, doc := range docs {
-		id, err := doc.DataAt("InstrumentID")
-		if err == nil {
-			if idInt, ok := id.(int64); ok {
-				ids = append(ids, int(idInt))
-			} else {
-				fmt.Println("id not int", id)
-			}
-		} else {
-			fmt.Println(err)
-		}
-	}
-	return ids
 }

@@ -2,7 +2,6 @@ package rpcs
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -13,7 +12,7 @@ import (
 )
 
 func AddSubscriptionRpcs(router *gin.RouterGroup) {
-	router.POST("/subscribe", subscribe)
+	router.POST("/subscribe/period/:period", subscribe)
 }
 
 func subscribe(c *gin.Context) {
@@ -23,9 +22,16 @@ func subscribe(c *gin.Context) {
 		return
 	}
 	loginUser := user.(model.UserAccount)
-	fmt.Println(loginUser.Email)
+
+	periodStr := c.Param("period")
+	period, err := strconv.Atoi(periodStr)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid period")
+		return
+	}
+
 	var stock model.Stock
-	err := c.BindJSON(&stock)
+	err = c.BindJSON(&stock)
 	if err != nil {
 		c.AbortWithStatus(http.StatusBadRequest)
 		return
@@ -33,6 +39,7 @@ func subscribe(c *gin.Context) {
 	subscription := model.StockSubscription{
 		Stock:         stock,
 		UserID:        loginUser.Email,
+		Period:        period,
 		LastUpdatedAt: time.Now(),
 	}
 	key := strings.ToLower(loginUser.Email) + "|" + strconv.Itoa(stock.InstrumentID)

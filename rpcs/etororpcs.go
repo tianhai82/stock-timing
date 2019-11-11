@@ -49,14 +49,13 @@ func init() {
 	}
 }
 
-const Period = 35
 const CandlePeriod = 350
 
 // AddRpcs adds API handlers to the gin router
 func AddEtoroRpcs(router *gin.RouterGroup) {
 	router.GET("/instruments", retrieveInstruments)
 	router.GET("/candles/:instrumentID", retrieveCandles)
-	router.GET("/signals/:instrumentID", analyseInstrument)
+	router.GET("/signals/:instrumentID/period/:period", analyseInstrument)
 }
 
 func analyseInstrument(c *gin.Context) {
@@ -70,15 +69,21 @@ func analyseInstrument(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, CandlePeriod+Period/2)
+	periodStr := c.Param("period")
+	period, err := strconv.Atoi(periodStr)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid period")
+		return
+	}
+	candles, err := etoro.RetrieveCandle(id, CandlePeriod+period)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
 		return
 	}
 	advices := make([]model.TradeAdvice, 0)
-	for i := 0; i < len(candles)-Period; i++ {
-		analysis := analyzer.AnalyzerCandles(candles[i : i+Period])
+	for i := 0; i < len(candles)-period; i++ {
+		analysis := analyzer.AnalyzerCandles(candles[i : i+period])
 		if analysis.Signal == model.Buy || analysis.Signal == model.Sell {
 			advice := model.TradeAdvice{
 				Date:   analysis.CurrentCandle.FromDate,
