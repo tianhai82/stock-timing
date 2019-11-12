@@ -56,7 +56,7 @@ func analyzeStock(c *gin.Context) {
 				Period:                analysis.Period,
 				CurrentPrice:          analysis.CurrentCandle.Close,
 			}
-			percentile := 0.0
+			percentile := 0.5
 			if math.Abs(analysis.CurrentDev) > analysis.StdDev {
 				if analysis.CurrentDev > 0 {
 					percentile = ((analysis.CurrentDev-analysis.StdDev)/(analysis.MaxDev-analysis.StdDev))/2 + 0.5
