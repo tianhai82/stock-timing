@@ -9,7 +9,6 @@
   export { className as class };
   export let minChar = 1;
   export let value = "";
-  export let text = "";
   export let label = "";
   export let selectedLabel = "";
   export let color = "primary";
@@ -59,9 +58,11 @@
 
   $: itemsProcessed = process(items);
 
-  onMount(() => {
-    selectedLabel = getLabel(value);
-  });
+  $: {
+    if (items.length > 0) {
+      selectedLabel = getLabel(value);
+    }
+  }
 
   const inProps = { y: 10, duration: 50, easing: quadIn };
   const outProps = { y: -10, duration: 100, easing: quadOut, delay: 50 };

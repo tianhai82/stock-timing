@@ -3,10 +3,51 @@ const url = {
   candles: "/rpc/candles",
   signals: "/rpc/signals",
   subscribe: "/rpc/auth/subscribe",
+  subscriptions: "/rpc/auth/subscriptions",
 };
+
+function removeSubscription({ idToken, instrumentID }) {
+  return fetch(`${url.subscriptions}/${instrumentID}`, {
+    credentials: "include",
+    mode: "cors",
+    headers: {
+      Authorization: `Bearer ${idToken}`
+    },
+    method: "DELETE",
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw new Error(`${response.statusText} : ${response.status}`);
+    });
+}
+
+function retrieveSubscriptions(idToken) {
+  return fetch(url.subscriptions, {
+    credentials: "include",
+    mode: "cors",
+    headers: {
+      Authorization: `Bearer ${idToken}`
+    },
+  })
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw new Error(`${response.statusText} : ${response.status}`);
+    })
+    .then(resp => resp.json());
+}
 
 function retrieveInstruments() {
   return fetch(url.instruments)
+    .then((response) => {
+      if (response.ok) {
+        return response;
+      }
+      throw new Error(`${response.statusText} : ${response.status}`);
+    })
     .then(resp => resp.json());
 }
 
@@ -54,5 +95,7 @@ export {
   retrieveInstruments,
   retrieveCandles,
   retrieveSignals,
-  addSubscription
+  addSubscription,
+  retrieveSubscriptions,
+  removeSubscription
 };
