@@ -2,18 +2,21 @@
   import { Button, ProgressCircular, ProgressLinear, Slider } from "smelte";
   import Select from "./widgets/Select.svelte";
   import {
-    retrieveInstruments,
     retrieveCandles,
     retrieveSignals,
     addSubscription
   } from "../api/api";
   import CandleChart from "./CandleChart.svelte";
   import debounce from "../debounce";
-  import { loginUser, showSignIn } from "../store/store";
+  import {
+    loginUser,
+    showSignIn,
+    instruments,
+    subscriptions
+  } from "../store/store";
 
   export let params = {};
   let stock;
-  let instruments;
   let candles;
   let signals;
   let freq = 48;
@@ -45,7 +48,7 @@
       alert("Please login to subscribe to alerts");
       return;
     }
-    const stockFound = instruments.find(ins => ins.value === stock);
+    const stockFound = $instruments.find(ins => ins.value === stock);
     if (!stockFound) {
       alert("Please select a company/ETF to subscribe");
       return;
@@ -61,21 +64,23 @@
         },
         period
       })
-        .then(data =>
+        .then(data => {
+          $subscriptions = [
+            ...$subscriptions,
+            {
+              symbol: stockFound.symbol,
+              instrumentID: stockFound.value,
+              instrumentDisplayName: stockFound.text,
+              period
+            }
+          ];
           alert(
             `You are subscribed to trading signals for "${stockFound.text}"!`
-          )
-        )
+          );
+        })
         .catch(err => alert(err));
     });
   }
-  retrieveInstruments().then(data => {
-    instruments = data.map(i => ({
-      symbol: i.SymbolFull,
-      value: i.InstrumentID,
-      text: i.InstrumentDisplayName
-    }));
-  });
 
   const freqChanged = debounce(() => {
     if (stock) {
@@ -97,6 +102,7 @@
       candles = data;
     });
   }
+
   const filterStocks = (stock, inputValue) =>
     stock.text.toLowerCase().includes(inputValue) ||
     stock.symbol.toLowerCase().includes(inputValue);
@@ -106,6 +112,7 @@
     period = (100 - freq) / 4 + 15;
     freqChanged();
   }
+  $: periodLabel = `Period (${period})`;
 </script>
 
 <style>
@@ -123,7 +130,7 @@
     outlined
     autocomplete
     label="Enter Company Name"
-    items={instruments} />
+    items={$instruments} />
 </div>
 {#await loadChartPromise}
   <div class="px-4">
@@ -139,9 +146,9 @@
     {/if}
     <CandleChart {candles} {signals} />
     <div class="mb-5">
-      <Slider label="Frequency" bind:value={freq} step="4" />
+      <Slider label={periodLabel} bind:value={freq} step="4" />
     </div>
-    <div class="mt-2">
+    <div class="my-2">
       {#if $loginUser}
         <Button block outline on:click={subcribe}>Subscribe</Button>
       {:else}

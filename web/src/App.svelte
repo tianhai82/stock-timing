@@ -1,21 +1,35 @@
 <script>
   import { Button, NavigationDrawer, List, ListItem } from "smelte";
+  import { onMount } from "svelte";
   import Router from "svelte-spa-router";
   import { location } from "svelte-spa-router";
   import Signin from "./components/Signin.svelte";
   import Stock from "./components/Stock.svelte";
   import Subscriptions from "./components/Subscriptions.svelte";
-  import { loginUser, showSignIn } from "./store/store";
+  import { loginUser, showSignIn, instruments, subscriptions } from "./store/store";
+  import { retrieveSubscriptions, retrieveInstruments } from "./api/api";
 
   let showMenu = false;
 
-  firebase.auth().onAuthStateChanged(function(user, x) {
+  firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       $loginUser = user;
+      fetchSubscriptions();
     } else {
       $loginUser = undefined;
     }
   });
+
+  function fetchSubscriptions() {
+    $loginUser
+      .getIdToken()
+      .then(idToken => retrieveSubscriptions(idToken))
+      .then(data => {
+        $subscriptions = data;
+      })
+      .catch(err => alert(err));
+  }
+
   function signOut() {
     firebase
       .auth()
@@ -57,13 +71,23 @@
     }
     return false;
   }
+
+  onMount(() => {
+    retrieveInstruments().then(data => {
+      $instruments = data.map(i => ({
+        symbol: i.SymbolFull,
+        value: i.InstrumentID,
+        text: i.InstrumentDisplayName
+      }));
+    });
+  });
 </script>
 
 <div class="h-auto">
   <NavigationDrawer
     bind:showDesktop={showMenu}
     bind:showMobile={showMenu}
-    asideClasses="fixed top-0 sm:mt-16 sm:h-full w-auto drawer overflow-hidden"
+    asideClasses="fixed top-0 h-full w-auto drawer overflow-hidden"
     breakpoint="sm">
     <h6 class="p-6 ml-1 pb-2 text-xs text-gray-900">Menu</h6>
     <List items={menu}>

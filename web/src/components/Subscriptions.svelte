@@ -1,11 +1,10 @@
 <script>
   import { Button, ProgressCircular, Dialog } from "smelte";
   import { push } from "svelte-spa-router";
-  import { retrieveSubscriptions, removeSubscription } from "../api/api";
-  import { loginUser } from "../store/store";
+  import { removeSubscription } from "../api/api";
+  import { loginUser, subscriptions } from "../store/store";
 
   let promise;
-  let items = [];
   let showDialog = false;
   let toRemove;
   function deleteSubscription(instrument) {
@@ -26,7 +25,7 @@
         removeSubscription({ idToken, instrumentID: toRemove.instrumentID })
       )
       .then(() => {
-        items = items.filter(
+        $subscriptions = $subscriptions.filter(
           item => item.instrumentID !== toRemove.instrumentID
         );
         toRemove = undefined;
@@ -34,21 +33,10 @@
       })
       .catch(err => alert(err));
   }
-  $: {
-    if (!!$loginUser) {
-      promise = $loginUser
-        .getIdToken(true)
-        .then(idToken => retrieveSubscriptions(idToken))
-        .then(data => {
-          items = data;
-        })
-        .catch(err => alert(err));
-    }
-  }
 </script>
 
 <div class="h-auto">
-  <h6 class="pt-4 py-2 px-2">Subscriptions</h6>
+  <h6 class="pt-4 pb-1 px-2">Subscriptions</h6>
   {#await promise}
     <div class="px-4 pt-4">
       Loading...
@@ -57,7 +45,7 @@
   {:then}
     <div class="rounded h-full overflow-y-auto">
       <ul class="py-2 rounded">
-        {#each items as item, i}
+        {#each $subscriptions as item, i}
           <li
             class="hover:bg-gray-transDark relative overflow-hidden transition
             p-4 text-gray-700 flex items-center z-10 py-2">
