@@ -105,15 +105,15 @@
   </NavigationDrawer>
   <header class="p-3 shadow" style="background-color:#209CEE">
     <div class="flex flex-row justify-between align-middle">
-      <div class="flex flex-row">
+      <div class="flex flex-row align-middle">
         <Button
-          class="m-0 mt-2 mr-2 p-0"
+          class="m-0 pt-1 mr-2 p-0"
           color="white"
           icon="menu"
           text
           flat
           on:click={() => (showMenu = !showMenu)} />
-        <img src="/images/TtT.png" alt="logo" style="height:36px" />
+        <img src="/images/TtT.png" alt="logo" style="height:24px;" />
       </div>
       {#if $loginUser}
         <div class="flex flex-row align-middle">
