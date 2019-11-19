@@ -58,12 +58,6 @@
 
   $: itemsProcessed = process(items);
 
-  $: {
-    if (items.length > 0) {
-      selectedLabel = getLabel(value);
-    }
-  }
-
   const inProps = { y: 10, duration: 50, easing: quadIn };
   const outProps = { y: -10, duration: 100, easing: quadOut, delay: 50 };
   const dispatch = createEventDispatcher();

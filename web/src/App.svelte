@@ -1,12 +1,17 @@
 <script>
-  import { Button, NavigationDrawer, List, ListItem } from "smelte";
+  import { Button, NavigationDrawer, List, ListItem, Image } from "smelte";
   import { onMount } from "svelte";
   import Router from "svelte-spa-router";
   import { location } from "svelte-spa-router";
   import Signin from "./components/Signin.svelte";
   import Stock from "./components/Stock.svelte";
   import Subscriptions from "./components/Subscriptions.svelte";
-  import { loginUser, showSignIn, instruments, subscriptions } from "./store/store";
+  import {
+    loginUser,
+    showSignIn,
+    instruments,
+    subscriptions
+  } from "./store/store";
   import { retrieveSubscriptions, retrieveInstruments } from "./api/api";
 
   let showMenu = false;
@@ -98,31 +103,39 @@
       </span>
     </List>
   </NavigationDrawer>
-  <header class="bg-teal-100 p-3 shadow">
+  <header class="p-3 shadow" style="background-color:#209CEE">
     <div class="flex flex-row justify-between align-middle">
       <div class="flex flex-row">
         <Button
           class="m-0 mt-2 mr-2 p-0"
-          color="black"
+          color="white"
           icon="menu"
           text
-          light
           flat
           on:click={() => (showMenu = !showMenu)} />
-        <h5>Stock Timing</h5>
+        <img src="/images/TtT.png" alt="logo" style="height:36px" />
       </div>
       {#if $loginUser}
         <div class="flex flex-row align-middle">
-          <span class="uppercase mr-2 mt-1">{$loginUser.displayName}</span>
+          <span class="uppercase mr-2 mt-1 text-white">
+            {$loginUser.displayName}
+          </span>
           <Button
             on:click={signOut}
             dark
             icon="exit_to_app"
             text
+            color="orange"
             class="m-0 p-0" />
         </div>
       {:else}
-        <Button on:click={() => ($showSignIn = true)}>Log In</Button>
+        <Button
+          on:click={() => ($showSignIn = true)}
+          outlined
+          class="bg-transparent border border-solid py-2 px-4 uppercase text-sm
+          font-semibold relative overflow-hidden border-orange-200 text-orange-200 transition">
+          Log In
+        </Button>
       {/if}
     </div>
   </header>

@@ -22,22 +22,28 @@
   let freq = 48;
   let period;
   let showAnalyzing = false;
+  let stockName;
 
   let loadChartPromise;
 
   $: {
     if (params.instrumentID && +params.instrumentID !== stock) {
       stock = +params.instrumentID;
-      signals = [];
-      loadChartPromise = retrieveCandles(stock).then(data => {
-        candles = data;
-      });
-      freqChanged();
+      const stockFound = $instruments.find(ins => ins.value === stock);
+      if (stockFound) {
+        stockName = stockFound.text;
+        signals = [];
+        loadChartPromise = retrieveCandles(stock).then(data => {
+          candles = data;
+        });
+        freqChanged();
+      }
     }
   }
   $: {
     if (params.period && +params.period !== period) {
       period = +params.period;
+      freq = (period - 15) * 4
       signals = [];
       freqChanged();
     }
@@ -109,7 +115,7 @@
 
   $: candleClass = !!candles && candles.length > 0 ? "px-4" : "hidden";
   $: {
-    period = (100 - freq) / 4 + 15;
+    period = freq / 4 + 15;
     freqChanged();
   }
   $: periodLabel = `Period (${period})`;
@@ -127,6 +133,7 @@
     filter={filterStocks}
     bind:value={stock}
     on:change={stockChanged}
+    selectedLabel={stockName}
     outlined
     autocomplete
     label="Enter Company Name"
