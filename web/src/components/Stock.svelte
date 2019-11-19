@@ -43,10 +43,13 @@
   $: {
     if (params.period && +params.period !== period) {
       period = +params.period;
-      freq = (period - 15) * 4
+      setFreq((period - 15) * 4);
       signals = [];
-      freqChanged();
     }
+  }
+
+  function setFreq(x) {
+    freq = x;
   }
 
   function subcribe() {
