@@ -37,8 +37,6 @@
   "dependencies": {
     "echarts": "^4.4.0",
     "echarts-for-svelte": "^0.1.11",
-    "firebase": "^7.2.1",
-    "firebaseui": "^4.2.0",
     "postcss-input-range": "^4.0.0",
     "postcss-url": "^8.0.0",
     "smelte": "^0.1.0",
