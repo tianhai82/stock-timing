@@ -15,7 +15,11 @@
   }
   function navigateTo(instrument) {
     return () => {
-      push(`/${instrument.instrumentID}/${instrument.period}`);
+      push(
+        `/${instrument.instrumentID}/${instrument.period}/${getFreq(
+          instrument.buyLimit
+        )}/${getFreq(instrument.sellLimit)}`
+      );
     };
   }
   function confirmRemove() {
@@ -32,6 +36,12 @@
         showDialog = false;
       })
       .catch(err => alert(err));
+  }
+  function getFreq(limit) {
+    if (limit === 0.0) {
+      return 50;
+    }
+    return Math.round(100 - (limit - 0.25) * 200);
   }
 </script>
 
@@ -55,7 +65,8 @@
                 on:click={navigateTo(item)}>
                 <div class="font-medium">{item.instrumentDisplayName}</div>
                 <div class="text-gray-600 p-0 text-sm">
-                  Period: {item.period}
+                  Period: {item.period} | Buy Frequency: {getFreq(item.buyLimit)}
+                  | Sell Frequency: {getFreq(item.sellLimit)}
                 </div>
               </div>
               <Button

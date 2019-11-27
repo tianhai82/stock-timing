@@ -49,10 +49,20 @@ func analyzeStock(c *gin.Context) {
 			if err != nil {
 				continue
 			}
-			analysis := analyzer.AnalyzerCandles(candles, 0.55, 0.58)
+			buyLimit := 0.55
+			if sub.BuyLimit != 0.0 {
+				buyLimit = sub.BuyLimit
+			}
+			sellLimit := 0.57
+			if sub.SellLimit != 0.0 {
+				sellLimit = sub.SellLimit
+			}
+			analysis := analyzer.AnalyzerCandles(candles, buyLimit, sellLimit)
 			userAnalysises[i] = model.EmailAnalysis{
 				InstrumentDisplayName: sub.InstrumentDisplayName,
 				InstrumentSymbol:      sub.Symbol,
+				BuyLimit:              sub.BuyLimit,
+				SellLimit:             sub.SellLimit,
 				Period:                analysis.Period,
 				CurrentPrice:          analysis.CurrentCandle.Close,
 			}

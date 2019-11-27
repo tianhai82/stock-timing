@@ -62,8 +62,8 @@ function retrieveCandles(instrumentID) {
     .then(resp => resp.json());
 }
 
-function retrieveSignals(instrumentID, period) {
-  return fetch(`${url.signals}/${instrumentID}/period/${period}`)
+function retrieveSignals(instrumentID, period, buyLimit, sellLimit) {
+  return fetch(`${url.signals}/${instrumentID}/period/${period}/buyLimit/${buyLimit}/sellLimit/${sellLimit}`)
     .then((response) => {
       if (response.ok) {
         return response;
@@ -73,8 +73,8 @@ function retrieveSignals(instrumentID, period) {
     .then(resp => resp.json());
 }
 
-function addSubscription({ idToken, instrument, period }) {
-  return fetch(`${url.subscribe}/period/${period}`, {
+function addSubscription({ idToken, instrument, period, buyLimit, sellLimit }) {
+  return fetch(`${url.subscribe}/period/${period}/buyLimit/${buyLimit}/sellLimit/${sellLimit}`, {
     method: "POST",
     body: JSON.stringify(instrument),
     credentials: "include",

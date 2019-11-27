@@ -55,7 +55,7 @@ const CandlePeriod = 350
 func AddEtoroRpcs(router *gin.RouterGroup) {
 	router.GET("/instruments", retrieveInstruments)
 	router.GET("/candles/:instrumentID", retrieveCandles)
-	router.GET("/signals/:instrumentID/period/:period", analyseInstrument)
+	router.GET("/signals/:instrumentID/period/:period/buyLimit/:buyLimit/sellLimit/:sellLimit", analyseInstrument)
 }
 
 func analyseInstrument(c *gin.Context) {
@@ -75,6 +75,18 @@ func analyseInstrument(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid period")
 		return
 	}
+	buyLimitStr := c.Param("buyLimit")
+	buyLimit, err := strconv.ParseFloat(buyLimitStr, 64)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid buy limit")
+		return
+	}
+	sellLimitStr := c.Param("sellLimit")
+	sellLimit, err := strconv.ParseFloat(sellLimitStr, 64)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid sell limit")
+		return
+	}
 	candles, err := etoro.RetrieveCandle(id, CandlePeriod+period)
 	if err != nil {
 		fmt.Println(err)
@@ -83,7 +95,7 @@ func analyseInstrument(c *gin.Context) {
 	}
 	advices := make([]model.TradeAdvice, 0)
 	for i := 0; i < len(candles)-period; i++ {
-		analysis := analyzer.AnalyzerCandles(candles[i:i+period], 0.55, 0.58)
+		analysis := analyzer.AnalyzerCandles(candles[i:i+period], buyLimit, sellLimit)
 		if analysis.Signal == model.Buy || analysis.Signal == model.Sell {
 			advice := model.TradeAdvice{
 				Date:   analysis.CurrentCandle.FromDate,

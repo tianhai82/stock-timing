@@ -12,7 +12,7 @@ import (
 )
 
 func AddSubscriptionRpcs(router *gin.RouterGroup) {
-	router.POST("/subscribe/period/:period", subscribe)
+	router.POST("/subscribe/period/:period/buyLimit/:buyLimit/sellLimit/:sellLimit", subscribe)
 	router.GET("/subscriptions", retrieveSubscription)
 	router.DELETE("/subscriptions/:instrumentID", deleteSubscription)
 }
@@ -78,6 +78,18 @@ func subscribe(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid period")
 		return
 	}
+	buyLimitStr := c.Param("buyLimit")
+	buyLimit, err := strconv.ParseFloat(buyLimitStr, 64)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid buy limit")
+		return
+	}
+	sellLimitStr := c.Param("sellLimit")
+	sellLimit, err := strconv.ParseFloat(sellLimitStr, 64)
+	if err != nil {
+		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid sell limit")
+		return
+	}
 
 	var stock model.Stock
 	err = c.BindJSON(&stock)
@@ -89,6 +101,8 @@ func subscribe(c *gin.Context) {
 		Stock:         stock,
 		UserID:        loginUser.Email,
 		Period:        period,
+		BuyLimit:      buyLimit,
+		SellLimit:     sellLimit,
 		LastUpdatedAt: time.Now(),
 	}
 	key := strings.ToLower(loginUser.Email) + "|" + strconv.Itoa(stock.InstrumentID)

@@ -20,6 +20,8 @@
   let candles;
   let signals;
   let freq = 48;
+  let buyFreq = 50;
+  let sellFreq = 50;
   let period;
   let showAnalyzing = false;
   let stockName;
@@ -47,6 +49,26 @@
       signals = [];
     }
   }
+  $: {
+    if (params.buyFreq && !equalToBuyFreq(+params.buyFreq)) {
+      setBuyFreq(+params.buyFreq);
+    }
+  }
+  $: {
+    if (params.sellFreq && !equalToSellFreq(+params.sellFreq)) {
+      setSellFreq(+params.sellFreq);
+    }
+  }
+
+  const equalToBuyFreq = f => f === buyFreq;
+  const equalToSellFreq = f => f === sellFreq;
+
+  function setBuyFreq(x) {
+    buyFreq = x;
+  }
+  function setSellFreq(x) {
+    sellFreq = x;
+  }
 
   function setFreq(x) {
     freq = x;
@@ -71,16 +93,20 @@
           instrumentID: stockFound.value,
           instrumentDisplayName: stockFound.text
         },
-        period
+        period,
+        buyLimit: (100 - buyFreq) / 200 + 0.25,
+        sellLimit: (100 - sellFreq) / 200 + 0.25
       })
         .then(data => {
           $subscriptions = [
-            ...$subscriptions,
+            ...$subscriptions.filter(s => s.symbol !== stockFound.symbol),
             {
               symbol: stockFound.symbol,
               instrumentID: stockFound.value,
               instrumentDisplayName: stockFound.text,
-              period
+              period,
+              buyLimit: (100 - buyFreq) / 200 + 0.25,
+              sellLimit: (100 - sellFreq) / 200 + 0.25
             }
           ];
           alert(
@@ -94,7 +120,12 @@
   const freqChanged = debounce(() => {
     if (stock) {
       showAnalyzing = true;
-      const signalPromise = retrieveSignals(stock, period).then(data => {
+      const signalPromise = retrieveSignals(
+        stock,
+        period,
+        (100 - buyFreq) / 200 + 0.25,
+        (100 - sellFreq) / 200 + 0.25
+      ).then(data => {
         signals = data;
         showAnalyzing = false;
       });
@@ -121,14 +152,15 @@
     period = freq / 4 + 15;
     freqChanged();
   }
-  $: periodLabel = `Period (${period})`;
-</script>
-
-<style>
-  .hidden {
-    display: none;
+  $: {
+    if (buyFreq >= 0.0 || sellFreq >= 0.0) {
+      freqChanged();
+    }
   }
-</style>
+  $: periodLabel = `Period (${period})`;
+  $: buyFreqLabel = `Buy Frequency (${buyFreq / 100})`;
+  $: sellFreqLabel = `Sell Frequency (${sellFreq / 100})`;
+</script>
 
 <div class="px-4 pt-4 pb-2">
   <Select
@@ -157,6 +189,14 @@
     <CandleChart {candles} {signals} />
     <div class="mb-5">
       <Slider label={periodLabel} bind:value={freq} step="4" />
+    </div>
+    <div class="flex flex-wrap mb-5">
+      <div class="w-full md:w-1/2 px-0 md:pr-2 mb-5 md:mb-0">
+        <Slider label={buyFreqLabel} bind:value={buyFreq} step="1" />
+      </div>
+      <div class="w-full md:w-1/2 px-0 md:pl-2">
+        <Slider label={sellFreqLabel} bind:value={sellFreq} step="1" />
+      </div>
     </div>
     <div class="my-2">
       {#if $loginUser}

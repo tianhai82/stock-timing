@@ -46,7 +46,7 @@
 
   const routes = {
     "/subscriptions": Subscriptions,
-    "/:instrumentID?/:period?": Stock
+    "/:instrumentID?/:period?/:buyFreq?/:sellFreq?": Stock
   };
 
   let menu = [{ to: "#/", text: "Stock Analysis" }];
