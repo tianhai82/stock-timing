@@ -6,10 +6,9 @@ import (
 	"github.com/tianhai82/stock-timing/model"
 )
 
-func AnalyzerCandles(candles []model.Candle) model.TradeAnalysis {
+func AnalyzerCandles(candles []model.Candle, buyLimit, sellLimit float64) model.TradeAnalysis {
 	periodMean := calcMean(candles, getMid)
 	stdDev, maxDev := calcStdMaxDev(candles, periodMean, getMid)
-	limitDev := (stdDev + maxDev) * 0.56
 	period := len(candles)
 	currentDev := getMid(candles[period-1]) - periodMean
 
@@ -19,7 +18,8 @@ func AnalyzerCandles(candles []model.Candle) model.TradeAnalysis {
 		CurrentCandle: candles[period-1],
 		StdDev:        stdDev,
 		MaxDev:        maxDev,
-		LimitDev:      limitDev,
+		BuyLimitDev:   -buyLimit * (stdDev + maxDev),
+		SellLimitDev:  sellLimit * (stdDev + maxDev),
 		CurrentDev:    currentDev,
 	}
 	signal := getSignal(candles, analysis)
@@ -31,28 +31,24 @@ func getSignal(candles []model.Candle, analysis model.TradeAnalysis) model.Trade
 	if len(candles) < 3 {
 		return model.Hold
 	}
-	if math.Abs(analysis.CurrentDev) >= analysis.LimitDev {
-		lastCandle := candles[len(candles)-1]
-		// secondLastCandle := candles[len(candles)-2]
-		// thirdLastCandle := candles[len(candles)-3]
-		if analysis.CurrentDev > 0 {
-			if lastCandle.Close <= lastCandle.Open {
-				// if /*candleVal(lastCandle) <= candleVal(secondLastCandle) &&*/ lastCandle.Close <= lastCandle.Open && secondLastCandle.Close <= secondLastCandle.Open {
-				return model.Sell
-			}
-		} else {
-			if lastCandle.Close >= lastCandle.Open {
-				// if /*candleVal(lastCandle) >= candleVal(secondLastCandle) &&*/ lastCandle.Close >= lastCandle.Open && secondLastCandle.Close >= secondLastCandle.Open {
-				return model.Buy
-			}
+	lastCandle := candles[len(candles)-1]
+	if analysis.CurrentDev <= analysis.BuyLimitDev {
+		if lastCandle.Close >= lastCandle.Open {
+			// if /*candleVal(lastCandle) >= candleVal(secondLastCandle) &&*/ lastCandle.Close >= lastCandle.Open && secondLastCandle.Close >= secondLastCandle.Open {
+			return model.Buy
+		}
+	} else if analysis.CurrentDev >= analysis.SellLimitDev {
+		if lastCandle.Close <= lastCandle.Open {
+			// if /*candleVal(lastCandle) <= candleVal(secondLastCandle) &&*/ lastCandle.Close <= lastCandle.Open && secondLastCandle.Close <= secondLastCandle.Open {
+			return model.Sell
 		}
 	}
 	return model.Hold
 }
 
-func getClose(candle model.Candle) float64 {
-	return candle.Close
-}
+// func getClose(candle model.Candle) float64 {
+// 	return candle.Close
+// }
 
 func getMid(candle model.Candle) float64 {
 	return (candle.Open + candle.Close) / 2

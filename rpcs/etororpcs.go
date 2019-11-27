@@ -83,7 +83,7 @@ func analyseInstrument(c *gin.Context) {
 	}
 	advices := make([]model.TradeAdvice, 0)
 	for i := 0; i < len(candles)-period; i++ {
-		analysis := analyzer.AnalyzerCandles(candles[i : i+period])
+		analysis := analyzer.AnalyzerCandles(candles[i:i+period], 0.55, 0.58)
 		if analysis.Signal == model.Buy || analysis.Signal == model.Sell {
 			advice := model.TradeAdvice{
 				Date:   analysis.CurrentCandle.FromDate,

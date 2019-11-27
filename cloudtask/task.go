@@ -49,7 +49,7 @@ func analyzeStock(c *gin.Context) {
 			if err != nil {
 				continue
 			}
-			analysis := analyzer.AnalyzerCandles(candles)
+			analysis := analyzer.AnalyzerCandles(candles, 0.55, 0.58)
 			userAnalysises[i] = model.EmailAnalysis{
 				InstrumentDisplayName: sub.InstrumentDisplayName,
 				InstrumentSymbol:      sub.Symbol,

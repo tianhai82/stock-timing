@@ -47,7 +47,8 @@ type TradeAnalysis struct {
 	Mean          float64
 	StdDev        float64
 	MaxDev        float64
-	LimitDev      float64
+	BuyLimitDev   float64
+	SellLimitDev  float64
 	CurrentDev    float64
 	CurrentCandle Candle
 	Signal        TradeSignal
