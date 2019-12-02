@@ -94,8 +94,9 @@ func analyseInstrument(c *gin.Context) {
 		return
 	}
 	advices := make([]model.TradeAdvice, 0)
-	for i := 0; i < len(candles)-period; i++ {
-		analysis := analyzer.AnalyzerCandles(candles[i:i+period], buyLimit, sellLimit)
+	for i := 0; i < len(candles)-period+1; i++ {
+		candleToAnalyze := candles[i : i+period]
+		analysis := analyzer.AnalyzerCandles(candleToAnalyze, buyLimit, sellLimit)
 		if analysis.Signal == model.Buy || analysis.Signal == model.Sell {
 			advice := model.TradeAdvice{
 				Date:   analysis.CurrentCandle.FromDate,
