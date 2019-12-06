@@ -103,7 +103,7 @@
       </span>
     </List>
   </NavigationDrawer>
-  <header class="p-3 shadow" style="background-color:#209CEE">
+  <header class="p-3 shadow" style="background-color:#2C5282">
     <div class="flex flex-row justify-between align-middle">
       <div class="flex flex-row align-middle">
         <Button
@@ -113,7 +113,7 @@
           text
           flat
           on:click={() => (showMenu = !showMenu)} />
-        <img src="/images/TtT.png" alt="logo" style="height:24px;" />
+        <img src="/images/TtT.svg" alt="logo" style="height:28px;" /> <span class="pl-2 text-lg text-white font-medium">Time to Trade</span>
       </div>
       {#if $loginUser}
         <div class="flex flex-row align-middle">
