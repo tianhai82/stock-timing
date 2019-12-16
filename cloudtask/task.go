@@ -47,6 +47,14 @@ func analyzeStock(c *gin.Context) {
 		for i, sub := range userSubs.Subscriptions {
 			candles, err := etoro.RetrieveCandle(sub.InstrumentID, sub.Period)
 			if err != nil {
+				userAnalysises[i] = model.EmailAnalysis{
+					InstrumentDisplayName: sub.InstrumentDisplayName,
+					InstrumentSymbol:      sub.Symbol,
+					BuyFreq:               limitToFreq(sub.BuyLimit),
+					SellFreq:              limitToFreq(sub.SellLimit),
+					Period:                -1,
+					CurrentPrice:          -1.0,
+				}
 				continue
 			}
 			buyLimit := 0.55
@@ -61,8 +69,8 @@ func analyzeStock(c *gin.Context) {
 			userAnalysises[i] = model.EmailAnalysis{
 				InstrumentDisplayName: sub.InstrumentDisplayName,
 				InstrumentSymbol:      sub.Symbol,
-				BuyLimit:              sub.BuyLimit,
-				SellLimit:             sub.SellLimit,
+				BuyFreq:               limitToFreq(sub.BuyLimit),
+				SellFreq:              limitToFreq(sub.SellLimit),
 				Period:                analysis.Period,
 				CurrentPrice:          analysis.CurrentCandle.Close,
 			}
@@ -101,6 +109,10 @@ func analyzeStock(c *gin.Context) {
 		}
 	}
 	c.Status(200)
+}
+
+func limitToFreq(limit float64) float64 {
+	return 100 - (limit-0.25)*200
 }
 
 // CreateTask creates a new task in your App Engine queue.

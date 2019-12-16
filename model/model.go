@@ -88,6 +88,6 @@ type EmailAnalysis struct {
 	Period                int     `json:"period"`
 	CurrentPrice          float64 `json:"currentPrice"`
 	PricePercentile       float64 `json:"PricePercentile"`
-	BuyLimit              float64 `json:"buyLimit"`
-	SellLimit             float64 `json:"sellLimit"`
+	BuyFreq               float64 `json:"buyLimit"`
+	SellFreq              float64 `json:"sellLimit"`
 }
