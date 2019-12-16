@@ -158,8 +158,8 @@
     }
   }
   $: periodLabel = `Period (${period})`;
-  $: buyFreqLabel = `Buy Frequency (${buyFreq / 100})`;
-  $: sellFreqLabel = `Sell Frequency (${sellFreq / 100})`;
+  $: buyFreqLabel = `Buy Frequency (${buyFreq})`;
+  $: sellFreqLabel = `Sell Frequency (${sellFreq})`;
 </script>
 
 <div class="px-4 pt-4 pb-2">
