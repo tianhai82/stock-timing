@@ -27,6 +27,7 @@ func main() {
 		AllowOrigins:     domains,
 		AllowCredentials: true,
 		AllowHeaders:     []string{"Authorization"},
+		AllowMethods:     []string{"GET", "POST", "DELETE"},
 	}))
 	rpcsRouter := r.Group("/rpc")
 	rpcs.AddEtoroRpcs(rpcsRouter)
