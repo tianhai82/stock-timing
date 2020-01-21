@@ -4,7 +4,7 @@ package main
 
 import (
 	"fmt"
-
+	"encoding/json"
 	"github.com/tianhai82/stock-timing/etoro"
 	"github.com/tianhai82/stock-timing/model"
 	"github.com/tianhai82/stock-timing/yahoo"
@@ -20,7 +20,12 @@ func main() {
 }
 
 func testYahooHistory(){
-	yahoo.RetrieveHistory("C06.SI", 10)
+	candles, err := yahoo.RetrieveHistory("C06.SI", 10)
+	if err!=nil{
+		fmt.Println(err)
+	} 
+	b,_:=json.Marshal(candles)
+	fmt.Println(string(b))
 }
 
 func retrieveEtoroSymbols(){
