@@ -2,9 +2,10 @@ package yahoo
 
 import (
 	"fmt"
+	"time"
+
 	"github.com/tianhai82/stock-timing/httprequester"
 	"github.com/tianhai82/stock-timing/model"
-	"time"
 )
 
 const yahooUrl = "https://query1.finance.yahoo.com/v8/finance/chart/CSV?symbol=%s&period1=%d&period2=%d&interval=1d"
@@ -100,15 +101,20 @@ func convertToCandles(res yahooResult) ([]model.Candle, error) {
 		len(res.Timestamp) != len(res.Indicators.Quote[0].Volume) {
 		return nil, fmt.Errorf("invalid yahoo finance query results: len of timestamps, quotes and adjclose not equal")
 	}
-	candles := make([]model.Candle, len(res.Timestamp))
+	candles := make([]model.Candle, 0, len(res.Timestamp))
 	for i, ts := range res.Timestamp {
-		candles[i] = model.Candle{
+		if res.Indicators.Quote[0].Volume[i] == 0 &&
+			res.Indicators.Quote[0].Open[i] == 0 &&
+			res.Indicators.Quote[0].Close[i] == 0 {
+			continue
+		}
+		candles = append(candles, model.Candle{
 			FromDate: time.Unix(ts+res.Meta.Gmtoffset, 0),
 			Open:     res.Indicators.Quote[0].Open[i],
 			Close:    res.Indicators.Quote[0].Close[i],
 			High:     res.Indicators.Quote[0].High[i],
 			Low:      res.Indicators.Quote[0].Low[i],
-		}
+		})
 	}
 	return candles, nil
 }

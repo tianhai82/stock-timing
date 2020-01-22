@@ -6,48 +6,12 @@ import (
 	"net/http"
 	"strconv"
 
-	"cloud.google.com/go/firestore"
-	firebase "firebase.google.com/go"
-	auth "firebase.google.com/go/auth"
-	storage "firebase.google.com/go/storage"
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/analyzer"
-	"github.com/tianhai82/stock-timing/etoro"
+	candleStore "github.com/tianhai82/stock-timing/candle"
+	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/model"
 )
-
-var config = &firebase.Config{
-	StorageBucket: "stock-timing.appspot.com",
-}
-var app *firebase.App
-var AuthClient *auth.Client
-var StorageClient *storage.Client
-var FirestoreClient *firestore.Client
-
-func init() {
-	var err error
-	ctx := context.Background()
-	app, err = firebase.NewApp(ctx, config)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	AuthClient, err = app.Auth(ctx)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	StorageClient, err = app.Storage(ctx)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	FirestoreClient, err = app.Firestore(ctx)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-}
 
 const CandlePeriod = 350
 
@@ -87,7 +51,7 @@ func analyseInstrument(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid sell limit")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, CandlePeriod+period)
+	candles, err := candleStore.RetrieveCandles(id, CandlePeriod+period)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
@@ -120,7 +84,7 @@ func retrieveCandles(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusBadRequest, "invalid instrument ID")
 		return
 	}
-	candles, err := etoro.RetrieveCandle(id, CandlePeriod)
+	candles, err := candleStore.RetrieveCandles(id, CandlePeriod)
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
@@ -130,12 +94,12 @@ func retrieveCandles(c *gin.Context) {
 }
 
 func retrieveInstruments(c *gin.Context) {
-	if StorageClient == nil {
+	if firebase.StorageClient == nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
 
-	bucket, err := StorageClient.DefaultBucket()
+	bucket, err := firebase.StorageClient.DefaultBucket()
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 		return

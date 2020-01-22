@@ -5,13 +5,13 @@ import (
 	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/model"
-	"github.com/tianhai82/stock-timing/rpcs"
 )
 
 // AuthCheck is a middleware that extracts and verify the idToken and put the user in gin context
 func AuthCheck(c *gin.Context) {
-	if rpcs.AuthClient == nil {
+	if firebase.AuthClient == nil {
 		return
 	}
 	idToken := c.GetHeader("Authorization")
@@ -19,7 +19,7 @@ func AuthCheck(c *gin.Context) {
 		return
 	}
 	ctx := context.Background()
-	token, err := rpcs.AuthClient.VerifyIDTokenAndCheckRevoked(ctx, idToken[len("Bearer "):])
+	token, err := firebase.AuthClient.VerifyIDTokenAndCheckRevoked(ctx, idToken[len("Bearer "):])
 	if err != nil {
 		fmt.Println(err)
 		return

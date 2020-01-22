@@ -8,8 +8,8 @@ import (
 	"cloud.google.com/go/firestore"
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/cloudtask"
+	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/model"
-	"github.com/tianhai82/stock-timing/rpcs"
 )
 
 // AddCronJobs adds cron job handler to router group
@@ -19,7 +19,7 @@ func AddCronJobs(router *gin.RouterGroup) {
 
 func stockSubscriptions(c *gin.Context) {
 	ctx := context.Background()
-	iter := rpcs.FirestoreClient.Collection("subscription").Documents(ctx)
+	iter := firebase.FirestoreClient.Collection("subscription").Documents(ctx)
 	docs, err := iter.GetAll()
 	if err != nil {
 		fmt.Println("unable to retrieve subscriptions", err)
@@ -28,7 +28,7 @@ func stockSubscriptions(c *gin.Context) {
 	}
 
 	userSubscriptions := groupUsers(docs)
-	usersToEmailCol := rpcs.FirestoreClient.Collection("usersToEmail")
+	usersToEmailCol := firebase.FirestoreClient.Collection("usersToEmail")
 	for _, subs := range userSubscriptions {
 		_, errSet := usersToEmailCol.Doc(subs.UserID).Set(ctx, subs)
 		if errSet != nil {

@@ -12,12 +12,12 @@ import (
 	cloudtasks "cloud.google.com/go/cloudtasks/apiv2"
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/analyzer"
-	"github.com/tianhai82/stock-timing/etoro"
+	candleStore "github.com/tianhai82/stock-timing/candle"
+	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/mail"
 
 	// "github.com/tianhai82/stock-timing/mail"
 	"github.com/tianhai82/stock-timing/model"
-	"github.com/tianhai82/stock-timing/rpcs"
 	taskspb "google.golang.org/genproto/googleapis/cloud/tasks/v2"
 )
 
@@ -29,7 +29,7 @@ func AddCloudTasks(router *gin.RouterGroup) {
 func analyzeStock(c *gin.Context) {
 	start := time.Now()
 	ctx := context.Background()
-	usersSubscriptions, err := rpcs.FirestoreClient.Collection("usersToEmail").Documents(ctx).GetAll()
+	usersSubscriptions, err := firebase.FirestoreClient.Collection("usersToEmail").Documents(ctx).GetAll()
 	if err != nil {
 		c.AbortWithStatus(http.StatusUnprocessableEntity)
 		return
@@ -45,7 +45,7 @@ func analyzeStock(c *gin.Context) {
 
 		userAnalysises := make([]model.EmailAnalysis, len(userSubs.Subscriptions))
 		for i, sub := range userSubs.Subscriptions {
-			candles, err := etoro.RetrieveCandle(sub.InstrumentID, sub.Period)
+			candles, err := candleStore.RetrieveCandles(sub.InstrumentID, sub.Period)
 			if err != nil {
 				userAnalysises[i] = model.EmailAnalysis{
 					InstrumentDisplayName: sub.InstrumentDisplayName,

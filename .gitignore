@@ -69,3 +69,5 @@ public/utils.*
 *.exe
 *.exe~
 .vscode
+
+.idea/

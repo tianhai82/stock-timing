@@ -7,10 +7,10 @@ import (
 )
 
 func AnalyzerCandles(candles []model.Candle, buyLimit, sellLimit float64) model.TradeAnalysis {
-	periodMean := calcMean(candles, getMid)
-	stdDev, maxDev := calcStdMaxDev(candles, periodMean, getMid)
+	periodMean := calcMean(candles, getNearClose)
+	stdDev, maxDev := calcStdMaxDev(candles, periodMean, getNearClose)
 	period := len(candles)
-	currentDev := getMid(candles[period-1]) - periodMean
+	currentDev := getClose(candles[period-1]) - periodMean
 
 	analysis := model.TradeAnalysis{
 		Period:        period,
@@ -33,12 +33,12 @@ func getSignal(candles []model.Candle, analysis model.TradeAnalysis) model.Trade
 	}
 	lastCandle := candles[len(candles)-1]
 	if analysis.CurrentDev <= analysis.BuyLimitDev {
-		if lastCandle.Close >= lastCandle.Open {
+		if lastCandle.Close > lastCandle.Open {
 			// if /*candleVal(lastCandle) >= candleVal(secondLastCandle) &&*/ lastCandle.Close >= lastCandle.Open && secondLastCandle.Close >= secondLastCandle.Open {
 			return model.Buy
 		}
 	} else if analysis.CurrentDev >= analysis.SellLimitDev {
-		if lastCandle.Close <= lastCandle.Open {
+		if lastCandle.Close < lastCandle.Open {
 			// if /*candleVal(lastCandle) <= candleVal(secondLastCandle) &&*/ lastCandle.Close <= lastCandle.Open && secondLastCandle.Close <= secondLastCandle.Open {
 			return model.Sell
 		}
@@ -46,12 +46,12 @@ func getSignal(candles []model.Candle, analysis model.TradeAnalysis) model.Trade
 	return model.Hold
 }
 
-// func getClose(candle model.Candle) float64 {
-// 	return candle.Close
-// }
+func getClose(candle model.Candle) float64 {
+	return candle.Close
+}
 
-func getMid(candle model.Candle) float64 {
-	return (candle.Open + candle.Close) / 2
+func getNearClose(candle model.Candle) float64 {
+	return candle.Open*0.2 + candle.Close*0.8
 }
 
 func calcStdMaxDev(candles []model.Candle, mean float64, candleVal func(model.Candle) float64) (float64, float64) {

@@ -3,12 +3,14 @@ package rpcs
 import (
 	"context"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/tianhai82/stock-timing/model"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/gin-gonic/gin"
+	"github.com/tianhai82/stock-timing/firebase"
+	"github.com/tianhai82/stock-timing/model"
 )
 
 func AddSubscriptionRpcs(router *gin.RouterGroup) {
@@ -31,7 +33,7 @@ func deleteSubscription(c *gin.Context) {
 		return
 	}
 	docID := fmt.Sprintf("%s|%d", loginUser.Email, instrumentID)
-	_, err = FirestoreClient.Collection("subscription").Doc(docID).Delete(context.Background())
+	_, err = firebase.FirestoreClient.Collection("subscription").Doc(docID).Delete(context.Background())
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "fail to remove subscription")
 		return
@@ -45,7 +47,7 @@ func retrieveSubscription(c *gin.Context) {
 		return
 	}
 	loginUser := user.(model.UserAccount)
-	subscriptions, err := FirestoreClient.Collection("subscription").Where("UserID", "==", loginUser.Email).Documents(context.Background()).GetAll()
+	subscriptions, err := firebase.FirestoreClient.Collection("subscription").Where("UserID", "==", loginUser.Email).Documents(context.Background()).GetAll()
 	if err != nil {
 		fmt.Println(err)
 		c.AbortWithStatus(http.StatusInternalServerError)
@@ -106,7 +108,7 @@ func subscribe(c *gin.Context) {
 		LastUpdatedAt: time.Now(),
 	}
 	key := strings.ToLower(loginUser.Email) + "|" + strconv.Itoa(stock.InstrumentID)
-	_, err = FirestoreClient.Collection("subscription").Doc(key).Set(context.Background(), subscription)
+	_, err = firebase.FirestoreClient.Collection("subscription").Doc(key).Set(context.Background(), subscription)
 	if err != nil {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
