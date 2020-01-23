@@ -169,7 +169,7 @@ $: buyFreqLabel = `Buy Frequency (${buyFreq})`;
 $: sellFreqLabel = `Sell Frequency (${sellFreq})`;
 </script>
 
-<div class="px-4 pt-4 pb-0">
+<div class="px-4 pt-4">
   <Select
     minChar={3}
     filter={filterStocks}
@@ -181,7 +181,12 @@ $: sellFreqLabel = `Sell Frequency (${sellFreq})`;
     label="Enter Company Name"
     items={$instruments}/>
 </div>
-
+{#await loadChartPromise}
+  <div class="px-4">
+    Analyzing...
+    <ProgressCircular/>
+  </div>
+{:then _}
   <div class={candleClass}>
     {#if showAnalyzing}
       <div>
@@ -210,4 +215,4 @@ $: sellFreqLabel = `Sell Frequency (${sellFreq})`;
       {/if}
     </div>
   </div>
-
+{/await}
