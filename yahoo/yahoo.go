@@ -2,6 +2,7 @@ package yahoo
 
 import (
 	"fmt"
+	"math"
 	"time"
 
 	"github.com/tianhai82/stock-timing/httprequester"
@@ -110,11 +111,17 @@ func convertToCandles(res yahooResult) ([]model.Candle, error) {
 		}
 		candles = append(candles, model.Candle{
 			FromDate: time.Unix(ts+res.Meta.Gmtoffset, 0),
-			Open:     res.Indicators.Quote[0].Open[i],
-			Close:    res.Indicators.Quote[0].Close[i],
-			High:     res.Indicators.Quote[0].High[i],
-			Low:      res.Indicators.Quote[0].Low[i],
+			Open:     round(res.Indicators.Quote[0].Open[i], 3),
+			Close:    round(res.Indicators.Quote[0].Close[i], 3),
+			High:     round(res.Indicators.Quote[0].High[i], 3),
+			Low:      round(res.Indicators.Quote[0].Low[i], 3),
 		})
 	}
 	return candles, nil
+}
+
+func round(num float64, dp int) float64 {
+	div := math.Pow(10.0, float64(dp))
+	numInt := num * div
+	return math.Round(numInt) / div
 }
