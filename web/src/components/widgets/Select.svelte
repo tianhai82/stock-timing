@@ -21,7 +21,7 @@
   export let persistentHint = false;
   export let autocomplete = false;
   export let noUnderline = false;
-  export let wrapperClasses = "cursor-pointer relative pb-4";
+  export let wrapperClasses = "cursor-pointer relative";
   export let showList = false;
   export let inputWrapperClasses = i => i;
   export let appendClasses = i => i;

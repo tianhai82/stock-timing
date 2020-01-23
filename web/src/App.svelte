@@ -90,10 +90,7 @@
 
 <div class="h-auto">
   <NavigationDrawer
-    bind:showDesktop={showMenu}
-    bind:showMobile={showMenu}
-    asideClasses="fixed top-0 h-full w-auto drawer overflow-hidden"
-    breakpoint="sm">
+    bind:show={showMenu}>
     <h6 class="p-6 ml-1 pb-2 text-xs text-gray-900">Menu</h6>
     <List items={menu}>
       <span slot="item" let:item class="cursor-pointer">

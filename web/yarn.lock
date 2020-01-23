@@ -773,13 +773,6 @@ dot-prop@^4.1.1:
   dependencies:
     is-obj "^1.0.0"
 
-echarts-for-svelte@^0.1.11:
-  version "0.1.11"
-  resolved "https://registry.yarnpkg.com/echarts-for-svelte/-/echarts-for-svelte-0.1.11.tgz#8cb0d14d65bb3ae0f147f2eb6bf9213f25f56ffc"
-  integrity sha512-N53EE+WGS5uvghjXvBuUK14phYQ6ArJA4aWGLA0cc6pXDBV9v/1HgJLD0fAl2LPDzW4B9K6H+ZrCG1QxysqRQA==
-  dependencies:
-    size-sensor "^0.2.5"
-
 echarts@^4.4.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/echarts/-/echarts-4.6.0.tgz#b5a47a1046cec93ceeef954f9ee54751340558ec"
@@ -2689,7 +2682,7 @@ sirv@^0.4.2:
     "@polka/url" "^0.5.0"
     mime "^2.3.1"
 
-size-sensor@^0.2.5:
+size-sensor@^0.2.6:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/size-sensor/-/size-sensor-0.2.6.tgz#6fe43afd570786f097171834002a97fe0b19a3da"
   integrity sha512-0EZ0tXXjyRl9R9+JpoBdH57Xpnbf5NTyDdj7fnFL6KqCsdKyah286ShMflnV2SonnrSFH4OAT/52Jy8qqnoerg==
@@ -2791,7 +2784,6 @@ spdx-exceptions@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/spdx-exceptions/-/spdx-exceptions-2.2.0.tgz#2ea450aee74f2a89bfb94519c07fcd6f41322977"
   integrity sha512-2XQACfElKi9SlVb1CYadKDXvoajPgBVPn/gOQLrTvHdElaVhr7ZEbqJaRnJLVNeaI4cMEAgVCeBMKF6MWRDCRA==
-
 
 spdx-expression-parse@^3.0.0:
   version "3.0.0"
