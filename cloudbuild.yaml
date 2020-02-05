@@ -11,12 +11,12 @@ steps:
     waitFor: ['-']
   - name: 'node:10.10-alpine'
     dir: 'web'
-    args: ['.yarn\release\yarn-rc.js']
+    args: ['\workspace\web\.yarn\releases\yarn-rc.js']
     waitFor: ['-']
     id: 'yarn install'
   - name: 'node:10.10-alpine'
     dir: 'web'
-    args: ['.yarn\release\yarn-rc.js', 'build']
+    args: ['\workspace\web\.yarn\releases\yarn-rc.js', 'build']
     waitFor: ['yarn install']
   - name: 'tianhai/firebase'
     args:
