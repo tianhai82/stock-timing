@@ -1,36 +1,40 @@
 <script>
-  import { Dialog, Button, Image, ProgressCircular } from "smelte";
-  import { tick } from "svelte";
-  import { auth } from "../fire.js";
+import Dialog from '../widgets/Dialog.svelte';
+import Button from '../widgets/Button.svelte';
+import { auth } from '../fire.js';
+import Spinner from '../widgets/Spinner.svelte';
 
-  export let showSignIn;
-  let promise;
-  function signInGoogle() {
-    var provider = new firebase.auth.GoogleAuthProvider();
-    promise = firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then(() => {
-        showSignIn = false;
-      })
-      .catch(function(error) {
-        var errorMessage = error.message;
-        var email = error.email;
-        alert(`Login failed. Account: ${email}. Error: ${errorMessage}`);
-      });
-  }
+export let showSignIn;
+let promise;
+
+function signInGoogle() {
+  const provider = new firebase.auth.GoogleAuthProvider();
+  promise = firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then(() => {
+      showSignIn = false;
+    })
+    .catch(function (error) {
+      var errorMessage = error.message;
+      var email = error.email;
+      alert(`Login failed. Account: ${email}. Error: ${errorMessage}`);
+    });
+}
 </script>
 
-<Dialog bind:value={showSignIn}>
-  <h6 slot="title">Log in</h6>
-  {#await promise}
-    <ProgressCircular />
-  {:then data}
-    <Button on:click={signInGoogle} color="white" block>
-      <div class="flex flex-row justify-between inline-block align-middle">
-        <Image src="/images/google.svg" alt="Google" width={18} />
-        <span class="text-gray-900 ml-2 font-normal normal-case">Google</span>
-      </div>
-    </Button>
-  {/await}
+<Dialog bind:visible={showSignIn}>
+  <div class="p-6 bg-white w-40 rounded">
+    <h6 class="mb-4 font-normal">Log in</h6>
+    {#await promise}
+      <Spinner/>
+    {:then data}
+      <Button on:click={signInGoogle} bgColor="bg-white">
+        <div class="flex items-center">
+          <img src="/images/google.svg" alt="Google" class="object-contain h-5" />
+          <span class="text-gray-900 ml-2 font-normal normal-case">Google</span>
+        </div>
+      </Button>
+    {/await}
+  </div>
 </Dialog>

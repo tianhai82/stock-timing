@@ -1,6 +1,7 @@
 <script>
-import { Button, ProgressCircular, ProgressLinear, Slider } from 'smelte';
-import Select from './widgets/Select.svelte';
+import Button from '../widgets/Button.svelte';
+import Slider from '../widgets/Slider.svelte';
+import Autocomplete from '../widgets/Autocomplete.svelte';
 import {
   retrieveCandles,
   retrieveSignals,
@@ -14,28 +15,29 @@ import {
   instruments,
   subscriptions,
 } from '../store/store';
+import Spinner from '../widgets/Spinner.svelte';
+import Progress from '../widgets/Progress.svelte';
 
 export let params = {};
-let stock;
+let stock = {};
 let candles;
 let signals;
-let freq = 48;
+let freq = 27;
 let buyFreq = 50;
 let sellFreq = 50;
-let period;
 let showAnalyzing = false;
 let stockName;
 
 let loadChartPromise;
 
 $: {
-  if (params.instrumentID && +params.instrumentID !== stock) {
-    stock = +params.instrumentID;
-    const stockFound = $instruments.find(ins => ins.value === stock);
+  if (params.instrumentID && +params.instrumentID !== stock.value) {
+    const stockFound = $instruments.find(ins => ins.value === +params.instrumentID);
     if (stockFound) {
+      stock = stockFound;
       stockName = stockFound.text;
       signals = [];
-      loadChartPromise = retrieveCandles(stock)
+      loadChartPromise = retrieveCandles(stock.value)
         .then(data => {
           candles = data;
         });
@@ -44,9 +46,8 @@ $: {
   }
 }
 $: {
-  if (params.period && +params.period !== period) {
-    period = +params.period;
-    setFreq((period - 15) * 4);
+  if (params.period && !equalToPeriod(+params.period)) {
+    setFreq(+params.period);
     signals = [];
   }
 }
@@ -61,8 +62,13 @@ $: {
   }
 }
 
+const equalToPeriod = f => f === freq;
 const equalToBuyFreq = f => f === buyFreq;
 const equalToSellFreq = f => f === sellFreq;
+
+function setFreq(x) {
+  freq = x;
+}
 
 function setBuyFreq(x) {
   buyFreq = x;
@@ -72,16 +78,12 @@ function setSellFreq(x) {
   sellFreq = x;
 }
 
-function setFreq(x) {
-  freq = x;
-}
-
 function subcribe() {
   if (!$loginUser) {
     alert('Please login to subscribe to alerts');
     return;
   }
-  const stockFound = $instruments.find(ins => ins.value === stock);
+  const stockFound = $instruments.find(ins => ins.value === stock.value);
   if (!stockFound) {
     alert('Please select a company/ETF to subscribe');
     return;
@@ -96,7 +98,7 @@ function subcribe() {
           instrumentID: stockFound.value,
           instrumentDisplayName: stockFound.text,
         },
-        period,
+        period: freq,
         buyLimit: (100 - buyFreq) / 200 + 0.25,
         sellLimit: (100 - sellFreq) / 200 + 0.25,
       })
@@ -107,7 +109,7 @@ function subcribe() {
               symbol: stockFound.symbol,
               instrumentID: stockFound.value,
               instrumentDisplayName: stockFound.text,
-              period,
+              period: freq,
               buyLimit: (100 - buyFreq) / 200 + 0.25,
               sellLimit: (100 - sellFreq) / 200 + 0.25,
             },
@@ -121,11 +123,11 @@ function subcribe() {
 }
 
 const freqChanged = debounce(() => {
-  if (stock) {
+  if (stock.value) {
     showAnalyzing = true;
     const signalPromise = retrieveSignals(
-      stock,
-      period,
+      stock.value,
+      freq,
       (100 - buyFreq) / 200 + 0.25,
       (100 - sellFreq) / 200 + 0.25,
     )
@@ -139,77 +141,72 @@ const freqChanged = debounce(() => {
 function stockChanged(e) {
   params = {};
   stock = e.detail;
-  freq = 48;
+  freq = 27;
   signals = [];
   freqChanged();
-  loadChartPromise = retrieveCandles(stock)
+  loadChartPromise = retrieveCandles(stock.value)
     .then(data => {
       candles = data;
     });
 }
 
-const filterStocks = (stock, inputValue) =>
-  stock.text.toLowerCase()
-    .includes(inputValue) ||
-  stock.symbol.toLowerCase()
-    .includes(inputValue);
-
 $: candleClass = !!candles && candles.length > 0 ? 'px-4' : 'hidden';
+
 $: {
-  period = freq / 4 + 15;
-  freqChanged();
-}
-$: {
-  if (buyFreq >= 0.0 || sellFreq >= 0.0) {
+  if (buyFreq >= 0.0 || sellFreq >= 0.0 || (freq >= 15 && freq <= 40)) {
     freqChanged();
   }
 }
-$: periodLabel = `Period (${period})`;
+$: periodLabel = `Period (${freq})`;
 $: buyFreqLabel = `Buy Frequency (${buyFreq})`;
 $: sellFreqLabel = `Sell Frequency (${sellFreq})`;
 </script>
-
 <div class="px-4 pt-4">
-  <Select
-    minChar={3}
-    filter={filterStocks}
-    bind:value={stock}
-    on:change={stockChanged}
-    selectedLabel={stockName}
-    outlined
-    autocomplete
+  <Autocomplete
+    minCharactersToSearch={2}
+    keywordsFunction={it => `${it.symbol.toLowerCase()}|^|${it.text.toLowerCase()}`}
+    on:change={stockChanged} outlined
+    bind:value="{stock}"
+    labelFieldName="text"
     label="Enter Company Name"
     items={$instruments}/>
 </div>
 {#await loadChartPromise}
   <div class="px-4">
     Analyzing...
-    <ProgressCircular/>
+    <Spinner height="h-10" width="h-10" color="text-orange-600"/>
   </div>
 {:then _}
   <div class={candleClass}>
     {#if showAnalyzing}
       <div>
-        <ProgressLinear/>
+        <Progress fillColor="bg-orange-600" trackColor="bg-orange-200"/>
       </div>
     {/if}
     <CandleChart {candles} {signals}/>
     <div class="mb-5">
-      <Slider label={periodLabel} bind:value={freq} step="4"/>
+      <div>{periodLabel}</div>
+      <Slider bind:value={freq} min={15} max={40} step={1}/>
     </div>
     <div class="flex flex-wrap mb-5">
       <div class="w-full md:w-1/2 px-0 md:pr-2 mb-5 md:mb-0">
-        <Slider label={buyFreqLabel} bind:value={buyFreq} step="1"/>
+        <div>{buyFreqLabel}</div>
+        <Slider bind:value={buyFreq} min={0} max={100} step={1}/>
       </div>
       <div class="w-full md:w-1/2 px-0 md:pl-2">
-        <Slider label={sellFreqLabel} bind:value={sellFreq} step="1"/>
+        <div>{sellFreqLabel}</div>
+        <Slider bind:value={sellFreq} min={0} max={100} step={1}/>
       </div>
     </div>
     <div class="my-2">
       {#if $loginUser}
-        <Button block outline on:click={subcribe}>Subscribe</Button>
+        <Button lg block bgColor="bg-orange-600" textColor="text-white"
+                on:click={subcribe}>
+          Subscribe
+        </Button>
       {:else}
-        <Button block outline on:click={() => ($showSignIn = true)}>
+        <Button lg block bgColor="bg-orange-600" textColor="text-white"
+                on:click={() => ($showSignIn = true)}>
           Login to subscribe
         </Button>
       {/if}

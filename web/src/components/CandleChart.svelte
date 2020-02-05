@@ -135,8 +135,8 @@ const optionTemplate = {
     },
   },
   grid: {
-    left: 2,
-    right: 5,
+    left: 9,
+    right: 14,
     top: 30,
     height: 315,
   },
