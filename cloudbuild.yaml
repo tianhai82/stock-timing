@@ -11,8 +11,13 @@ steps:
     waitFor: ['-']
   - name: 'node:10.10-alpine'
     dir: 'web'
-    args: ['yarn']
+    args: ['npm', 'install', '-g', 'yarn@berry']
     waitFor: ['-']
+    id: 'install yarn'
+  - name: 'node:10.10-alpine'
+    dir: 'web'
+    args: ['yarn']
+    waitFor: ['install yarn']
     id: 'yarn install'
   - name: 'node:10.10-alpine'
     dir: 'web'

@@ -71,3 +71,4 @@ public/utils.*
 .vscode
 
 .idea/
+build-state.yml
