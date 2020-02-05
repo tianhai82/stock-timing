@@ -11,7 +11,7 @@ steps:
     waitFor: ['-']
   - name: 'node:10.10-alpine'
     dir: 'web'
-    args: ['yarn']
+    args: ['.yarn\release\yarn-rc.js']
     waitFor: ['-']
     id: 'yarn install'
   - name: 'node:10.10-alpine'
