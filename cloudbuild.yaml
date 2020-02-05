@@ -9,14 +9,14 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', 'cron.yaml']
     waitFor: ['-']
-  - name: 'gcr.io/cloud-builders/yarn:node-10.10.0'
+  - name: 'node:10.10-alpine'
     dir: 'web'
-    args: ['install']
+    args: ['yarn']
     waitFor: ['-']
     id: 'yarn install'
-  - name: 'gcr.io/cloud-builders/yarn:node-10.10.0'
+  - name: 'node:10.10-alpine'
     dir: 'web'
-    args: ['build']
+    args: ['yarn', 'build']
     waitFor: ['yarn install']
   - name: 'tianhai/firebase'
     args:
