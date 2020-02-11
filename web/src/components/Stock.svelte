@@ -1,7 +1,11 @@
 <script>
-import Button from '../widgets/Button.svelte';
-import Slider from '../widgets/Slider.svelte';
-import Autocomplete from '../widgets/Autocomplete.svelte';
+import {
+  Button,
+  Slider,
+  Autocomplete,
+  Spinner,
+  Progress,
+} from 'svelte-tailwind-material';
 import {
   retrieveCandles,
   retrieveSignals,
@@ -15,8 +19,6 @@ import {
   instruments,
   subscriptions,
 } from '../store/store';
-import Spinner from '../widgets/Spinner.svelte';
-import Progress from '../widgets/Progress.svelte';
 
 export let params = {};
 let stock = {};

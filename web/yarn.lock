@@ -1571,6 +1571,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"hex-rgb@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "hex-rgb@npm:4.1.0"
+  checksum: 7cfc7f2542bad708f374bb2f9b35c1df1971e2d13661f0474d1ccfb0ada02a28ca6a3f3833f8c2e50d05ff29c176e18b9d6b56954b3286929ef9162b4b5ee755
+  languageName: node
+  linkType: hard
+
 "http-signature@npm:~1.2.0":
   version: 1.2.0
   resolution: "http-signature@npm:1.2.0"
@@ -3651,6 +3658,15 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"svelte-tailwind-material@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "svelte-tailwind-material@npm:0.1.1"
+  dependencies:
+    sirv-cli: ^0.4.4
+  checksum: 2f66636e4b52f4f6d7fc4fa1af7afdf13262e6cf435674584345ad6c19cda6d2d6f5c7d0f61991dc4f6acf86e5188b334057e74e663644c428934c9a08525b2e
+  languageName: node
+  linkType: hard
+
 "svelte-tailwind-material@workspace:.":
   version: 0.0.0-use.local
   resolution: "svelte-tailwind-material@workspace:."
@@ -3675,7 +3691,12 @@ fsevents@^1.2.7:
     svelte: ^3.0.0
     svelte-preprocess: ^3.2.0-alpha.2
     svelte-spa-router: ^1.3.0
+    svelte-tailwind-material: ^0.1.1
     tailwindcss: ^1.1.3
+    tailwindcss-elevation: ^0.3.3
+  dependenciesMeta:
+    svelte-tailwind-material:
+      unplugged: true
   languageName: unknown
   linkType: soft
 
@@ -3695,6 +3716,15 @@ fsevents@^1.2.7:
     slice-ansi: ^2.1.0
     string-width: ^3.0.0
   checksum: ef31c08beab8419ae0c036b8751f262eb1ebc94692e02b207d603cda071eed5e3df1d76dd305f4ee915001b9e3c2c0d338100f17ff92b8f599fb1f75545a2385
+  languageName: node
+  linkType: hard
+
+"tailwindcss-elevation@npm:^0.3.3":
+  version: 0.3.3
+  resolution: "tailwindcss-elevation@npm:0.3.3"
+  dependencies:
+    hex-rgb: ^4.1.0
+  checksum: 74d603383b0128d0bb56b3c36138370d9b12f0de81a19e228a32d72ddc24b4168b0a6ecc9cf5bed185e37cafb6b3f13bf92d93766c0426065c9ae89860018bd7
   languageName: node
   linkType: hard
 

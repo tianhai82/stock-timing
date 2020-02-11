@@ -1,10 +1,8 @@
 <script>
-import Button from '../widgets/Button.svelte';
-import Dialog from '../widgets/Dialog.svelte';
+import { Button, Dialog, Spinner } from 'svelte-tailwind-material';
 import { push } from 'svelte-spa-router';
 import { removeSubscription } from '../api/api';
 import { loginUser, subscriptions } from '../store/store';
-import Spinner from '../widgets/Spinner.svelte';
 
 let showDialog = false;
 let toRemove;
