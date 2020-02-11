@@ -50,8 +50,8 @@ func Sendmail(apiKey string, templateId TemplateID, params gin.H, recipients []E
 		To:         recipients,
 		TemplateID: int(templateId),
 		ReplyTo: Email{
-			Name:  "Tan Yin Loo",
-			Email: "tianhai@gmail.com",
+			Name:  "Time to Trade",
+			Email: "robohuat82@gmail.com",
 		},
 	}
 	s, _ := json.Marshal(payload)
