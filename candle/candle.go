@@ -2,12 +2,13 @@ package candle
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/pkg/errors"
 	"github.com/tianhai82/stock-timing/etoro"
 	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/model"
-	"github.com/tianhai82/stock-timing/yahoo"
+	"github.com/tianhai82/stock-timing/sgx"
 )
 
 func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
@@ -19,7 +20,7 @@ func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
 		fmt.Println(err)
 		return nil, errors.Wrap(err, "fail to find symbol from instrument ID")
 	}
-	return yahoo.RetrieveHistory(symbol, period)
+	return sgx.RetrieveHistory(strings.Replace(symbol, ".SI", "", -1), period)
 }
 
 func findSymbolFromInstrumentID(instrumentID int) (string, error) {
