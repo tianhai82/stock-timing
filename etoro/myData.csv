@@ -1,790 +1,783 @@
-InstrumentDisplayName,SymbolFull,InstrumentID
-3Cnergy,502.SI,-1
-8Telecom,AZG.SI,-2
-A-Smart,BQC.SI,-3
-A-Sonic Aero,BTJ.SI,-4
-AA,5GZ.SI,-5
-ABR,533.SI,-6
-Abterra,L5I.SI,-7
-Abundance Intl,541.SI,-8
-Accordia Golf Tr,ADQU.SI,-9
-Accrelist Ltd,QZG.SI,-10
-Ace Achieve Info,A75.SI,-11
-Acesian Partners,5FW.SI,-12
-Acma,AYV.SI,-13
-Acromec,43F.SI,-14
-Addvalue Tech,A31.SI,-15
-Advanced,BLZ.SI,-16
-Advanced Systems,5TY.SI,-17
-Advancer Global,43Q.SI,-18
-Adventus,5EF.SI,-19
-AEI,AWG.SI,-20
-AEM,AWX.SI,-21
-AF Global,L38.SI,-22
-AGV,1A4.SI,-23
-AIMS APAC Reit,O5RU.SI,-24
-AIMS Property,BVP.SI,-25
-AliPictures HKD,S91.SI,-26
-Alita Resources,40F.SI,-27
-Alliance HC,MIJ.SI,-28
-Allied Tech,A13.SI,-29
-Alpha Energy,5TS.SI,-30
-Amara,A34.SI,-31
-AMOS,RF7.SI,-32
-Amplefield Ltd,AOF.SI,-33
-AnAn Intl,Y35.SI,-34
-Anchor Resources,43E.SI,-35
-Anchun Intl,BTX.SI,-36
-AnnAik,A52.SI,-37
-Annica,5AL.SI,-38
-Aoxin Q & M,1D4.SI,-39
-AP Oil,5AU.SI,-40
-APAC Realty,CLN.SI,-41
-ARA HTrust USD,XZL.SI,-42
-Arion Ent,YYB.SI,-43
-Artivision Tech,5NK.SI,-44
-Ascendas Reit,A17U.SI,-45
-Ascendas-iTrust,CY6U.SI,-46
-Ascott Trust,HMN.SI,-47
-Asia Enterprises,A55.SI,-48
-Asia Fashion,BQI.SI,-49
-Asia Vets,5RE.SI,-50
-AsiaMedic,505.SI,-51
-Asian Healthcare,1J3.SI,-52
-Asian Micro,585.SI,-53
-Asian Pay Tv Tr,S7OU.SI,-54
-AsiaPhos,5WV.SI,-55
-Asiatic,5CR.SI,-56
-Asiatravel.com,5AM.SI,-57
-ASL Marine,A04.SI,-58
-Aspen,1F3.SI,-59
-Aspial,A30.SI,-60
-Astaka,42S.SI,-61
-ASTI,575.SI,-62
-Atlantic Nav,5UL.SI,-63
-AusGroup,5GJ.SI,-64
-Avarga,U09.SI,-65
-Avi-Tech,BKY.SI,-66
-AVIC,O2I.SI,-67
-AVJennings A$,A05.SI,-68
-Axcelasia,42U.SI,-69
-Ayondo,1I5.SI,-70
-Azeus,BBW.SI,-71
-B&M Hldg,CJN.SI,-72
-Baker Technology,BTP.SI,-73
-Ban Leong,B26.SI,-74
-Banyan Tree,B58.SI,-75
-BBR,KJ5.SI,-76
-Beng Kuang,BEZ.SI,-77
-Berlian LajuTank,B66.SI,-78
-Best World,CGN.SI,-79
-BH Global,BQN.SI,-80
-BHG Retail Reit,BMGU.SI,-81
-Biolidics,8YY.SI,-82
-BlackGoldNatural,41H.SI,-83
-Blumont,A33.SI,-84
-BMM,I9T.SI,-85
-Boldtek,5VI.SI,-86
-Bonvests,B28.SI,-87
-Boustead,F9D.SI,-88
-Boustead Proj,AVM.SI,-89
-BRC Asia,BEC.SI,-90
-BreadTalk,CTN.SI,-91
-Broadway Ind,B69.SI,-92
-Brook Crompton,AWC.SI,-93
-Bukit Sembawang,B61.SI,-94
-Bumitama Agri,P8Z.SI,-95
-Bund Center,BTE.SI,-96
-Cache Log Trust,K2LU.SI,-97
-Cacola,D2U.SI,-98
-Camsing Hc,BAC.SI,-99
-CapitaCom Trust,C61U.SI,-100
-Capital World,1D5.SI,-101
-CapitaLand,C31.SI,-102
-CapitaMall Trust,C38U.SI,-103
-CapitaR China Tr,AU8U.SI,-104
-Captii,AWV.SI,-105
-Casa,C04.SI,-106
-CDL HTrust,J85.SI,-107
-CDW,BXE.SI,-108
-CEI,AVV.SI,-109
-Centurion,OU8.SI,-110
-CFM,5EB.SI,-111
-CH Offshore,C13.SI,-112
-Challenger,573.SI,-113
-Charisma Energy,5QT.SI,-114
-Chasen,5NV.SI,-115
-ChasWood Res,5TW.SI,-116
-Chemical Ind,C05.SI,-117
-Cheung Woh,C50.SI,-118
-China Aviation,G92.SI,-119
-China Env,5OU.SI,-120
-China Env Res,RS1.SI,-121
-China Essence,G54.SI,-122
-China Everbright,U9E.SI,-123
-China Fishery,B0Z.SI,-124
-China Great Land,D50.SI,-125
-China Haida,C92.SI,-126
-China Hongxing,BR9.SI,-127
-China Intl,BEH.SI,-128
-China Jishan,J18.SI,-129
-China Mining,BHD.SI,-130
-China Paper,C71.SI,-131
-China Real Estate,5RA.SI,-132
-China Sky Chem,E90.SI,-133
-China Sports,FQ8.SI,-134
-China Star Food,42W.SI,-135
-China Taisan,AZW.SI,-136
-China Yuanbang,BCD.SI,-137
-ChinaKangdaFood,P74.SI,-138
-ChinaKundaTech,GU5.SI,-139
-ChinaSunsine,QES.SI,-140
-Chinese Global,5CJ.SI,-141
-Chip Eng Seng,C29.SI,-142
-Choo Chiang,42E.SI,-143
-Chuan Hup,C33.SI,-144
-Citic Envirotech,CEE.SI,-145
-Citicode,5FH.SI,-146
-CityDev,C09.SI,-147
-Civmec,P9D.SI,-148
-Clearbridge,1H3.SI,-149
-CNA,5GC.SI,-150
-CNMC Goldmine,5TP.SI,-151
-Colex,567.SI,-152
-Combine Will,N0Z.SI,-153
-ComfortDelGro,C52.SI,-154
-Cordlife,P8A.SI,-155
-Cortina,C41.SI,-156
-COSCO SHP SG,F83.SI,-157
-CosmoSteel,B9S.SI,-158
-Courage Inv,CIN.SI,-159
-CPH,539.SI,-160
-Creative,C76.SI,-161
-CromwellReit EUR,CNNU.SI,-162
-CromwellReit SGD,CSFU.SI,-163
-CSC,C06.SI,-164
-CSE Global,544.SI,-165
-CWX Global,594.SI,-166
-DairyFarm USD,D01.SI,-167
-Darco Water Tech,BLR.SI,-168
-Dasin Retail Tr,CEDU.SI,-169
-Datapulse Tech,BKW.SI,-170
-DBS,D05.SI,-171
-Debao Property,BTF.SI,-172
-Del Monte Pac,D03.SI,-173
-Delfi,P34.SI,-174
-Design Studio,D11.SI,-175
-DISA,532.SI,-176
-DLF,KUX.SI,-177
-Dragon,MT1.SI,-178
-Dukang,BKV.SI,-179
-Dutech,CZ4.SI,-180
-Duty Free Intl,5SO.SI,-181
-Dyna-Mac,NO4.SI,-182
-Dynamic Colours,D6U.SI,-183
-Eagle HTrust USD,LIW.SI,-184
-EC World Reit,BWCU.SI,-185
-EcoWise,5CT.SI,-186
-Edition,5HG.SI,-187
-Eindec,42Z.SI,-188
-Elec & Eltek USD,E16.SI,-189
-Ellipsiz,BIX.SI,-190
-EMAS Offshore,UQ4.SI,-191
-Eneco Energy,R14.SI,-192
-EnGro,S44.SI,-193
-Envictus,BQD.SI,-194
-Enviro-Hub,L23.SI,-195
-Epicentre,5MQ.SI,-196
-ES,5RC.SI,-197
-ESR-REIT,J91U.SI,-198
-ETC Singapore,1C0.SI,-199
-EuroSports Gbl,5G1.SI,-200
-Excelpoint,BDF.SI,-201
-Ezion,5ME.SI,-202
-Ezra,5DN.SI,-203
-F & N,F99.SI,-204
-Fabchem China,BFT.SI,-205
-Falcon Energy,5FL.SI,-206
-Far East,5TJ.SI,-207
-Far East HTrust,Q5T.SI,-208
-Far East Orchard,O10.SI,-209
-Federal Int,BDU.SI,-210
-Figtree,5F4.SI,-211
-First Reit,AW9U.SI,-212
-First Resources,EB5.SI,-213
-First Sponsor,ADN.SI,-214
-FJ Benjamin,F10.SI,-215
-Food Empire,F03.SI,-216
-Forise Intl,I5H.SI,-217
-FortressMinerals,OAJ.SI,-218
-Fragrance,F31.SI,-219
-Frasers Com Tr,ND8U.SI,-220
-Frasers Cpt Tr,J69U.SI,-221
-Frasers HTrust,ACV.SI,-222
-Frasers L&I Tr,BUOU.SI,-223
-Frasers L&I Tr  AUD,BWQU.SI,-224
-Frasers Property,TQ5.SI,-225
-Frencken,E28.SI,-226
-FSL Trust,D8DU.SI,-227
-Fu Yu,F13.SI,-228
-Fuji Offset,508.SI,-229
-Fujian Zhenyun,5KT.SI,-230
-Full Apex,BTY.SI,-231
-Fuxing China,AWK.SI,-232
-G Invacom,QS9.SI,-233
-G K Goh,G41.SI,-234
-Gallant Venture,5IG.SI,-235
-GCCP,41T.SI,-236
-GDS Global,5VP.SI,-237
-Genting Sing,G13.SI,-238
-Geo Energy Res,RE4.SI,-239
-GKE,595.SI,-240
-GL,B16.SI,-241
-Global Dragon,586.SI,-242
-Global Inv,B73.SI,-243
-Global Palm Res,BLW.SI,-244
-Global Testing,AYN.SI,-245
-Golden Agri-Res,E5H.SI,-246
-Golden Energy,AUE.SI,-247
-Goodland,5PC.SI,-248
-GP Industries,G20.SI,-249
-Grand Banks,G50.SI,-250
-Grand Venture,JLB.SI,-251
-Great Eastern,G07.SI,-252
-Green Build,Y06.SI,-253
-GRP,BLU.SI,-254
-GS Hldg,43A.SI,-255
-GSH,BDX.SI,-256
-GSS Energy,41F.SI,-257
-Guoan Intl,G11.SI,-258
-GuocoLand,F17.SI,-259
-GYP Properties,AWS.SI,-260
-Hafary,5VS.SI,-261
-Hai Leck,BLH.SI,-262
-Halcyon Agri,5VJ.SI,-263
-Hanwell,DM0.SI,-264
-Hatten Land,PH0.SI,-265
-Haw Par,H02.SI,-266
-HC Surgical,1B1.SI,-267
-HealthBank,40B.SI,-268
-Healthway Med,5NG.SI,-269
-Heatec Jietong,5OR.SI,-270
-Heeton,5DP.SI,-271
-Hengyang Petro,5PD.SI,-272
-HG Metal,BTG.SI,-273
-Hi-P,H17.SI,-274
-Hiap Hoe,5JK.SI,-275
-Hiap Seng,510.SI,-276
-Hiap Tong,5PO.SI,-277
-HL Global Ent,AVX.SI,-278
-Ho Bee Land,H13.SI,-279
-Hock Lian Seng,J2T.SI,-280
-Hoe Leong,H20.SI,-281
-Hong Fok,H30.SI,-282
-Hong Lai Huat,CTO.SI,-283
-Hong Leong Asia,H22.SI,-284
-Hong Leong Fin,S41.SI,-285
-HongkongLand USD,H78.SI,-286
-Hor Kew,BBP.SI,-287
-Hosen,5EV.SI,-288
-Hotel Grand,H18.SI,-289
-Hotel Royal,H12.SI,-290
-Hotung Inv,BLS.SI,-291
-HPH Trust SGD,P7VU.SI,-292
-HPH Trust USD,NS8U.SI,-293
-HPL,H15.SI,-294
-HRnetGroup,CHZ.SI,-295
-Hu An Cable,KI3.SI,-296
-HuanHsin,H16.SI,-297
-Huationg Global,41B.SI,-298
-Hwa Hong,H19.SI,-299
-Hyflux,600.SI,-300
-Hyphens Pharma,1J5.SI,-301
-ICP Ltd,5I4.SI,-302
-IEV,5TN.SI,-303
-IFAST,AIY.SI,-304
-IFS Capital,I49.SI,-305
-IHH,Q0F.SI,-306
-Imperium Crown,5HT.SI,-307
-Inch Kenneth,I4R.SI,-308
-Incredible,RDR.SI,-309
-Indofood Agri,5JS.SI,-310
-Informatics,BOU.SI,-311
-InnoPac,I26.SI,-312
-InnoTek,M14.SI,-313
-Interra Resource,5GI.SI,-314
-Intl Cement,KUO.SI,-315
-Intraco,I06.SI,-316
-IP Softcom,571.SI,-317
-IPC Corp,AZA.SI,-318
-IPS Securex,42N.SI,-319
-IREIT Global,UD1U.SI,-320
-ISDN,I07.SI,-321
-ISEC,40T.SI,-322
-Isetan,I15.SI,-323
-ISOTeam,5WF.SI,-324
-IX Biopharma,42C.SI,-325
-Jackspeed,J17.SI,-326
-Jadason,J03.SI,-327
-Japan Foods,5OI.SI,-328
-Japfa,UD2.SI,-329
-Japfa R,GAXR.SI,-330
-Japfa R1,UCAR.SI,-331
-Jardine C&C,C07.SI,-332
-Jason Marine,5PF.SI,-333
-Jasper Inv,FQ7.SI,-334
-Jawala,1J7.SI,-335
-JB Foods,BEW.SI,-336
-JCG Investment,VFP.SI,-337
-JEP,1J4.SI,-338
-JES Intl,EG0.SI,-339
-Jiutian Chemical,C8R.SI,-340
-JMH USD,J36.SI,-341
-Joyas Intl,E9L.SI,-342
-JSH USD,J37.SI,-343
-Jubilee,NHD.SI,-344
-Jumbo,42R.SI,-345
-Karin Tech,K29.SI,-346
-Katrina,1A0.SI,-347
-Kencana Agri,BNE.SI,-348
-Keong Hong,5TT.SI,-349
-Kep Infra Tr,A7RU.SI,-350
-KepPacOakReitUSD,CMOU.SI,-351
-Keppel Corp,BN4.SI,-352
-Keppel DC Reit,AJBU.SI,-353
-Keppel Reit,K71U.SI,-354
-Khong Guan,K03.SI,-355
-KimHeng Offshore,5G2.SI,-356
-Kimly,1D0.SI,-357
-King Wan,554.SI,-358
-KingsmenCreative,5MZ.SI,-359
-Kitchen Culture,5TI.SI,-360
-KLW,504.SI,-361
-Koda,BJZ.SI,-362
-Koh Bros,K75.SI,-363
-Koh Eco,5HV.SI,-364
-Koon,5DL.SI,-365
-KOP,5I1.SI,-366
-Kori,5VC.SI,-367
-Koufu,VL6.SI,-368
-Koyo Intl,5OC.SI,-369
-KrisEnergy,SK3.SI,-370
-KS Energy,578.SI,-371
-KSH,ER0.SI,-372
-KTL Global,EB7.SI,-373
-KTMG,XCF.SI,-374
-Lafe,AYB.SI,-375
-Lasseters Intl,5EL.SI,-376
-LCT,BJL.SI,-377
-Leader Env,LS9.SI,-378
-Lendlease Reit,JYEU.SI,-379
-Ley Choon,Q0X.SI,-380
-LHN,41O.SI,-381
-LHT,BEI.SI,-382
-Lian Beng,L03.SI,-383
-Libra,5TR.SI,-384
-LifeBrandz,1D3.SI,-385
-Linc Energy,BRE.SI,-386
-Lion Asiapac,BAZ.SI,-387
-LionGold,A78.SI,-388
-Lippo Malls Tr,D5IU.SI,-389
-Lonza,O6Z.SI,-390
-Lorenzo Intl,5IE.SI,-391
-Low Keng Huat,F1E.SI,-392
-Lum Chang,L19.SI,-393
-Lung Kee Bermuda,L09.SI,-394
-Luxking,BKK.SI,-395
-Luzhou Bio-Chem,L46.SI,-396
-LY Corp,1H8.SI,-397
-M Development,N14.SI,-398
-Magnus Energy,41S.SI,-399
-Man Oriental USD,M04.SI,-400
-Manhattan Res,L02.SI,-401
-ManulifeReit USD,BTOU.SI,-402
-Mapletree Com Tr,N2IU.SI,-403
-Mapletree Ind Tr,ME8U.SI,-404
-Mapletree Log Tr,M44U.SI,-405
-Mapletree NAC Tr,RW0U.SI,-406
-MarcoPolo Marine,5LY.SI,-407
-Maruwa Yen1k,M12.SI,-408
-Mary Chia,5OX.SI,-409
-Matex Intl,M15.SI,-410
-Maxi-Cash Fin,5UF.SI,-411
-MDR,A27.SI,-412
-Medinex,OTX.SI,-413
-Medtecs Intl,546.SI,-414
-MegaChem,5DS.SI,-415
-MeGroup,SJY.SI,-416
-Memories,1H4.SI,-417
-Memstar Tech,5MS.SI,-418
-Mencast,5NF.SI,-419
-Mercurius,5RF.SI,-420
-Mermaid Maritime,DU4.SI,-421
-Metal Component,5DX.SI,-422
-Metech Intl,V3M.SI,-423
-Metro,M01.SI,-424
-Mewah Intl,MV4.SI,-425
-MFG Integration,M11.SI,-426
-Micro-Mechanics,5DD.SI,-427
-Midas,5EN.SI,-428
-MindChamps,CNE.SI,-429
-Mirach Energy,AWO.SI,-430
-Miyoshi,M03.SI,-431
-MM2 Asia,1B0.SI,-432
-MMP Resources,F3V.SI,-433
-MoneyMax Fin,5WJ.SI,-434
-Moya Asia,5WE.SI,-435
-MS Hldgs,40U.SI,-436
-MSC,NPW.SI,-437
-MSM Intl,5QR.SI,-438
-MTQ,M05.SI,-439
-Multi-Chem,AWZ.SI,-440
-Mun Siong Engg,MF6.SI,-441
-Murata Yen1k,PJX.SI,-442
-MYP,F86.SI,-443
-Nam Cheong,N4E.SI,-444
-Nam Lee Metal,G0I.SI,-445
-Natural Cool,5IF.SI,-446
-NauticAWT,42D.SI,-447
-Neo,5UJ.SI,-448
-NeraTel,N01.SI,-449
-Net Pacific Fin,5QY.SI,-450
-NetLink NBN Tr,CJLU.SI,-451
-New Silkroutes,BMT.SI,-452
-New Toyo,N08.SI,-453
-New Wave,5FX.SI,-454
-NGSC,B07.SI,-455
-Nico Steel,5GF.SI,-456
-Nippecraft,N32.SI,-457
-No Signboard,1G6.SI,-458
-Noble,CGP.SI,-459
-Noel Gifts Intl,543.SI,-460
-Nomura Yen1k,N33.SI,-461
-Nordic,MR7.SI,-462
-NSL,N02.SI,-463
-Ntegrator Intl,5HC.SI,-464
-NutryFarm,AZT.SI,-465
-OCBC Bank,O39.SI,-466
-Ocean Sky Intl,1B6.SI,-467
-Oceanus,579.SI,-468
-OEL,584.SI,-469
-OKH Global,S3N.SI,-470
-OKP,5CF.SI,-471
-Olam Intl,O32.SI,-472
-Old Chang Kee,5ML.SI,-473
-Olive Tree,1H2.SI,-474
-OneApex,5SY.SI,-475
-Ossia Intl,O08.SI,-476
-OUE,LJ3.SI,-477
-OUE Com Reit,TS0U.SI,-478
-OUE Lippo HC,5WA.SI,-479
-Ouhua Energy,AJ2.SI,-480
-Overseas Edu,RQ1.SI,-481
-Oxley,5UX.SI,-482
-P5 Capital,5AI.SI,-483
-Pacific Andes,P11.SI,-484
-Pacific Century,P15.SI,-485
-Pacific Radiance,T8V.SI,-486
-Pacific Star Dev,1C5.SI,-487
-Pan Asian,5EW.SI,-488
-Pan Hong,P36.SI,-489
-Pan Ocean,AZY.SI,-490
-PanUnited,P52.SI,-491
-Parkson Retail,O9E.SI,-492
-ParkwayLife Reit,C2PU.SI,-493
-Pavillon,596.SI,-494
-PEC,IX2.SI,-495
-Penguin Intl,BTM.SI,-496
-Perennial Hldgs,40S.SI,-497
-Pharmesis Intl,BFK.SI,-498
-Pine Cap,ADJ.SI,-499
-Plastoform,AYD.SI,-500
-Plato Capital,5PI.SI,-501
-PNE Industries,BDA.SI,-502
-Polaris,5BI.SI,-503
-Pollux Prop,5AE.SI,-504
-POSH,U6C.SI,-505
-Powermatic Data,BCY.SI,-506
-Prime US ReitUSD,OXMU.SI,-507
-Procurri,BVQ.SI,-508
-Progen,583.SI,-509
-PropNex,OYY.SI,-510
-Prudential USD,K6S.SI,-511
-PSL,BLL.SI,-512
-Q&M Dental,QC7.SI,-513
-QAF,Q01.SI,-514
-Qian Hu,BCV.SI,-515
-QT Vascular,5I0.SI,-516
-Raffles Edu,NR7.SI,-517
-Raffles Infrastructure,LUY.SI,-518
-Raffles Medical,BSL.SI,-519
-RE&S Hldg,1G1.SI,-520
-Reclaims Global,NEX.SI,-521
-Reenova Investment,5EC.SI,-522
-Regal Intl,UV1.SI,-523
-Renaissance United,I11.SI,-524
-Renewable Energy,5DW.SI,-525
-Resources Prima,5MM.SI,-526
-Revez,RCU.SI,-527
-Rex Intl,5WH.SI,-528
-RH PetroGas,T13.SI,-529
-RHT HealthTrust,RF1U.SI,-530
-Rich Capital,5G4.SI,-531
-Riverstone,AP4.SI,-532
-Roxy-Pacific,E8Z.SI,-533
-Ryobi Kiso,BDN.SI,-534
-Sabana Reit,M1GU.SI,-535
-Sakae,5DO.SI,-536
-Samko Timber,E6R.SI,-537
-SamuderaShipping,S56.SI,-538
-Samurai,1C3.SI,-539
-Sanli Env,1000.SI,-540
-Santak,580.SI,-541
-Sapphire,BRD.SI,-542
-Sarine Tech,U77.SI,-543
-Sasseur Reit,CRPU.SI,-544
-SATS,S58.SI,-545
-SBI Offshore,5PL.SI,-546
-SBS Transit,S61.SI,-547
-Second Chance,528.SI,-548
-Secura,43B.SI,-549
-Sembcorp Ind,U96.SI,-550
-Sembcorp Marine,S51.SI,-551
-Sen Yue,5BS.SI,-552
-Serial System,S69.SI,-553
-Seroja Inv,IW5.SI,-554
-Serrano,40R.SI,-555
-SEVAK,BAI.SI,-556
-SGX,S68.SI,-557
-Shanghai Turbo,AWM.SI,-558
-Shangri-La HKD,S07.SI,-559
-Sheng Siong,OV8.SI,-560
-Shinvest,BJW.SI,-561
-Shopper360,1F0.SI,-562
-SHS,566.SI,-563
-SIA,C6L.SI,-564
-SIA Engineering,S59.SI,-565
-SIIC Environment,BHK.SI,-566
-Silkroad Nickel,STP.SI,-567
-Silverlake Axis,5CP.SI,-568
-Sim Leisure,URR.SI,-569
-Sin Ghee Huat,B7K.SI,-570
-Sin Heng Mach,BKA.SI,-571
-Sinarmas Land,A26.SI,-572
-Sincap,5UN.SI,-573
-Sing Inv & Fin,S35.SI,-574
-Singapore O&G,1D8.SI,-575
-Singapore-eDev,40V.SI,-576
-SingaporeKitchen,5WG.SI,-577
-SingHaiyi,5H0.SI,-578
-SingHoldings,5IC.SI,-579
-SingMedical,5OT.SI,-580
-SingMyanmar,Y45.SI,-581
-SingPost,S08.SI,-582
-SingReinsurance,S49.SI,-583
-SingShipping,S19.SI,-584
-SingTel,Z74.SI,-585
-SingTel 10,Z77.SI,-586
-Sinjia Land,5HH.SI,-587
-Sino Grandness,T4B.SI,-588
-Sino Techfibre,AD8.SI,-589
-SinoCloud,5EK.SI,-590
-Sinopipe,X06.SI,-591
-Sinostar Pec,C9Q.SI,-592
-Sitra,5LE.SI,-593
-SK Jewellery,42G.SI,-594
-SLB Dev,1J0.SI,-595
-Soilbuild Const,S7P.SI,-596
-SoilbuildBizReit,SV3U.SI,-597
-Soon Lian,5MD.SI,-598
-Soup Restaurant,5KI.SI,-599
-Southern Pkg,BQP.SI,-600
-SP Corp,AWE.SI,-601
-Spackman,40E.SI,-602
-SPH,T39.SI,-603
-SPHREIT,SK6U.SI,-604
-Spindex Ind,564.SI,-605
-Spura Finance,S23.SI,-606
-Sri Trang Agro,NC2.SI,-607
-ST Engineering,S63.SI,-608
-ST Group Food,DRX.SI,-609
-Stamford Land,H07.SI,-610
-Stamford Tyres,S29.SI,-611
-Starburst,40D.SI,-612
-StarhillGbl Reit,P40U.SI,-613
-StarHub,CC3.SI,-614
-Starland,5UA.SI,-615
-Straco,S85.SI,-616
-Straits Trading,S20.SI,-617
-StratechGroup,BRR.SI,-618
-SunMoonFood,AAJ.SI,-619
-Sunningdale Tech,BHQ.SI,-620
-Sunpower,5GD.SI,-621
-Sunright,S71.SI,-622
-Sunrise Shares,581.SI,-623
-Suntar Eco-City,BKZ.SI,-624
-Suntec Reit,T82U.SI,-625
-SunVic Chemical,A7S.SI,-626
-SUTL Enterprise,BHU.SI,-627
-Swee Hong,QF6.SI,-628
-Swiber,BGK.SI,-629
-Swing Media Tech,BEV.SI,-630
-Swissco Hldg,ADP.SI,-631
-Synagie,V2Y.SI,-632
-Sysma,5UO.SI,-633
-TA,PA3.SI,-634
-Tai Sin Electric,500.SI,-635
-TalkMed,5G3.SI,-636
-Tat Seng Pkg,T12.SI,-637
-TCIL HK$,T15.SI,-638
-Tech Oil & Gas,5CQ.SI,-639
-Teckwah,561.SI,-640
-TEE Intl,M1Z.SI,-641
-TEE Land,S9B.SI,-642
-Teho Intl,5OQ.SI,-643
-TeleChoice Intl,T41.SI,-644
-ThaiBev,Y92.SI,-645
-Thakral,AWI.SI,-646
-The Place Hldg,E27.SI,-647
-TheHourGlass,AGS.SI,-648
-Thomson Medical,A50.SI,-649
-Tianjin ZX USD,T14.SI,-650
-TIH,T55.SI,-651
-Tiong Seng,BFI.SI,-652
-Tiong Woon,BQM.SI,-653
-TLV,42L.SI,-654
-Top Global,BHO.SI,-655
-Top Glove,BVA.SI,-656
-Tosei,S2D.SI,-657
-Transcorp,T19.SI,-658
-Transit Concrete,570.SI,-659
-Travelite,BCZ.SI,-660
-Trek 2000 Intl,5AB.SI,-661
-Trendlines,42T.SI,-662
-TrickleStar,CYW.SI,-663
-Tritech,5G9.SI,-664
-Triyards,RC5.SI,-665
-TSH,KUH.SI,-666
-TT Intl,T09.SI,-667
-TTJ,K1Q.SI,-668
-Tuan Sing,T24.SI,-669
-Tung Lok Rest,540.SI,-670
-Tye Soon,BFU.SI,-671
-UG Healthcare,41A.SI,-672
-UIC,U06.SI,-673
-UMS,558.SI,-674
-Uni-Asia Grp,CHJ.SI,-675
-Union Gas,1F2.SI,-676
-Union Steel,BLA.SI,-677
-United Engineers,U04.SI,-678
-United Food,AZR.SI,-679
-United Global,43P.SI,-680
-Universal Res,BGO.SI,-681
-UnUsUaL,1D1.SI,-682
-UOA,EH5.SI,-683
-UOB,U11.SI,-684
-UOB Kay Hian,U10.SI,-685
-UOI,U13.SI,-686
-UOL,U14.SI,-687
-USP Group,BRS.SI,-688
-Vallianz,WPC.SI,-689
-ValueMax,T6I.SI,-690
-Valuetronics,BN2.SI,-691
-Venture,V03.SI,-692
-Versalink,40N.SI,-693
-Vibrant Group,BIP.SI,-694
-VibroPower,BJD.SI,-695
-VibroPower R,LVGR.SI,-696
-VibroPower R1,IHAR.SI,-697
-VICOM,V01.SI,-698
-Vicplas Intl,569.SI,-699
-Viking Offshore,557.SI,-700
-Vividthree,OMK.SI,-701
-Wee Hur,E3B.SI,-702
-Willas-Array,BDR.SI,-703
-Wilmar Intl,F34.SI,-704
-Wilton Resources,5F7.SI,-705
-Winas,5CN.SI,-706
-Wing Tai,W05.SI,-707
-Wong Fong Ind,1A1.SI,-708
-World Class Gbl,1000000.SI,-709
-World Precision,B49.SI,-710
-XMH,BQF.SI,-711
-Y Ventures,1F1.SI,-712
-Yamada Green Res,BJV.SI,-713
-Yanlord Land,Z25.SI,-714
-Yeo Hiap Seng,Y03.SI,-715
-YHI Intl,BPF.SI,-716
-Yinda Infocomm,42F.SI,-717
-Ying Li Intl,5DM.SI,-718
-Yoma Strategic,Z59.SI,-719
-Yongmao,BKX.SI,-720
-Yongnam,AXB.SI,-721
-Yorkshine,MR8.SI,-722
-Yunnan Energy,T43.SI,-723
-YuuZoo Networks,AFC.SI,-724
-YZJ Shipbldg CNY,SO7.SI,-725
-YZJ Shipbldg SGD,BS6.SI,-726
-Zheneng Jinjiang,BWM.SI,-727
-Zhongmin Baihui,5SR.SI,-728
-Zhongxin Fruit,5EG.SI,-729
-ZICO Hldgs,40W.SI,-730
-ABF SG BOND ETF,A35.SI,-731
-GLD US$,O87.SI,-732
-IS ASIA BND S$D,QL2.SI,-733
-IS ASIA BND US$,N6M.SI,-734
-IS ASIA HYG S$D,QL3.SI,-735
-IS ASIA HYG US$,O9P.SI,-736
-IS MS INDIA S$D,QK9.SI,-737
-IS MS INDIA US$,I98.SI,-738
-LION-PHILLIP S-REIT,CLR.SI,-739
-Lyxor Asia US$,P60.SI,-740
-Lyxor ChinaH US$,P58.SI,-741
-Lyxor EM Mkt US$,H1N.SI,-742
-Lyxor MSIndia US$,G1N.SI,-743
-Nikko AM STI ETF,G3B.SI,-744
-NikkoAM SGD IGBond ETF,MBH.SI,-745
-NikkoAM-STC Asia REIT,CFA.SI,-746
-NikkoAM-STC A_REIT US$,COI.SI,-747
-ONESTOXXASEAN US$,CFN.SI,-748
-PHIL AP DIV REIT S$D,BYJ.SI,-749
-PHIL AP DIV REIT US$,BYI.SI,-750
-PHIL SING INC,OVQ.SI,-751
-PRINCIPAL ASEAN40 S$D,QS0.SI,-752
-PRINCIPAL ASEAN40 US$,M62.SI,-753
-PRINCIPAL S&P AP DIV S$D,QR9.SI,-754
-PRINCIPAL S&P AP DIV US$,P5P.SI,-755
-SPDR DJIA US$,D07.SI,-756
-SPDR S&P500 US$,S27.SI,-757
-STI ETF,ES3.SI,-758
-UETF SSE50China,JK8.SI,-759
-XT ASX200 US$,LF1.SI,-760
-XT China50 US$,HD8.SI,-761
-XT CSI300 US$,KT4.SI,-762
-XT E50 US$,IH0.SI,-763
-XT MS SING US$,O9A.SI,-764
-XT MSAsExJp US$,IH1.SI,-765
-XT MSBANGL US$,O9C.SI,-766
-XT MSBrazil US$,J0O.SI,-767
-XT MSCHINA S$,TID.SI,-768
-XT MSCHINA US$,LG9.SI,-769
-XT MSEurope US$,IH3.SI,-770
-XT MSINDIA US$,LG8.SI,-771
-XT MSINDO US$,KJ7.SI,-772
-XT MSJAP US$,LF2.SI,-773
-XT MSKorea US$,IH2.SI,-774
-XT MSMSIA US$,LG6.SI,-775
-XT MSPacXJp US$,J0Q.SI,-776
-XT MSPAKIS US$,O9D.SI,-777
-XT MSPHILS US$,N2E.SI,-778
-XT MSRussia US$,J0R.SI,-779
-XT MSTaiwan US$,HD7.SI,-780
-XT MSTHAI US$,LG7.SI,-781
-XT MSUSA US$,KF8.SI,-782
-XT MSWorld US$,J0P.SI,-783
-XT Nifty US$,HE0.SI,-784
-XT S&P 500 -1x US$,HD6.SI,-785
-XT S&P500 US$,K6K.SI,-786
-XT SingGovBond SG$,KV4.SI,-787
-XT STGLDv US$,KT3.SI,-788
-XT Vietnam US$,HD9.SI,-789
+﻿type,name,symbol,id
+stocks,3Cnergy,502,-1
+stocks,8Telecom^,AZG,-2
+stocks,A-Smart,BQC,-3
+stocks,A-Sonic Aero^,BTJ,-4
+stocks,AA,5GZ,-5
+etfs,ABF SG BOND ETF,A35,-6
+stocks,ABR,533,-7
+stocks,Abterra^,L5I,-8
+stocks,Abundance Intl,541,-9
+businesstrusts,Accordia Golf Tr,ADQU,-10
+stocks,Accrelist Ltd,QZG,-11
+stocks,Ace Achieve Info^,A75,-12
+stocks,Acesian Partners,5FW,-13
+stocks,Acma^,AYV,-14
+stocks,Acromec,43F,-15
+stocks,Addvalue Tech,A31,-16
+stocks,Advanced Systems,5TY,-17
+stocks,Advanced^,BLZ,-18
+stocks,Advancer Global,43Q,-19
+stocks,Adventus,5EF,-20
+stocks,AEI^,AWG,-21
+stocks,AEM,AWX,-22
+stocks,AF Global,L38,-23
+stocks,AGV,1A4,-24
+reits,AIMS APAC Reit,O5RU,-25
+stocks,AIMS Property,BVP,-26
+stocks,AliPictures HKD,S91,-27
+stocks,Alita Resources,40F,-28
+stocks,Alliance HC,MIJ,-29
+stocks,Allied Tech,A13,-30
+stocks,Alpha Energy,5TS,-31
+stocks,Amara,A34,-32
+stocks,AMOS,RF7,-33
+stocks,Amplefield Ltd,AOF,-34
+stocks,AnAn Intl^,Y35,-35
+stocks,Anchor Resources,43E,-36
+stocks,Anchun Intl^,BTX,-37
+stocks,AnnAik,A52,-38
+stocks,Annica,5AL,-39
+stocks,Aoxin Q & M,1D4,-40
+stocks,AP Oil,5AU,-41
+stocks,APAC Realty,CLN,-42
+businesstrusts,ARA HTrust USD,XZL,-43
+stocks,Arion Ent,YYB,-44
+stocks,Artivision Tech,5NK,-45
+reits,Ascendas Reit,A17U,-46
+businesstrusts,Ascendas-iTrust,CY6U,-47
+businesstrusts,Ascott Trust,HMN,-48
+stocks,Asia Enterprises,A55,-49
+stocks,Asia Fashion^,BQI,-50
+stocks,Asia Vets,5RE,-51
+stocks,AsiaMedic,505,-52
+stocks,Asian Healthcare,1J3,-53
+stocks,Asian Micro,585,-54
+businesstrusts,Asian Pay Tv Tr,S7OU,-55
+stocks,AsiaPhos,5WV,-56
+stocks,Asiatic,5CR,-57
+stocks,Asiatravel.com,5AM,-58
+stocks,ASL Marine^,A04,-59
+stocks,Aspen,1F3,-60
+stocks,Aspial,A30,-61
+stocks,Astaka,42S,-62
+stocks,ASTI^,575,-63
+stocks,Atlantic Nav,5UL,-64
+stocks,AusGroup^,5GJ,-65
+stocks,Avarga,U09,-66
+stocks,Avi-Tech,BKY,-67
+stocks,AVIC,O2I,-68
+stocks,AVJennings A$,A05,-69
+stocks,Axcelasia,42U,-70
+stocks,Ayondo,1I5,-71
+stocks,Azeus,BBW,-72
+stocks,B&M Hldg,CJN,-73
+stocks,Baker Technology,BTP,-74
+stocks,Ban Leong,B26,-75
+stocks,Banyan Tree,B58,-76
+stocks,BBR,KJ5,-77
+stocks,Beng Kuang^,BEZ,-78
+stocks,Berlian LajuTank,B66,-79
+stocks,Best World,CGN,-80
+stocks,BH Global^,BQN,-81
+reits,BHG Retail Reit,BMGU,-82
+stocks,Biolidics,8YY,-83
+stocks,BlackGoldNatural,41H,-84
+stocks,Blumont,A33,-85
+stocks,BMM^,I9T,-86
+stocks,Boldtek,5VI,-87
+stocks,Bonvests,B28,-88
+stocks,Boustead,F9D,-89
+stocks,Boustead Proj,AVM,-90
+stocks,BRC Asia,BEC,-91
+stocks,BreadTalk,CTN,-92
+stocks,Broadway Ind^,B69,-93
+stocks,Brook Crompton,AWC,-94
+stocks,Bukit Sembawang,B61,-95
+stocks,Bumitama Agri,P8Z,-96
+stocks,Bund Center,BTE,-97
+reits,Cache Log Trust,K2LU,-98
+stocks,Camsing Hc,BAC,-99
+reits,CapitaCom Trust,C61U,-100
+stocks,Capital World,1D5,-101
+stocks,CapitaLand,C31,-102
+reits,CapitaMall Trust,C38U,-103
+reits,CapitaR China Tr,AU8U,-104
+stocks,Captii,AWV,-105
+stocks,Casa^,C04,-106
+businesstrusts,CDL HTrust,J85,-107
+stocks,CDW,BXE,-108
+stocks,CEI,AVV,-109
+stocks,Centurion,OU8,-110
+stocks,CFM,5EB,-111
+stocks,CH Offshore,C13,-112
+stocks,Challenger,573,-113
+stocks,Charisma Energy,5QT,-114
+stocks,Chasen^,5NV,-115
+stocks,ChasWood Res,5TW,-116
+stocks,Chemical Ind,C05,-117
+stocks,Cheung Woh,C50,-118
+stocks,China Aviation,G92,-119
+stocks,China Env,5OU,-120
+stocks,China Env Res,RS1,-121
+stocks,China Everbright,U9E,-122
+stocks,China Fishery,B0Z,-123
+stocks,China Great Land^,D50,-124
+stocks,China Haida^,C92,-125
+stocks,China Hongxing,BR9,-126
+stocks,China Intl,BEH,-127
+stocks,China Jishan^,J18,-128
+stocks,China Mining^,BHD,-129
+stocks,China Paper,C71,-130
+stocks,China Real Estate,5RA,-131
+stocks,China Sky Chem,E90,-132
+stocks,China Sports^,FQ8,-133
+stocks,China Star Food,42W,-134
+stocks,China Taisan^,AZW,-135
+stocks,China Yuanbang^,BCD,-136
+stocks,ChinaKangdaFood,P74,-137
+stocks,ChinaKundaTech,GU5,-138
+stocks,ChinaSunsine,QES,-139
+stocks,Chinese Global,5CJ,-140
+stocks,Chip Eng Seng,C29,-141
+stocks,Choo Chiang,42E,-142
+stocks,Chuan Hup,C33,-143
+stocks,Citicode,5FH,-144
+stocks,CityDev,C09,-145
+stocks,Civmec,P9D,-146
+stocks,Clearbridge,1H3,-147
+stocks,CNMC Goldmine,5TP,-148
+stocks,Colex,567,-149
+stocks,Combine Will,N0Z,-150
+stocks,ComfortDelGro,C52,-151
+stocks,Cordlife,P8A,-152
+stocks,Cortina,C41,-153
+stocks,COSCO SHP SG,F83,-154
+stocks,CosmoSteel^,B9S,-155
+stocks,Courage Inv,CIN,-156
+stocks,CPH,539,-157
+stocks,Creative,C76,-158
+reits,CromwellReit EUR,CNNU,-159
+reits,CromwellReit SGD,CSFU,-160
+stocks,CSC,C06,-161
+stocks,CSE Global,544,-162
+stocks,CWX Global,594,-163
+stocks,DairyFarm USD,D01,-164
+stocks,Darco Water Tech,BLR,-165
+businesstrusts,Dasin Retail Tr,CEDU,-166
+stocks,Datapulse Tech,BKW,-167
+stocks,DBS,D05,-168
+stocks,Debao Property^,BTF,-169
+stocks,Del Monte Pac,D03,-170
+stocks,Delfi,P34,-171
+stocks,Design Studio^,D11,-172
+stocks,DISA,532,-173
+stocks,DLF,KUX,-174
+stocks,Don Agro,GRQ,-175
+stocks,Dragon^,MT1,-176
+stocks,Dukang^,BKV,-177
+stocks,Dutech,CZ4,-178
+stocks,Duty Free Intl,5SO,-179
+stocks,Dyna-Mac,NO4,-180
+stocks,Dynamic Colours^,D6U,-181
+businesstrusts,Eagle HTrust USD,LIW,-182
+reits,EC World Reit,BWCU,-183
+stocks,EcoWise,5CT,-184
+stocks,Edition,5HG,-185
+stocks,Eindec,42Z,-186
+stocks,Elec & Eltek USD,E16,-187
+reits,EliteComREIT GBP,MXNU,-188
+stocks,Ellipsiz,BIX,-189
+stocks,EMAS Offshore,UQ4,-190
+stocks,Eneco Energy^,R14,-191
+stocks,EnGro,S44,-192
+stocks,Envictus^,BQD,-193
+stocks,Enviro-Hub^,L23,-194
+stocks,Epicentre,5MQ,-195
+stocks,ES,5RC,-196
+reits,ESR-REIT,J91U,-197
+stocks,ETC Singapore,1C0,-198
+stocks,EuroSports Gbl,5G1,-199
+stocks,Excelpoint,BDF,-200
+stocks,Ezion,5ME,-201
+stocks,Ezra,5DN,-202
+stocks,F & N,F99,-203
+stocks,Fabchem China^,BFT,-204
+stocks,Falcon Energy^,5FL,-205
+stocks,Far East,5TJ,-206
+businesstrusts,Far East HTrust,Q5T,-207
+stocks,Far East Orchard,O10,-208
+stocks,Federal Int,BDU,-209
+stocks,Figtree,5F4,-210
+reits,First Reit,AW9U,-211
+stocks,First Resources,EB5,-212
+stocks,First Sponsor,ADN,-213
+stocks,FJ Benjamin^,F10,-214
+stocks,Food Empire,F03,-215
+stocks,Forise Intl^,I5H,-216
+stocks,FortressMinerals,OAJ,-217
+stocks,Fragrance,F31,-218
+reits,Frasers Com Tr,ND8U,-219
+reits,Frasers Cpt Tr,J69U,-220
+businesstrusts,Frasers HTrust,ACV,-221
+reits,Frasers L&I Tr,BUOU,-222
+reits,Frasers L&I Tr  AUD,BWQU,-223
+stocks,Frasers Property,TQ5,-224
+stocks,Frencken,E28,-225
+businesstrusts,FSL Trust^,D8DU,-226
+stocks,Fu Yu,F13,-227
+stocks,Fuji Offset,508,-228
+stocks,Fujian Zhenyun,5KT,-229
+stocks,Full Apex^,BTY,-230
+stocks,Fuxing China,AWK,-231
+stocks,G Invacom^,QS9,-232
+stocks,G K Goh,G41,-233
+stocks,Gallant Venture,5IG,-234
+stocks,GCCP,41T,-235
+stocks,GDS Global,5VP,-236
+stocks,Genting Sing,G13,-237
+stocks,Geo Energy Res,RE4,-238
+stocks,GKE,595,-239
+stocks,GL,B16,-240
+etfs,GLD US$,O87,-241
+stocks,Global Dragon,586,-242
+stocks,Global Inv,B73,-243
+stocks,Global Palm Res,BLW,-244
+stocks,Global Testing,AYN,-245
+stocks,Golden Agri-Res,E5H,-246
+stocks,Golden Energy,AUE,-247
+stocks,Goodland,5PC,-248
+stocks,GP Industries,G20,-249
+stocks,Grand Banks,G50,-250
+stocks,Grand Venture,JLB,-251
+stocks,Great Eastern,G07,-252
+stocks,Green Build^,Y06,-253
+stocks,GRP^,BLU,-254
+stocks,GS Hldg,43A,-255
+stocks,GSH,BDX,-256
+stocks,GSS Energy,41F,-257
+stocks,Guoan Intl,G11,-258
+stocks,GuocoLand,F17,-259
+stocks,GYP Properties^,AWS,-260
+stocks,Hafary,5VS,-261
+stocks,Hai Leck,BLH,-262
+stocks,Halcyon Agri,5VJ,-263
+stocks,Hanwell,DM0,-264
+stocks,Hatten Land,PH0,-265
+stocks,Haw Par,H02,-266
+stocks,HC Surgical,1B1,-267
+stocks,HealthBank,40B,-268
+stocks,Healthway Med,5NG,-269
+stocks,Heatec Jietong,5OR,-270
+stocks,Heeton,5DP,-271
+stocks,Hengyang Petro,5PD,-272
+stocks,HG Metal,BTG,-273
+stocks,Hi-P,H17,-274
+stocks,Hiap Hoe,5JK,-275
+stocks,Hiap Seng^,510,-276
+stocks,Hiap Tong,5PO,-277
+stocks,HL Global Ent,AVX,-278
+stocks,Ho Bee Land,H13,-279
+stocks,Hock Lian Seng,J2T,-280
+stocks,Hoe Leong^,H20,-281
+stocks,Hong Fok,H30,-282
+stocks,Hong Lai Huat,CTO,-283
+stocks,Hong Leong Asia,H22,-284
+stocks,Hong Leong Fin,S41,-285
+stocks,HongkongLand USD,H78,-286
+stocks,Hor Kew^,BBP,-287
+stocks,Hosen,5EV,-288
+stocks,Hotel Grand,H18,-289
+stocks,Hotel Royal,H12,-290
+stocks,Hotung Inv,BLS,-291
+businesstrusts,HPH Trust SGD,P7VU,-292
+businesstrusts,HPH Trust USD,NS8U,-293
+stocks,HPL,H15,-294
+stocks,HRnetGroup,CHZ,-295
+stocks,Hu An Cable^,KI3,-296
+stocks,HuanHsin^,H16,-297
+stocks,Huationg Global,41B,-298
+stocks,Hwa Hong,H19,-299
+stocks,Hyflux,600,-300
+stocks,Hyphens Pharma,1J5,-301
+stocks,ICP Ltd,5I4,-302
+stocks,IEV,5TN,-303
+stocks,IFAST,AIY,-304
+stocks,IFS Capital,I49,-305
+stocks,IHH,Q0F,-306
+stocks,Imperium Crown,5HT,-307
+stocks,Inch Kenneth,I4R,-308
+stocks,Incredible,RDR,-309
+stocks,Indofood Agri,5JS,-310
+stocks,Informatics^,BOU,-311
+stocks,InnoPac^,I26,-312
+stocks,InnoTek,M14,-313
+stocks,Interra Resource^,5GI,-314
+stocks,Intl Cement^,KUO,-315
+stocks,Intraco,I06,-316
+stocks,IP Softcom,571,-317
+stocks,IPC Corp,AZA,-318
+stocks,IPS Securex,42N,-319
+reits,IREIT Global,UD1U,-320
+etfs,IS ASIA BND S$D,QL2,-321
+etfs,IS ASIA BND US$,N6M,-322
+etfs,IS ASIA HYG S$D,QL3,-323
+etfs,IS ASIA HYG US$,O9P,-324
+etfs,IS MS INDIA S$D,QK9,-325
+etfs,IS MS INDIA US$,I98,-326
+stocks,ISDN,I07,-327
+stocks,ISEC,40T,-328
+stocks,Isetan,I15,-329
+stocks,ISOTeam,5WF,-330
+stocks,IX Biopharma,42C,-331
+stocks,Jackspeed^,J17,-332
+stocks,Jadason^,J03,-333
+stocks,Japan Foods,5OI,-334
+stocks,Japfa,UD2,-335
+stocks,Jardine C&C,C07,-336
+stocks,Jason Marine,5PF,-337
+stocks,Jasper Inv^,FQ7,-338
+stocks,Jawala,1J7,-339
+stocks,JB Foods,BEW,-340
+stocks,JCG Investment,VFP,-341
+stocks,JEP,1J4,-342
+stocks,JES Intl,EG0,-343
+stocks,Jiutian Chemical,C8R,-344
+stocks,JMH USD,J36,-345
+stocks,Joyas Intl,E9L,-346
+stocks,JSH USD,J37,-347
+stocks,Jubilee,NHD,-348
+stocks,Jumbo,42R,-349
+stocks,Karin Tech,K29,-350
+stocks,Katrina,1A0,-351
+stocks,Kencana Agri^,BNE,-352
+stocks,Keong Hong,5TT,-353
+businesstrusts,Kep Infra Tr,A7RU,-354
+reits,KepPacOakReitUSD,CMOU,-355
+stocks,Keppel Corp,BN4,-356
+reits,Keppel DC Reit,AJBU,-357
+reits,Keppel Reit,K71U,-358
+stocks,Khong Guan,K03,-359
+stocks,KimHeng Offshore,5G2,-360
+stocks,Kimly,1D0,-361
+stocks,King Wan,554,-362
+stocks,KingsmenCreative,5MZ,-363
+stocks,Kitchen Culture,5TI,-364
+stocks,KLW,504,-365
+stocks,Koda,BJZ,-366
+stocks,Koh Bros,K75,-367
+stocks,Koh Eco,5HV,-368
+stocks,Koon,5DL,-369
+stocks,KOP,5I1,-370
+stocks,Kori,5VC,-371
+stocks,Koufu,VL6,-372
+stocks,Koyo Intl,5OC,-373
+stocks,KrisEnergy,SK3,-374
+stocks,KS Energy^,578,-375
+stocks,KSH,ER0,-376
+stocks,KTL Global^,EB7,-377
+stocks,KTMG,XCF,-378
+stocks,Lafe^,AYB,-379
+stocks,Lasseters Intl,5EL,-380
+stocks,LCT,BJL,-381
+stocks,Leader Env^,LS9,-382
+reits,Lendlease Reit,JYEU,-383
+stocks,Ley Choon,Q0X,-384
+stocks,LHN,41O,-385
+stocks,LHT,BEI,-386
+stocks,Lian Beng,L03,-387
+stocks,Libra,5TR,-388
+stocks,LifeBrandz,1D3,-389
+stocks,Linc Energy,BRE,-390
+stocks,Lion Asiapac,BAZ,-391
+etfs,LION-PHILLIP S-REIT,CLR,-392
+stocks,LionGold,A78,-393
+reits,Lippo Malls Tr,D5IU,-394
+stocks,Lonza,O6Z,-395
+stocks,Lorenzo Intl^,5IE,-396
+stocks,Low Keng Huat,F1E,-397
+stocks,Lum Chang,L19,-398
+stocks,Lung Kee Bermuda,L09,-399
+stocks,Luxking,BKK,-400
+stocks,Luzhou Bio-Chem^,L46,-401
+stocks,LY Corp,1H8,-402
+etfs,Lyxor Asia US$,P60,-403
+etfs,Lyxor ChinaH US$,P58,-404
+etfs,Lyxor EM Mkt US$,H1N,-405
+etfs,Lyxor MSIndia US$,G1N,-406
+stocks,M Development^,N14,-407
+stocks,Magnus Energy,41S,-408
+stocks,Man Oriental USD,M04,-409
+stocks,Manhattan Res^,L02,-410
+reits,ManulifeReit USD,BTOU,-411
+reits,Mapletree Com Tr,N2IU,-412
+reits,Mapletree Ind Tr,ME8U,-413
+reits,Mapletree Log Tr,M44U,-414
+reits,Mapletree NAC Tr,RW0U,-415
+stocks,MarcoPolo Marine,5LY,-416
+stocks,Maruwa Yen1k,M12,-417
+stocks,Mary Chia,5OX,-418
+stocks,Matex Intl,M15,-419
+stocks,Maxi-Cash Fin,5UF,-420
+stocks,MDR,A27,-421
+stocks,Medinex,OTX,-422
+stocks,Medtecs Intl,546,-423
+stocks,MegaChem,5DS,-424
+stocks,MeGroup,SJY,-425
+stocks,Memiontec,SYM,-426
+stocks,Memories,1H4,-427
+stocks,Memstar Tech,5MS,-428
+stocks,Mencast^,5NF,-429
+stocks,Mercurius,5RF,-430
+stocks,Mermaid Maritime,DU4,-431
+stocks,Metal Component,5DX,-432
+stocks,Metech Intl,V3M,-433
+stocks,Metro,M01,-434
+stocks,Mewah Intl,MV4,-435
+stocks,MFG Integration,M11,-436
+stocks,Micro-Mechanics,5DD,-437
+stocks,Midas,5EN,-438
+stocks,MindChamps,CNE,-439
+stocks,Mirach Energy^,AWO,-440
+stocks,Miyoshi,M03,-441
+stocks,MM2 Asia,1B0,-442
+stocks,MMP Resources^,F3V,-443
+stocks,MoneyMax Fin,5WJ,-444
+stocks,Moya Asia,5WE,-445
+stocks,MS Hldgs,40U,-446
+stocks,MSC,NPW,-447
+stocks,MSM Intl,5QR,-448
+stocks,MTQ,M05,-449
+stocks,Multi-Chem,AWZ,-450
+stocks,Mun Siong Engg^,MF6,-451
+stocks,Murata Yen1k,PJX,-452
+stocks,MYP,F86,-453
+stocks,Nam Cheong,N4E,-454
+stocks,Nam Lee Metal,G0I,-455
+stocks,Natural Cool,5IF,-456
+stocks,NauticAWT,42D,-457
+stocks,Neo,5UJ,-458
+stocks,NeraTel,N01,-459
+stocks,Net Pacific Fin,5QY,-460
+businesstrusts,NetLink NBN Tr,CJLU,-461
+stocks,New Silkroutes,BMT,-462
+stocks,New Toyo,N08,-463
+stocks,New Wave,5FX,-464
+stocks,NGSC^,B07,-465
+stocks,Nico Steel^,5GF,-466
+etfs,Nikko AM STI ETF,G3B,-467
+etfs,NikkoAM SGD IGBond ETF,MBH,-468
+etfs,NikkoAM-STC Asia REIT,CFA,-469
+etfs,NikkoAM-STC A_REIT US$,COI,-470
+stocks,Nippecraft,N32,-471
+stocks,No Signboard,1G6,-472
+stocks,Noble,CGP,-473
+stocks,Noel Gifts Intl,543,-474
+stocks,Nomura Yen1k,N33,-475
+stocks,Nordic,MR7,-476
+stocks,NSL,N02,-477
+stocks,Ntegrator Intl,5HC,-478
+stocks,NutryFarm^,AZT,-479
+stocks,OCBC Bank,O39,-480
+stocks,Ocean Sky Intl,1B6,-481
+stocks,Oceanus^,579,-482
+stocks,OEL,584,-483
+stocks,OKH Global^,S3N,-484
+stocks,OKP,5CF,-485
+stocks,Olam Intl,O32,-486
+stocks,Old Chang Kee,5ML,-487
+stocks,Olive Tree,1H2,-488
+stocks,OneApex,5SY,-489
+etfs,ONESTOXXASEAN US$,CFN,-490
+stocks,Ossia Intl^,O08,-491
+stocks,OUE,LJ3,-492
+reits,OUE Com Reit,TS0U,-493
+stocks,OUE Lippo HC,5WA,-494
+stocks,Ouhua Energy^,AJ2,-495
+stocks,Overseas Edu,RQ1,-496
+stocks,Oxley,5UX,-497
+stocks,P5 Capital,5AI,-498
+stocks,Pacific Andes,P11,-499
+stocks,Pacific Century,P15,-500
+stocks,Pacific Radiance,T8V,-501
+stocks,Pacific Star Dev,1C5,-502
+stocks,Pan Asian,5EW,-503
+stocks,Pan Hong,P36,-504
+stocks,Pan Ocean,AZY,-505
+stocks,PanUnited,P52,-506
+stocks,Parkson Retail^,O9E,-507
+reits,ParkwayLife Reit,C2PU,-508
+stocks,Pavillon^,596,-509
+stocks,PEC,IX2,-510
+stocks,Penguin Intl,BTM,-511
+stocks,Perennial Hldgs,40S,-512
+stocks,Pharmesis Intl,BFK,-513
+etfs,PHIL AP DIV REIT S$D,BYJ,-514
+etfs,PHIL AP DIV REIT US$,BYI,-515
+etfs,PHIL SING INC,OVQ,-516
+stocks,Pine Cap,ADJ,-517
+stocks,Plastoform^,AYD,-518
+stocks,Plato Capital,5PI,-519
+stocks,PNE Industries,BDA,-520
+stocks,Polaris,5BI,-521
+stocks,Pollux Prop,5AE,-522
+stocks,Powermatic Data,BCY,-523
+reits,Prime US ReitUSD,OXMU,-524
+etfs,PRINCIPAL ASEAN40 S$D,QS0,-525
+etfs,PRINCIPAL ASEAN40 US$,M62,-526
+etfs,PRINCIPAL S&P AP DIV S$D,QR9,-527
+etfs,PRINCIPAL S&P AP DIV US$,P5P,-528
+stocks,Procurri,BVQ,-529
+stocks,Progen,583,-530
+stocks,PropNex,OYY,-531
+stocks,Prudential USD,K6S,-532
+stocks,PSL^,BLL,-533
+stocks,Q&M Dental,QC7,-534
+stocks,QAF,Q01,-535
+stocks,Qian Hu^,BCV,-536
+stocks,QT Vascular,5I0,-537
+stocks,Raffles Edu,NR7,-538
+stocks,Raffles Infrastructure^,LUY,-539
+stocks,Raffles Medical,BSL,-540
+stocks,RE&S Hldg,1G1,-541
+stocks,Reclaims Global,NEX,-542
+stocks,Reenova Investment^,5EC,-543
+stocks,Regal Intl^,UV1,-544
+stocks,Renaissance United^,I11,-545
+stocks,Resources Gbl,QSD,-546
+stocks,Resources Prima,5MM,-547
+stocks,Revez,RCU,-548
+stocks,Rex Intl,5WH,-549
+stocks,RH PetroGas,T13,-550
+businesstrusts,RHT HealthTrust,RF1U,-551
+reits,RHT HealthTrust,RF1U,-552
+stocks,Rich Capital,5G4,-553
+stocks,Riverstone,AP4,-554
+stocks,Roxy-Pacific,E8Z,-555
+stocks,Ryobi Kiso,BDN,-556
+reits,Sabana Reit,M1GU,-557
+stocks,Sakae^,5DO,-558
+stocks,Samko Timber,E6R,-559
+stocks,SamuderaShipping,S56,-560
+stocks,Samurai,1C3,-561
+stocks,Sanli Env,1.00E+03,-562
+stocks,Santak,580,-563
+stocks,Sapphire,BRD,-564
+stocks,Sarine Tech,U77,-565
+reits,Sasseur Reit,CRPU,-566
+stocks,SATS,S58,-567
+stocks,SBI Offshore,5PL,-568
+stocks,SBS Transit,S61,-569
+stocks,Second Chance,528,-570
+stocks,Secura,43B,-571
+stocks,Sembcorp Ind,U96,-572
+stocks,Sembcorp Marine,S51,-573
+stocks,Sen Yue,5BS,-574
+stocks,Serial System,S69,-575
+stocks,Seroja Inv^,IW5,-576
+stocks,Serrano,40R,-577
+stocks,SEVAK,BAI,-578
+stocks,SGX,S68,-579
+stocks,Shanghai Turbo,AWM,-580
+stocks,Shangri-La HKD,S07,-581
+stocks,Sheng Siong,OV8,-582
+stocks,Shinvest,BJW,-583
+stocks,Shopper360,1F0,-584
+stocks,SHS,566,-585
+stocks,SIA,C6L,-586
+stocks,SIA Engineering,S59,-587
+stocks,SIIC Environment,BHK,-588
+stocks,Silkroad Nickel,STP,-589
+stocks,Silverlake Axis,5CP,-590
+stocks,Sim Leisure,URR,-591
+stocks,Sin Ghee Huat,B7K,-592
+stocks,Sin Heng Mach,BKA,-593
+stocks,Sinarmas Land,A26,-594
+stocks,Sincap,5UN,-595
+stocks,Sing Inv & Fin,S35,-596
+stocks,Singapore O&G,1D8,-597
+stocks,Singapore-eDev,40V,-598
+stocks,SingaporeKitchen,5WG,-599
+stocks,SingHaiyi,5H0,-600
+stocks,SingHoldings,5IC,-601
+stocks,SingMedical,5OT,-602
+stocks,SingMyanmar^,Y45,-603
+stocks,SingPost,S08,-604
+stocks,SingReinsurance,S49,-605
+stocks,SingShipping,S19,-606
+stocks,Singtel,Z74,-607
+stocks,Singtel 10,Z77,-608
+stocks,Sinjia Land,5HH,-609
+stocks,Sino Grandness,T4B,-610
+stocks,SinoCloud,5EK,-611
+stocks,Sinopipe,X06,-612
+stocks,Sinostar Pec,C9Q,-613
+stocks,Sitra,5LE,-614
+stocks,SK Jewellery,42G,-615
+stocks,SLB Dev,1J0,-616
+stocks,Soilbuild Const,S7P,-617
+reits,SoilbuildBizReit,SV3U,-618
+stocks,Soon Lian,5MD,-619
+stocks,Soup Restaurant,5KI,-620
+stocks,Southern Pkg,BQP,-621
+stocks,SP Corp,AWE,-622
+stocks,Spackman,40E,-623
+etfs,SPDR DJIA US$,D07,-624
+etfs,SPDR S&P500 US$,S27,-625
+stocks,SPH,T39,-626
+reits,SPHREIT,SK6U,-627
+stocks,Spindex Ind,564,-628
+stocks,Spura Finance,S23,-629
+stocks,Sri Trang Agro,NC2,-630
+stocks,ST Engineering,S63,-631
+stocks,ST Group Food,DRX,-632
+stocks,Stamford Land,H07,-633
+stocks,Stamford Tyres,S29,-634
+stocks,Starburst,40D,-635
+reits,StarhillGbl Reit,P40U,-636
+stocks,StarHub,CC3,-637
+stocks,Starland,5UA,-638
+etfs,STI ETF,ES3,-639
+stocks,Straco,S85,-640
+stocks,Straits Trading,S20,-641
+stocks,StratechGroup^,BRR,-642
+stocks,SunMoonFood^,AAJ,-643
+stocks,Sunningdale Tech,BHQ,-644
+stocks,Sunpower,5GD,-645
+stocks,Sunright,S71,-646
+stocks,Sunrise Shares,581,-647
+stocks,Suntar Eco-City^,BKZ,-648
+reits,Suntec Reit,T82U,-649
+stocks,SunVic Chemical^,A7S,-650
+stocks,SUTL Enterprise,BHU,-651
+stocks,Swee Hong^,QF6,-652
+stocks,Swiber,BGK,-653
+stocks,Swing Media Tech,BEV,-654
+stocks,Swissco Hldg,ADP,-655
+stocks,Synagie,V2Y,-656
+stocks,Sysma,5UO,-657
+stocks,TA,PA3,-658
+stocks,Tai Sin Electric,500,-659
+stocks,TalkMed,5G3,-660
+stocks,Tat Seng Pkg,T12,-661
+stocks,TCIL HK$,T15,-662
+stocks,Tech Oil & Gas,5CQ,-663
+stocks,Teckwah,561,-664
+stocks,TEE Intl,M1Z,-665
+stocks,TEE Land,S9B,-666
+stocks,Teho Intl,5OQ,-667
+stocks,TeleChoice Intl,T41,-668
+stocks,ThaiBev,Y92,-669
+stocks,Thakral,AWI,-670
+stocks,The Place Hldg,E27,-671
+stocks,TheHourGlass,AGS,-672
+stocks,Thomson Medical,A50,-673
+stocks,Tianjin ZX USD,T14,-674
+stocks,TIH,T55,-675
+stocks,Tiong Seng,BFI,-676
+stocks,Tiong Woon,BQM,-677
+stocks,TLV,42L,-678
+stocks,Top Global,BHO,-679
+stocks,Top Glove,BVA,-680
+stocks,Tosei,S2D,-681
+stocks,Transcorp,T19,-682
+stocks,Transit Concrete^,570,-683
+stocks,Travelite^,BCZ,-684
+stocks,Trek 2000 Intl^,5AB,-685
+stocks,Trendlines,42T,-686
+stocks,TrickleStar,CYW,-687
+stocks,Tritech,5G9,-688
+stocks,Triyards,RC5,-689
+stocks,TSH,KUH,-690
+stocks,TT Intl,T09,-691
+stocks,TTJ,K1Q,-692
+stocks,Tuan Sing,T24,-693
+stocks,Tung Lok Rest,540,-694
+stocks,Tye Soon^,BFU,-695
+etfs,UETF SSE50China,JK8,-696
+stocks,UG Healthcare,41A,-697
+stocks,UIC,U06,-698
+stocks,UMS,558,-699
+stocks,Uni-Asia Grp,CHJ,-700
+stocks,Union Gas,1F2,-701
+stocks,Union Steel,BLA,-702
+stocks,United Food^,AZR,-703
+stocks,United Global,43P,-704
+stocks,Universal Res,BGO,-705
+stocks,UnUsUaL,1D1,-706
+stocks,UOA,EH5,-707
+stocks,UOB,U11,-708
+stocks,UOB Kay Hian,U10,-709
+stocks,UOI,U13,-710
+stocks,UOL,U14,-711
+stocks,UOL  A,MKO,-712
+stocks,USP Group^,BRS,-713
+stocks,Vallianz,WPC,-714
+stocks,ValueMax,T6I,-715
+stocks,Valuetronics,BN2,-716
+stocks,Venture,V03,-717
+stocks,Versalink,40N,-718
+stocks,Vibrant Group,BIP,-719
+stocks,VibroPower^,BJD,-720
+stocks,VICOM,V01,-721
+stocks,Vicplas Intl,569,-722
+stocks,Viking Offshore,557,-723
+stocks,Vividthree,OMK,-724
+stocks,Wee Hur,E3B,-725
+stocks,Willas-Array,BDR,-726
+stocks,Wilmar Intl,F34,-727
+stocks,Wilton Resources,5F7,-728
+stocks,Winas,5CN,-729
+stocks,Wing Tai,W05,-730
+stocks,Wong Fong Ind,1A1,-731
+stocks,World Class Gbl,1.00E+06,-732
+stocks,World Precision,B49,-733
+stocks,XMH^,BQF,-734
+etfs,XT ASX200 US$,LF1,-735
+etfs,XT China50 US$,HD8,-736
+etfs,XT CSI300 US$,KT4,-737
+etfs,XT E50 US$,IH0,-738
+etfs,XT MS SING US$,O9A,-739
+etfs,XT MSAsExJp US$,IH1,-740
+etfs,XT MSBANGL US$,O9C,-741
+etfs,XT MSBrazil US$,J0O,-742
+etfs,XT MSCHINA S$,TID,-743
+etfs,XT MSCHINA US$,LG9,-744
+etfs,XT MSEurope US$,IH3,-745
+etfs,XT MSINDIA US$,LG8,-746
+etfs,XT MSINDO US$,KJ7,-747
+etfs,XT MSJAP US$,LF2,-748
+etfs,XT MSKorea US$,IH2,-749
+etfs,XT MSMSIA US$,LG6,-750
+etfs,XT MSPacXJp US$,J0Q,-751
+etfs,XT MSPAKIS US$,O9D,-752
+etfs,XT MSPHILS US$,N2E,-753
+etfs,XT MSRussia US$,J0R,-754
+etfs,XT MSTaiwan US$,HD7,-755
+etfs,XT MSTHAI US$,LG7,-756
+etfs,XT MSUSA US$,KF8,-757
+etfs,XT MSWorld US$,J0P,-758
+etfs,XT Nifty US$,HE0,-759
+etfs,XT S&P500 US$,K6K,-760
+etfs,XT SingGovBond SG$,KV4,-761
+etfs,XT STGLDv US$,KT3,-762
+etfs,XT Vietnam US$,HD9,-763
+stocks,Y Ventures,1F1,-764
+stocks,Yamada Green Res,BJV,-765
+stocks,Yanlord Land,Z25,-766
+stocks,Yeo Hiap Seng,Y03,-767
+stocks,YHI Intl,BPF,-768
+stocks,Yinda Infocomm,42F,-769
+stocks,Ying Li Intl,5DM,-770
+stocks,Yoma Strategic,Z59,-771
+stocks,Yongmao,BKX,-772
+stocks,Yongnam,AXB,-773
+stocks,Yorkshine^,MR8,-774
+stocks,Yunnan Energy,T43,-775
+stocks,YuuZoo Networks,AFC,-776
+stocks,YZJ Shipbldg CNY,SO7,-777
+stocks,YZJ Shipbldg SGD,BS6,-778
+stocks,Zheneng Jinjiang,BWM,-779
+stocks,Zhongmin Baihui,5SR,-780
+stocks,Zhongxin Fruit,5EG,-781
+stocks,ZICO Hldgs,40W,-782

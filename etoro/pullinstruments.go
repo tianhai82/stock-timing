@@ -64,14 +64,16 @@ func retrieveYahooSymbols() ([]model.InstrumentDisplayData, error) {
 		if line == 0 {
 			continue
 		}
-		name := record[0]
-		symbol := record[1]
-		id := record[2]
+		typ := record[0]
+		name := record[1]
+		symbol := record[2]
+		id := record[3]
 		idInt, errConv := strconv.Atoi(id)
 		if errConv != nil {
 			return nil, errConv
 		}
 		ins := model.InstrumentDisplayData{
+			Type:                  typ,
 			InstrumentID:          idInt,
 			InstrumentDisplayName: name,
 			SymbolFull:            symbol,

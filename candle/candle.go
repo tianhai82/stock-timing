@@ -2,7 +2,6 @@ package candle
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/pkg/errors"
 	"github.com/tianhai82/stock-timing/etoro"
@@ -20,20 +19,20 @@ func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
 		fmt.Println(err)
 		return nil, errors.Wrap(err, "fail to find symbol from instrument ID")
 	}
-	return sgx.RetrieveHistory(strings.Replace(symbol, ".SI", "", -1), period)
+	return sgx.RetrieveHistory(symbol)
 }
 
-func findSymbolFromInstrumentID(instrumentID int) (string, error) {
+func findSymbolFromInstrumentID(instrumentID int) (model.InstrumentDisplayData, error) {
 	if firebase.StorageClient == nil {
-		return "", errors.New("cannot access storage")
+		return model.InstrumentDisplayData{}, errors.New("cannot access storage")
 	}
 	if firebase.Instruments == nil {
-		return "", errors.New("cannot access instruments")
+		return model.InstrumentDisplayData{}, errors.New("cannot access instruments")
 	}
 	for _, ins := range firebase.Instruments {
 		if ins.InstrumentID == instrumentID {
-			return ins.SymbolFull, nil
+			return ins, nil
 		}
 	}
-	return "", errors.New("instrument ID not in global list")
+	return model.InstrumentDisplayData{}, errors.New("instrument ID not in global list")
 }

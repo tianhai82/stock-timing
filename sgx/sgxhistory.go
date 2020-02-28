@@ -9,8 +9,8 @@ import (
 	"github.com/tianhai82/stock-timing/model"
 )
 
-const quoteUrl = "https://api.sgx.com/securities/v1.1/stocks/code/%s?params=nc,adjusted-vwap,b,bv,p,c,change_vs_pc,change_vs_pc_percentage,cx,cn,dp,dpc,du,ed,fn,h,iiv,iopv,lt,l,o,p_,pv,ptd,s,sv,trading_time,v_,v,vl,vwap,vwap-currency"
-const historyUrl = "https://api.sgx.com/securities/v1.1/charts/historic/stocks/code/%s/1y"
+const quoteUrl = "https://api.sgx.com/securities/v1.1/%s/code/%s?params=nc,adjusted-vwap,b,bv,p,c,change_vs_pc,change_vs_pc_percentage,cx,cn,dp,dpc,du,ed,fn,h,iiv,iopv,lt,l,o,p_,pv,ptd,s,sv,trading_time,v_,v,vl,vwap,vwap-currency"
+const historyUrl = "https://api.sgx.com/securities/v1.1/charts/historic/%s/code/%s/1y"
 
 type sgxPrice struct {
 	High        float64 `json:"h"`
@@ -41,10 +41,10 @@ type sgxHistoryResp struct {
 	Meta meta `json:"meta"`
 }
 
-func RetrieveHistory(symbol string, _ int) ([]model.Candle, error) {
-	currentQuoteUrl := fmt.Sprintf(quoteUrl, symbol)
+func RetrieveHistory(symbol model.InstrumentDisplayData) ([]model.Candle, error) {
+	currentQuoteURL := fmt.Sprintf(quoteUrl, symbol.Type, symbol.SymbolFull)
 	var currentQuoteResp sgxResp
-	err := httprequester.MakeGetRequest(currentQuoteUrl, &currentQuoteResp)
+	err := httprequester.MakeGetRequest(currentQuoteURL, &currentQuoteResp)
 	if err != nil {
 		fmt.Println(err)
 		return nil, err
@@ -54,9 +54,9 @@ func RetrieveHistory(symbol string, _ int) ([]model.Candle, error) {
 		return nil, errors.New(currentQuoteResp.Meta.Message)
 	}
 
-	historyQuoteUrl := fmt.Sprintf(historyUrl, symbol)
+	historyQuoteURL := fmt.Sprintf(historyUrl, symbol.Type, symbol.SymbolFull)
 	var historyResp sgxHistoryResp
-	err = httprequester.MakeGetRequest(historyQuoteUrl, &historyResp)
+	err = httprequester.MakeGetRequest(historyQuoteURL, &historyResp)
 	if err != nil {
 		fmt.Println(err)
 		return nil, err

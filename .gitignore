@@ -71,5 +71,5 @@ public/utils.*
 .vscode
 
 .idea/
-.yarn/unplugged
-.yarn/build-state.yml
+web/.yarn/unplugged
+web/.yarn/build-state.yml

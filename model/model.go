@@ -6,6 +6,7 @@ type EtoroInstruments struct {
 	InstrumentDisplayDatas []InstrumentDisplayData `json:"InstrumentDisplayDatas"`
 }
 type InstrumentDisplayData struct {
+	Type                        string `json:"type"`
 	InstrumentID                int    `json:"InstrumentID"`
 	InstrumentDisplayName       string `json:"InstrumentDisplayName"`
 	InstrumentTypeID            int    `json:"InstrumentTypeID"`
