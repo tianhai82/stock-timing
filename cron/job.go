@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"net/http"
 
+	"time"
+
 	"cloud.google.com/go/firestore"
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/cloudtask"
@@ -18,6 +20,19 @@ func AddCronJobs(router *gin.RouterGroup) {
 }
 
 func stockSubscriptions(c *gin.Context) {
+	now := time.Now().UTC()
+	if now.Weekday() == time.Saturday && now.Hour() == 12 {
+		return
+	}
+	if now.Weekday() == time.Sunday && now.Hour() == 0 {
+		return
+	}
+	if now.Weekday() == time.Sunday && now.Hour() == 12 {
+		return
+	}
+	if now.Weekday() == time.Monday && now.Hour() == 0 {
+		return
+	}
 	ctx := context.Background()
 	iter := firebase.FirestoreClient.Collection("subscription").Documents(ctx)
 	docs, err := iter.GetAll()
