@@ -88,7 +88,7 @@ type EmailAnalysis struct {
 	InstrumentSymbol      string  `json:"instrumentSymbol"`
 	Period                int     `json:"period"`
 	CurrentPrice          float64 `json:"currentPrice"`
-	PricePercentile       float64 `json:"PricePercentile"`
+	PricePercentile       float64 `json:"pricePercentile"`
 	BuyFreq               float64 `json:"buyFreq"`
 	SellFreq              float64 `json:"sellFreq"`
 }

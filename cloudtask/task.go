@@ -7,6 +7,7 @@ import (
 	"math"
 	"net/http"
 	"os"
+	"sort"
 	"time"
 
 	cloudtasks "cloud.google.com/go/cloudtasks/apiv2"
@@ -43,18 +44,11 @@ func analyzeStock(c *gin.Context) {
 			continue
 		}
 
-		userAnalysises := make([]model.EmailAnalysis, len(userSubs.Subscriptions))
-		for i, sub := range userSubs.Subscriptions {
+		highPrices := make([]model.EmailAnalysis, 0, len(userSubs.Subscriptions))
+		lowPrices := make([]model.EmailAnalysis, 0, len(userSubs.Subscriptions))
+		for _, sub := range userSubs.Subscriptions {
 			candles, err := candleStore.RetrieveCandles(sub.InstrumentID, sub.Period)
 			if err != nil {
-				userAnalysises[i] = model.EmailAnalysis{
-					InstrumentDisplayName: sub.InstrumentDisplayName,
-					InstrumentSymbol:      sub.Symbol,
-					BuyFreq:               limitToFreq(sub.BuyLimit),
-					SellFreq:              limitToFreq(sub.SellLimit),
-					Period:                -1,
-					CurrentPrice:          -1.0,
-				}
 				continue
 			}
 			buyLimit := 0.55
@@ -66,7 +60,7 @@ func analyzeStock(c *gin.Context) {
 				sellLimit = sub.SellLimit
 			}
 			analysis := analyzer.AnalyzerCandles(candles, buyLimit, sellLimit)
-			userAnalysises[i] = model.EmailAnalysis{
+			ua := model.EmailAnalysis{
 				InstrumentDisplayName: sub.InstrumentDisplayName,
 				InstrumentSymbol:      sub.Symbol,
 				BuyFreq:               limitToFreq(sub.BuyLimit),
@@ -82,19 +76,43 @@ func analyzeStock(c *gin.Context) {
 					percentile = 0.5 - ((math.Abs(analysis.CurrentDev)-analysis.StdDev)/(analysis.MaxDev-analysis.StdDev))/2
 				}
 			}
-			userAnalysises[i].PricePercentile = percentile
+			ua.PricePercentile = percentile
 
 			if analysis.Signal == model.Buy {
-				userAnalysises[i].BuyOrSell = "Buy"
+				ua.BuyOrSell = "Buy"
 			} else if analysis.Signal == model.Sell {
-				userAnalysises[i].BuyOrSell = "Sell"
+				ua.BuyOrSell = "Sell"
 			} else {
-				userAnalysises[i].BuyOrSell = "Hold"
+				ua.BuyOrSell = "Hold"
+			}
+			if ua.PricePercentile > 0.5 {
+				highPrices = append(highPrices, ua)
+			} else if ua.PricePercentile < 0.5 {
+				lowPrices = append(lowPrices, ua)
 			}
 		}
+		sort.Slice(highPrices, func(i, j int) bool {
+			if highPrices[i].BuyOrSell == "Hold" && highPrices[j].BuyOrSell != "Hold" {
+				return false
+			}
+			if highPrices[i].PricePercentile > highPrices[j].PricePercentile {
+				return false
+			}
+			return true
+		})
+		sort.Slice(lowPrices, func(i, j int) bool {
+			if lowPrices[i].BuyOrSell == "Hold" && lowPrices[j].BuyOrSell != "Hold" {
+				return false
+			}
+			if lowPrices[i].PricePercentile < lowPrices[j].PricePercentile {
+				return false
+			}
+			return true
+		})
 		mailApiKey, _ := os.LookupEnv("MAIL_API_KEY")
 		err = mail.Sendmail(mailApiKey, 1, gin.H{
-			"analysises": userAnalysises,
+			"highPrices": highPrices,
+			"lowPrices":  lowPrices,
 		}, []mail.Email{{Email: userSubs.UserID, Name: userSubs.UserID}})
 		if err != nil {
 			fmt.Println("error sending mail", err)
