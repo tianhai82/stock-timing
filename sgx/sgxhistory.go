@@ -42,32 +42,45 @@ type sgxHistoryResp struct {
 }
 
 func RetrieveHistory(symbol model.InstrumentDisplayData) ([]model.Candle, error) {
-	currentQuoteURL := fmt.Sprintf(quoteUrl, symbol.Type, symbol.SymbolFull)
-	var currentQuoteResp sgxResp
-	err := httprequester.MakeGetRequest(currentQuoteURL, &currentQuoteResp)
-	if err != nil {
-		fmt.Println(err)
-		return nil, err
-	}
-	if currentQuoteResp.Meta.Code != "200" {
-		fmt.Println(currentQuoteResp.Meta.Message)
-		return nil, errors.New(currentQuoteResp.Meta.Message)
-	}
-
 	historyQuoteURL := fmt.Sprintf(historyUrl, symbol.Type, symbol.SymbolFull)
 	var historyResp sgxHistoryResp
-	err = httprequester.MakeGetRequest(historyQuoteURL, &historyResp)
+	err := httprequester.MakeGetRequest(historyQuoteURL, &historyResp)
 	if err != nil {
 		fmt.Println(err)
 		return nil, err
 	}
 	if historyResp.Meta.Code != "200" {
-		fmt.Println()
+		fmt.Println(historyResp.Meta.Message)
 		return nil, errors.New(historyResp.Meta.Message)
 	}
 
+	if len(historyResp.Data.Historic) == 0 {
+		fmt.Println("empty history returned from SGX")
+		return nil, errors.New("empty history returned from SGX")
+	}
 	prices := historyResp.Data.Historic
-	prices = append(prices, currentQuoteResp.Data.Prices...)
+
+	t, err := time.Parse("20060102_150405", historyResp.Data.Historic[len(historyResp.Data.Historic)-1].TradingTime)
+	now := time.Now()
+	if now.Weekday() == time.Saturday {
+		now = now.AddDate(0, 0, -1)
+	} else if now.Weekday() == time.Sunday {
+		now = now.AddDate(0, 0, -2)
+	}
+	if t.Day() != now.Day() {
+		currentQuoteURL := fmt.Sprintf(quoteUrl, symbol.Type, symbol.SymbolFull)
+		var currentQuoteResp sgxResp
+		err = httprequester.MakeGetRequest(currentQuoteURL, &currentQuoteResp)
+		if err != nil {
+			fmt.Println(err)
+			return nil, err
+		}
+		if currentQuoteResp.Meta.Code != "200" {
+			fmt.Println(currentQuoteResp.Meta.Message)
+			return nil, errors.New(currentQuoteResp.Meta.Message)
+		}
+		prices = append(prices, currentQuoteResp.Data.Prices...)
+	}
 	return convertPricesToCandles(prices)
 }
 

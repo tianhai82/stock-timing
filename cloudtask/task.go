@@ -93,7 +93,7 @@ func analyzeStock(c *gin.Context) {
 			}
 		}
 		sort.Slice(highPrices, func(i, j int) bool {
-			if highPrices[i].BuyOrSell == "Hold" && highPrices[j].BuyOrSell != "Hold" {
+			if highPrices[i].BuyOrSell != "Hold" && highPrices[j].BuyOrSell == "Hold" {
 				return false
 			}
 			if highPrices[i].PricePercentile > highPrices[j].PricePercentile {
@@ -102,7 +102,7 @@ func analyzeStock(c *gin.Context) {
 			return true
 		})
 		sort.Slice(lowPrices, func(i, j int) bool {
-			if lowPrices[i].BuyOrSell == "Hold" && lowPrices[j].BuyOrSell != "Hold" {
+			if lowPrices[i].BuyOrSell != "Hold" && lowPrices[j].BuyOrSell == "Hold" {
 				return false
 			}
 			if lowPrices[i].PricePercentile < lowPrices[j].PricePercentile {
@@ -110,6 +110,9 @@ func analyzeStock(c *gin.Context) {
 			}
 			return true
 		})
+		for _, a := range lowPrices {
+			fmt.Println(a.InstrumentDisplayName, a.PricePercentile)
+		}
 		mailApiKey, _ := os.LookupEnv("MAIL_API_KEY")
 		err = mail.Sendmail(mailApiKey, 1, gin.H{
 			"highPrices": highPrices,
