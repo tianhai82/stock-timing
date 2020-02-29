@@ -63,6 +63,7 @@ func analyzeStock(c *gin.Context) {
 			ua := model.EmailAnalysis{
 				InstrumentDisplayName: sub.InstrumentDisplayName,
 				InstrumentSymbol:      sub.Symbol,
+				InstrumentID:          sub.InstrumentID,
 				BuyFreq:               limitToFreq(sub.BuyLimit),
 				SellFreq:              limitToFreq(sub.SellLimit),
 				Period:                analysis.Period,
