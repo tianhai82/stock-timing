@@ -24,15 +24,15 @@ func main() {
 		fmt.Println(err)
 		return
 	}
-	sgxInstruments, err := retrieveYahooSymbols()
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Printf("etoro: %d, yahoo: %d\n", len(instruments), len(sgxInstruments))
-	instruments = append(instruments, sgxInstruments...)
+	// sgxInstruments, err := retrieveYahooSymbols()
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Printf("etoro: %d, yahoo: %d\n", len(instruments), len(sgxInstruments))
+	// instruments = append(instruments, sgxInstruments...)
 	b, err := json.Marshal(instruments)
-	newFile, err := os.Create("out.json")
+	newFile, err := os.Create("out2.json")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -102,7 +102,7 @@ func retrieveEtoroSymbols() ([]model.InstrumentDisplayData, error) {
 	}
 	filteredInstruments := make([]model.InstrumentDisplayData, 0, len(instruments))
 	for _, ins := range instruments {
-		if ins.InstrumentTypeID == 5 || ins.InstrumentTypeID == 6 {
+		if ins.InstrumentTypeID == 5 || ins.InstrumentTypeID == 6 || ins.InstrumentTypeID == 1 {
 			filteredInstruments = append(filteredInstruments, ins)
 		}
 	}
