@@ -19,7 +19,7 @@ func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
 		fmt.Println(err)
 		return nil, errors.Wrap(err, "fail to find symbol from instrument ID")
 	}
-	return sgx.RetrieveHistory(symbol)
+	return sgx.RetrieveHistory(symbol, period)
 }
 
 func findSymbolFromInstrumentID(instrumentID int) (model.InstrumentDisplayData, error) {

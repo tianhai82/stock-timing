@@ -41,7 +41,7 @@ type sgxHistoryResp struct {
 	Meta meta `json:"meta"`
 }
 
-func RetrieveHistory(symbol model.InstrumentDisplayData) ([]model.Candle, error) {
+func RetrieveHistory(symbol model.InstrumentDisplayData, period int) ([]model.Candle, error) {
 	historyQuoteURL := fmt.Sprintf(historyUrl, symbol.Type, symbol.SymbolFull)
 	var historyResp sgxHistoryResp
 	err := httprequester.MakeGetRequest(historyQuoteURL, &historyResp)
@@ -80,6 +80,9 @@ func RetrieveHistory(symbol model.InstrumentDisplayData) ([]model.Candle, error)
 			return nil, errors.New(currentQuoteResp.Meta.Message)
 		}
 		prices = append(prices, currentQuoteResp.Data.Prices...)
+	}
+	if len(prices) > period {
+		prices = prices[len(prices)-period:]
 	}
 	return convertPricesToCandles(prices)
 }
