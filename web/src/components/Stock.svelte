@@ -22,7 +22,7 @@
   } from "../store/store";
 
   export let params = {};
-  let stock = {};
+  let stock = { value: "" };
   let candles;
   let signals;
   let freq = 27;
@@ -34,7 +34,7 @@
   let loadChartPromise;
 
   $: {
-    if (stock && params.instrumentID && +params.instrumentID !== stock.value) {
+    if (params.instrumentID) {
       const stockFound = $instruments.find(
         ins => ins.value === +params.instrumentID
       );
@@ -173,7 +173,7 @@
   }
 
   let buyIncrease = 0.0;
-  $: if (signals && signals.length > 2 && candles && candles.length > 2) {
+  $: if (signals && signals.length > 0 && candles && candles.length > 1) {
     let buyAmount = 0.0;
     let currentAmount = 0.0;
     signals.forEach(s => {
@@ -190,24 +190,27 @@
   }
 
   let buySellIncrease = 0.0;
-  $: if (signals && signals.length > 2 && candles && candles.length > 2) {
+  $: if (signals && signals.length > 0 && candles && candles.length > 1) {
     let buyAmount = 0.0;
     let sellAmount = 0.0;
     let currentAmount = 0.0;
     signals.forEach(s => {
       if (s.Signal === 1) {
         buyAmount += 2000;
-        const endPrice = candles[candles.length - 1].Close;
-        const changePercent = endPrice / s.Price;
+        const sellPrice = candles[candles.length - 1].Close;
+        const changePercent = sellPrice / s.Price;
         currentAmount += changePercent * 2000;
       } else if (s.Signal === 2) {
         sellAmount += 2000;
-        const endPrice = candles[candles.length - 1].Close;
-        const changePercent = s.Price / endPrice;
+        const buyPrice = candles[candles.length - 1].Close;
+        const changePercent = s.Price / buyPrice;
         currentAmount += changePercent * 2000;
       }
     });
-    buySellIncrease = ((currentAmount / (buyAmount+sellAmount) - 1) * 100).toFixed(2);
+    buySellIncrease = (
+      (currentAmount / (buyAmount + sellAmount) - 1) *
+      100
+    ).toFixed(2);
   } else {
     buySellIncrease = 0.0;
   }
@@ -244,12 +247,15 @@
           <Input readonly value={increase} label="Last day / first day (%)" />
         </div>
       {/if}
-      {#if signals && signals.length > 1}
+      {#if signals && signals.length > 0}
         <div class="w-full md:w-1/3 px-0">
           <Input readonly value={buyIncrease} label="Buy Increase (%)" />
         </div>
         <div class="w-full md:w-1/3 px-0 md:pl-2">
-          <Input readonly value={buySellIncrease} label="Buy+Sell Increase (%)" />
+          <Input
+            readonly
+            value={buySellIncrease}
+            label="Buy+Sell Increase (%)" />
         </div>
       {/if}
     </div>
