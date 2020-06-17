@@ -26,7 +26,7 @@
     "svelte": "^3.0.0",
     "svelte-preprocess": "^3.2.0-alpha.2",
     "svelte-spa-router": "^1.3.0",
-    "svelte-tailwind-material": "^0.1.1",
+    "svetamat": "^0.5.1",
     "tailwindcss": "^1.1.3",
     "tailwindcss-elevation": "^0.3.3"
   },

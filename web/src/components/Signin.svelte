@@ -1,5 +1,5 @@
 <script>
-import { Dialog, Button, Spinner } from 'svelte-tailwind-material';
+import { Dialog, Button, Spinner } from 'svetamat';
 import { auth } from '../fire.js';
 
 export let showSignIn;

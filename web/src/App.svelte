@@ -1,6 +1,6 @@
 <script>
 import Tailwindcss from './Tailwindcss.svelte';
-import { Button, NavigationDrawer } from 'svelte-tailwind-material';
+import { Button, NavigationDrawer } from 'svetamat';
 import { onMount } from 'svelte';
 import Router from 'svelte-spa-router';
 import { location, push } from 'svelte-spa-router';

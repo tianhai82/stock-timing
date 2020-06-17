@@ -43,6 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       139,
       130,
       115,
+      112,
       110,
       108,
       106,
@@ -111,7 +112,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["svelte", "npm:3.18.1"],
             ["svelte-preprocess", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:3.3.1"],
             ["svelte-spa-router", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:1.3.0"],
-            ["svelte-tailwind-material", "npm:0.1.1"],
+            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1"],
             ["tailwindcss", "npm:1.1.4"],
             ["tailwindcss-elevation", "npm:0.3.3"]
           ],
@@ -4236,17 +4237,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["svelte-tailwind-material", [
-        ["npm:0.1.1", {
-          "packageLocation": "./.yarn/unplugged/svelte-tailwind-material-npm-0.1.1-fafebb5231/node_modules/svelte-tailwind-material/",
-          "packageDependencies": [
-            ["svelte-tailwind-material", "npm:0.1.1"],
-            ["sirv-cli", "npm:0.4.5"]
-          ],
-          "linkType": "HARD"
-        }],
         ["workspace:.", {
           "packageLocation": "./",
           "packageDependencies": [
+            ["svelte-tailwind-material", "workspace:."],
             ["@fullhuman/postcss-purgecss", "npm:1.3.0"],
             ["@rollup/plugin-commonjs", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:11.0.1"],
             ["@rollup/plugin-node-resolve", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:7.0.0"],
@@ -4267,11 +4261,28 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["svelte", "npm:3.18.1"],
             ["svelte-preprocess", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:3.3.1"],
             ["svelte-spa-router", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:1.3.0"],
-            ["svelte-tailwind-material", "npm:0.1.1"],
+            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1"],
             ["tailwindcss", "npm:1.1.4"],
             ["tailwindcss-elevation", "npm:0.3.3"]
           ],
           "linkType": "SOFT"
+        }]
+      ]],
+      ["svetamat", [
+        ["virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1", {
+          "packageLocation": "./.yarn/$$virtual/svetamat-virtual-7f3506f6bd/0/cache/svetamat-npm-0.5.1-41c9415a78-1.zip/node_modules/svetamat/",
+          "packageDependencies": [
+            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1"],
+            ["svelte", "npm:3.18.1"],
+            ["tailwindcss", "npm:1.1.4"],
+            ["tailwindcss-elevation", "npm:0.3.3"]
+          ],
+          "packagePeers": [
+            "svelte",
+            "tailwindcss",
+            "tailwindcss-elevation"
+          ],
+          "linkType": "HARD"
         }]
       ]],
       ["table", [

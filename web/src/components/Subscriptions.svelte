@@ -1,5 +1,5 @@
 <script>
-import { Button, Dialog, Spinner } from 'svelte-tailwind-material';
+import { Button, Dialog, Spinner } from 'svetamat';
 import { push } from 'svelte-spa-router';
 import { removeSubscription } from '../api/api';
 import { loginUser, subscriptions } from '../store/store';
