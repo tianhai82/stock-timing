@@ -243,15 +243,15 @@
 
     <div class="mb-5 flex flex-wrap">
       {#if candles && candles.length > 1}
-        <div class="w-full md:w-1/3 px-0 md:pr-2 mb-5 md:mb-0">
+        <div class="w-full md:w-1/3 px-0 md:pr-2 mb-0">
           <Input readonly value={increase} label="Last day / first day (%)" />
         </div>
       {/if}
       {#if signals && signals.length > 0}
-        <div class="w-full md:w-1/3 px-0">
+        <div class="w-full md:w-1/3 px-0 mb-0">
           <Input readonly value={buyIncrease} label="Buy Increase (%)" />
         </div>
-        <div class="w-full md:w-1/3 px-0 md:pl-2">
+        <div class="w-full md:w-1/3 px-0 md:pl-2 mb-0">
           <Input
             readonly
             value={buySellIncrease}
