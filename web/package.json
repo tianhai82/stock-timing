@@ -37,7 +37,7 @@
     "start:dev": "sirv public --single --dev"
   },
   "dependenciesMeta": {
-    "svelte-tailwind-material": {
+    "svetamat": {
       "unplugged": true
     }
   }
