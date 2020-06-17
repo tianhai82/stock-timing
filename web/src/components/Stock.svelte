@@ -241,7 +241,7 @@
     {/if}
     <CandleChart {candles} {signals} />
 
-    <div class="flex flex-wrap">
+    <div class="md:mb-4 flex flex-wrap">
       {#if candles && candles.length > 1}
         <div class="w-full md:w-1/3 px-0 md:pr-2 mb-0">
           <Input readonly value={increase} label="Last day / first day (%)" />
