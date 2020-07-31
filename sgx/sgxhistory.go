@@ -84,10 +84,24 @@ func RetrieveHistory(symbol model.InstrumentDisplayData, period int) ([]model.Ca
 	if len(prices) > period {
 		prices = prices[len(prices)-period:]
 	}
-	return convertPricesToCandles(prices)
+	candles := convertPricesToCandles(prices)
+	lastCandle := candles[len(candles)-1]
+	if lastCandle.Open != 0.0 {
+		if lastCandle.High == 0.0 {
+			lastCandle.High = lastCandle.Open
+		}
+		if lastCandle.Low == 0.0 {
+			lastCandle.Low = lastCandle.Open
+		}
+		if lastCandle.Close == 0.0 {
+			lastCandle.Close = lastCandle.Open
+		}
+		candles[len(candles)-1] = lastCandle
+	}
+	return candles, nil
 }
 
-func convertPricesToCandles(prices []sgxPrice) ([]model.Candle, error) {
+func convertPricesToCandles(prices []sgxPrice) []model.Candle {
 	candles := make([]model.Candle, 0, len(prices))
 	for _, price := range prices {
 		t, err := time.Parse("20060102_150405", price.TradingTime)
@@ -104,5 +118,5 @@ func convertPricesToCandles(prices []sgxPrice) ([]model.Candle, error) {
 		}
 		candles = append(candles, candle)
 	}
-	return candles, nil
+	return candles
 }

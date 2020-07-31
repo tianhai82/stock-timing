@@ -3,6 +3,7 @@ package etoro
 import (
 	"errors"
 	"fmt"
+	"time"
 
 	"github.com/tianhai82/stock-timing/httprequester"
 	"github.com/tianhai82/stock-timing/model"
@@ -27,6 +28,20 @@ func RetrieveCandle(instrumentID int, period int) ([]model.Candle, error) {
 	if len(etoroCandles.Candles) != 1 {
 		return nil, errors.New("outer candle count must be 1")
 	}
+	latestWeekday := getLatestWeekday()
+	if etoroCandles.Candles[0].Candles[0].FromDate.Format("2006-01-02") != latestWeekday.Format("2006-01-02") {
+		var etoroCandles2 model.EtoroCandle
+		err2 := httprequester.MakeGetRequest(url, &etoroCandles2)
+		if err2 != nil {
+			return reverseCandles(etoroCandles.Candles[0].Candles), nil
+		}
+		if len(etoroCandles2.Candles) != 1 {
+			return reverseCandles(etoroCandles.Candles[0].Candles), nil
+		}
+		if etoroCandles2.Candles[0].Candles[0].FromDate.After(etoroCandles.Candles[0].Candles[0].FromDate) {
+			return reverseCandles(etoroCandles2.Candles[0].Candles), nil
+		}
+	}
 	return reverseCandles(etoroCandles.Candles[0].Candles), nil
 }
 
@@ -37,4 +52,12 @@ func reverseCandles(candles []model.Candle) []model.Candle {
 		reversed[size-i-1] = candles[i]
 	}
 	return reversed
+}
+
+func getLatestWeekday() time.Time {
+	now := time.Now()
+	for now.Weekday() == time.Saturday || now.Weekday() == time.Sunday {
+		now = now.AddDate(0, 0, -1)
+	}
+	return now
 }
