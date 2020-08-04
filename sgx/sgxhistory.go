@@ -97,6 +97,17 @@ func RetrieveHistory(symbol model.InstrumentDisplayData, period int) ([]model.Ca
 			lastCandle.Close = lastCandle.Open
 		}
 		candles[len(candles)-1] = lastCandle
+	} else if lastCandle.Close != 0.0 {
+		if lastCandle.High == 0.0 {
+			lastCandle.High = lastCandle.Close
+		}
+		if lastCandle.Low == 0.0 {
+			lastCandle.Low = lastCandle.Close
+		}
+		if lastCandle.Open == 0.0 {
+			lastCandle.Open = lastCandle.Close
+		}
+		candles[len(candles)-1] = lastCandle
 	}
 	return candles, nil
 }
