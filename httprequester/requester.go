@@ -14,7 +14,7 @@ import (
 	"golang.org/x/net/publicsuffix"
 )
 
-var httpClient = &http.Client{Timeout: 10 * time.Second}
+var httpClient = &http.Client{Timeout: 15 * time.Second}
 
 func init() {
 	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
