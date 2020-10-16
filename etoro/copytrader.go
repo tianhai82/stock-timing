@@ -175,7 +175,8 @@ func main() {
 		time.Sleep(1000 * time.Millisecond)
 	}
 	fmt.Println("total ok trader", len(okTraders))
-	f, err := os.Create("ok_trader.json")
+	timeStr := time.Now().Format("2006-01-02-15-04")
+	f, err := os.Create(fmt.Sprintf("ok_trader_%s.json", timeStr))
 	if err != nil {
 		fmt.Println(err)
 		return
