@@ -73,3 +73,4 @@ public/utils.*
 .idea/
 web/.yarn/unplugged
 web/.yarn/build-state.yml
+ok_trader*.json
