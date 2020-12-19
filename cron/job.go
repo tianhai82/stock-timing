@@ -21,16 +21,16 @@ func AddCronJobs(router *gin.RouterGroup) {
 
 func stockSubscriptions(c *gin.Context) {
 	now := time.Now().UTC()
-	if now.Weekday() == time.Saturday && now.Hour() == 12 {
+	if now.Weekday() == time.Saturday && now.Hour() == 11 {
 		return
 	}
-	if now.Weekday() == time.Sunday && now.Hour() == 0 {
+	if now.Weekday() == time.Saturday && now.Hour() == 23 {
 		return
 	}
-	if now.Weekday() == time.Sunday && now.Hour() == 12 {
+	if now.Weekday() == time.Sunday && now.Hour() == 11 {
 		return
 	}
-	if now.Weekday() == time.Monday && now.Hour() == 0 {
+	if now.Weekday() == time.Sunday && now.Hour() == 23 {
 		return
 	}
 	ctx := context.Background()
