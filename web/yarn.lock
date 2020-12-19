@@ -3682,7 +3682,7 @@ fsevents@^1.2.7:
     svelte: ^3.0.0
     svelte-preprocess: ^3.2.0-alpha.2
     svelte-spa-router: ^1.3.0
-    svetamat: ^0.5.1
+    svetamat: ^0.9.1
     tailwindcss: ^1.1.3
     tailwindcss-elevation: ^0.3.3
   dependenciesMeta:
@@ -3698,14 +3698,14 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"svetamat@npm:^0.5.1":
-  version: 0.5.1
-  resolution: "svetamat@npm:0.5.1"
+"svetamat@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "svetamat@npm:0.9.1"
   peerDependencies:
     svelte: ^3.0.0
     tailwindcss: ^1.1.3
     tailwindcss-elevation: ^0.3.3
-  checksum: d1fd4202ebf97ea7662813c0a2d294eb30d4a73d60a31670a52e26facfd3bae8f712169497489c2aa69ed36b78fdc5e50b3c3464d7018b0fb9029a3320c7850f
+  checksum: 885676d44c881da3e46a9c256b14a84685d9bf8cbf4f23fc0473cb6dd5f5f3f5439782bdc042d5991d5c27d5f21430a72b310c9aaa4d8f4a89128d374736b16a
   languageName: node
   linkType: hard
 

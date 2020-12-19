@@ -111,7 +111,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["svelte", "npm:3.18.1"],
             ["svelte-preprocess", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:3.3.1"],
             ["svelte-spa-router", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:1.3.0"],
-            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1"],
+            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.9.1"],
             ["tailwindcss", "npm:1.1.4"],
             ["tailwindcss-elevation", "npm:0.3.3"]
           ],
@@ -4260,7 +4260,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["svelte", "npm:3.18.1"],
             ["svelte-preprocess", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:3.3.1"],
             ["svelte-spa-router", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:1.3.0"],
-            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1"],
+            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.9.1"],
             ["tailwindcss", "npm:1.1.4"],
             ["tailwindcss-elevation", "npm:0.3.3"]
           ],
@@ -4268,10 +4268,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["svetamat", [
-        ["virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1", {
-          "packageLocation": "./.yarn/unplugged/svetamat-virtual-7f3506f6bd/node_modules/svetamat/",
+        ["virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.9.1", {
+          "packageLocation": "./.yarn/unplugged/svetamat-virtual-dad2f8dea2/node_modules/svetamat/",
           "packageDependencies": [
-            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.5.1"],
+            ["svetamat", "virtual:3d70b3a3ce54c823dcd9aa9e05ee38df7483b69318dca8cc22d58f8fd2395cfeb28970168b34b91be3e09e6274f5a16c474734066aecb9826d1074b2217aeb7a#npm:0.9.1"],
             ["svelte", "npm:3.18.1"],
             ["tailwindcss", "npm:1.1.4"],
             ["tailwindcss-elevation", "npm:0.3.3"]
