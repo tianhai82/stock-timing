@@ -1,7 +1,7 @@
 cron:
 - description: "stock subscriptions"
   url: /cron/stockSubscriptions
-  schedule: every 12 hours from 11:00 synchronized
+  schedule: every 12 hours from 11:00 to 23:59
   retry_parameters:
     min_backoff_seconds: 2.5
     max_doublings: 5
