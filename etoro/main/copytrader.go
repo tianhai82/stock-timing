@@ -11,7 +11,7 @@ import (
 
 // const period = "OneYearAgo"
 const period = "SixMonthsAgo"
-const positiveMonths = 8
+const positiveMonths = 9
 
 const url = "https://www.etoro.com/sapi/rankings/rankings/?blocked=false&bonusonly=false&copyblock=false&copytradespctmax=20&dailyddmin=-5&gainmin=10&istestaccount=false&lastactivitymax=30&maxmonthlyriskscoremax=6&maxmonthlyriskscoremin=1&optin=true&page=1&pagesize=1000&period=%s&profitablemonthspctmin=100&sort=-gain&tradesmin=5&verified=true&weeklyddmin=-15"
 
@@ -121,8 +121,8 @@ func main() {
 		errGain := httprequester.MakeGetRequest(fmt.Sprintf("https://www.etoro.com/sapi/userstats/gain/cid/%d/history?IncludeSimulation=false", custId), &traderGain)
 		if errGain != nil {
 			fmt.Println(errGain)
-			fmt.Println("pause 5 min")
-			time.Sleep(5 * time.Minute)
+			fmt.Println("pause 15 min")
+			time.Sleep(15 * time.Minute)
 			i = i - 1
 			continue
 		}
@@ -169,10 +169,10 @@ func main() {
 			okTraders = append(okTraders, trader)
 			fmt.Printf("  ::ADDING TRADER: %s. Total Count: %d\n", trader.UserName, len(okTraders))
 		}
-		if len(okTraders) >= 10 {
+		if len(okTraders) >= 12 {
 			break
 		}
-		time.Sleep(1000 * time.Millisecond)
+		time.Sleep(5000 * time.Millisecond)
 	}
 	fmt.Println("total ok trader", len(okTraders))
 	timeStr := time.Now().Format("2006-01-02-15-04")
