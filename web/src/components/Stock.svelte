@@ -217,12 +217,12 @@
 
   let weightedPeriodAvg;
   $: if (candles && candles.length > 2) {
-    let count = candles.length * 3;
+    let count = candles.length * 4;
     let total = 0;
     let p = 0;
     candles.forEach((candle, i) => {
-      p += candle.Close * (i / count);
-      total += i / count;
+      p += candle.Close * ((i + 1) / count);
+      total += (i + 1) / count;
     });
     weightedPeriodAvg = (p / total).toFixed(2);
   } else {
@@ -241,14 +241,15 @@
         if (s.Price > weightedPeriodAvg) {
           losses += 1;
         }
-      } else if (s.Signal === 2) {
-        if (s.Price < weightedPeriodAvg) {
-          losses += 1;
-        }
-        if (s.Price > weightedPeriodAvg) {
-          wins += 1;
-        }
       }
+      // else if (s.Signal === 2) {
+      //   if (s.Price < weightedPeriodAvg) {
+      //     losses += 1;
+      //   }
+      //   if (s.Price > weightedPeriodAvg) {
+      //     wins += 1;
+      //   }
+      // }
     });
     winningRate = ((wins / (wins + losses)) * 100).toFixed(2);
   }
@@ -273,18 +274,19 @@
           losses += 1;
           totalLoss += loss;
         }
-      } else if (s.Signal === 2) {
-        if (s.Price > weightedPeriodAvg) {
-          let profit = s.Price / weightedPeriodAvg - 1;
-          wins += 1;
-          totalProfit += profit;
-        }
-        if (s.Price < weightedPeriodAvg) {
-          let loss = weightedPeriodAvg / s.Price - 1;
-          losses += 1;
-          totalLoss += loss;
-        }
       }
+      // else if (s.Signal === 2) {
+      //   if (s.Price > weightedPeriodAvg) {
+      //     let profit = s.Price / weightedPeriodAvg - 1;
+      //     wins += 1;
+      //     totalProfit += profit;
+      //   }
+      //   if (s.Price < weightedPeriodAvg) {
+      //     let loss = weightedPeriodAvg / s.Price - 1;
+      //     losses += 1;
+      //     totalLoss += loss;
+      //   }
+      // }
     });
     potentialProfit = ((totalProfit / wins) * 100).toFixed(2);
     potentialLoss = ((totalLoss / losses) * 100).toFixed(2);
