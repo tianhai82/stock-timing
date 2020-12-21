@@ -215,45 +215,18 @@
     buySellIncrease = 0.0;
   }
 
-  let weightedPeriodAvg;
-  $: if (candles && candles.length > 2) {
-    let count = candles.length * 4;
+  function getWeighted(inputCandles) {
+    let count = inputCandles.length * 4;
     let total = 0;
     let p = 0;
-    candles.forEach((candle, i) => {
+    inputCandles.forEach((candle, i) => {
       p += candle.Close * ((i + 1) / count);
       total += (i + 1) / count;
     });
-    weightedPeriodAvg = (p / total).toFixed(2);
-  } else {
-    weightedPeriodAvg = 0.0;
+    return (p / total);
   }
 
   let winningRate;
-  $: if (signals && signals.length > 0 && candles && candles.length > 1) {
-    let wins = 0;
-    let losses = 0;
-    signals.forEach((s) => {
-      if (s.Signal === 1) {
-        if (s.Price < weightedPeriodAvg) {
-          wins += 1;
-        }
-        if (s.Price > weightedPeriodAvg) {
-          losses += 1;
-        }
-      }
-      // else if (s.Signal === 2) {
-      //   if (s.Price < weightedPeriodAvg) {
-      //     losses += 1;
-      //   }
-      //   if (s.Price > weightedPeriodAvg) {
-      //     wins += 1;
-      //   }
-      // }
-    });
-    winningRate = ((wins / (wins + losses)) * 100).toFixed(2);
-  }
-
   let potentialProfit;
   let potentialLoss;
   let kellyPercen;
@@ -262,40 +235,79 @@
     let losses = 0;
     let totalProfit = 0;
     let totalLoss = 0;
+    let prevSignal;
     signals.forEach((s) => {
       if (s.Signal === 1) {
-        if (s.Price < weightedPeriodAvg) {
-          let profit = weightedPeriodAvg / s.Price - 1;
-          wins += 1;
-          totalProfit += profit;
+
+        if (prevSignal == null) {
+          prevSignal = s;
+        } else {
+          const prevDate = new Date(prevSignal.Date);
+          const nowDate = new Date(s.Date);
+          if ((nowDate-prevDate) / (1000 * 3600 * 24) > 6) {
+            prevSignal = s;
+          } else {
+            return; 
+          }
         }
-        if (s.Price > weightedPeriodAvg) {
-          let loss = s.Price / weightedPeriodAvg - 1;
-          losses += 1;
-          totalLoss += loss;
-        }
+        
+        const candleIdx = candles.findIndex(candle => candle.FromDate === s.Date);
+        if (candleIdx>=0){
+          const futureCandles = candles.slice(candleIdx,candleIdx+30);
+          const weightedPrice = getWeighted(futureCandles);
+          if (s.Price < weightedPrice){
+            wins++;
+            const profit = weightedPrice / s.Price - 1;
+            totalProfit += profit;
+          } else if (s.Price > weightedPrice){
+            losses++;
+            const loss = s.Price / weightedPrice - 1.
+            totalLoss += loss;
+          }
+        }        
       }
-      // else if (s.Signal === 2) {
-      //   if (s.Price > weightedPeriodAvg) {
-      //     let profit = s.Price / weightedPeriodAvg - 1;
-      //     wins += 1;
-      //     totalProfit += profit;
-      //   }
-      //   if (s.Price < weightedPeriodAvg) {
-      //     let loss = weightedPeriodAvg / s.Price - 1;
-      //     losses += 1;
-      //     totalLoss += loss;
-      //   }
-      // }
     });
+    winningRate = ((wins / (wins + losses)) * 100).toFixed(2);
     potentialProfit = ((totalProfit / wins) * 100).toFixed(2);
     potentialLoss = ((totalLoss / losses) * 100).toFixed(2);
-    kellyPercen = (
-      (+winningRate / +potentialLoss -
-        (100 - +winningRate) / +potentialProfit) *
-      100
-    ).toFixed(2);
+    kellyPercen = (+winningRate / +potentialLoss -
+        (100 - +winningRate) / +potentialProfit) * 100;
+    if (kellyPercen<0){
+      kellyPercen = 0;
+    }else{
+      kellyPercen/=10;
+    }
+    kellyPercen = kellyPercen.toFixed(2)
   }
+
+
+  // $: if (signals && signals.length > 0 && candles && candles.length > 1) {
+  //   let wins = 0;
+  //   let losses = 0;
+  //   let totalProfit = 0;
+  //   let totalLoss = 0;
+  //   signals.forEach((s) => {
+  //     if (s.Signal === 1) {
+  //       if (s.Price < weightedPeriodAvg) {
+  //         let profit = weightedPeriodAvg / s.Price - 1;
+  //         wins += 1;
+  //         totalProfit += profit;
+  //       }
+  //       if (s.Price > weightedPeriodAvg) {
+  //         let loss = s.Price / weightedPeriodAvg - 1;
+  //         losses += 1;
+  //         totalLoss += loss;
+  //       }
+  //     }
+  //   });
+  //   potentialProfit = ((totalProfit / wins) * 100).toFixed(2);
+  //   potentialLoss = ((totalLoss / losses) * 100).toFixed(2);
+  //   kellyPercen = (
+  //     (+winningRate / +potentialLoss -
+  //       (100 - +winningRate) / +potentialProfit) *
+  //     100
+  //   ).toFixed(2);
+  // }
 </script>
 
 <div class="px-4 pt-4">
@@ -343,25 +355,17 @@
     </div>
 
     <div class="md:mb-4 flex flex-wrap">
-      {#if candles && candles.length > 1}
-        <div class="w-full md:w-1/5 px-0 md:pr-2 mb-0">
-          <Input
-            readonly
-            value={weightedPeriodAvg}
-            label="Weighted Average Price" />
-        </div>
-      {/if}
       {#if signals && signals.length > 0}
-        <div class="w-full md:w-1/5 px-0 mb-0">
+        <div class="w-full md:w-1/4 px-0 mb-0">
           <Input readonly value={winningRate} label="Winning Rate (%)" />
         </div>
-        <div class="w-full md:w-1/5 px-0 md:pl-2 mb-0">
+        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
           <Input readonly value={potentialProfit} label="Potential Profit" />
         </div>
-        <div class="w-full md:w-1/5 px-0 md:pl-2 mb-0">
+        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
           <Input readonly value={potentialLoss} label="Potential Loss" />
         </div>
-        <div class="w-full md:w-1/5 px-0 md:pl-2 mb-0">
+        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
           <Input readonly value={kellyPercen} label="Kelly %" />
         </div>
       {/if}
