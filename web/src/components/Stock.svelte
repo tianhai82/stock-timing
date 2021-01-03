@@ -44,6 +44,7 @@
         signals = [];
         loadChartPromise = retrieveCandles(stock.value).then((data) => {
           candles = data;
+          calcRange();
         });
         freqChanged();
       }
@@ -148,6 +149,7 @@
     freqChanged();
     loadChartPromise = retrieveCandles(stock.value).then((data) => {
       candles = data;
+      calcRange();
     });
   }
 
@@ -223,7 +225,7 @@
       p += candle.Close * ((i + 1) / count);
       total += (i + 1) / count;
     });
-    return (p / total);
+    return p / total;
   }
 
   let winningRate;
@@ -238,48 +240,72 @@
     let prevSignal;
     signals.forEach((s) => {
       if (s.Signal === 1) {
-
         if (prevSignal == null) {
           prevSignal = s;
         } else {
           const prevDate = new Date(prevSignal.Date);
           const nowDate = new Date(s.Date);
-          if ((nowDate-prevDate) / (1000 * 3600 * 24) > 6) {
+          if ((nowDate - prevDate) / (1000 * 3600 * 24) > 6) {
             prevSignal = s;
           } else {
-            return; 
+            return;
           }
         }
-        
-        const candleIdx = candles.findIndex(candle => candle.FromDate === s.Date);
-        if (candleIdx>=0){
-          const futureCandles = candles.slice(candleIdx,candleIdx+30);
+
+        const candleIdx = candles.findIndex(
+          (candle) => candle.FromDate === s.Date
+        );
+        if (candleIdx >= 0) {
+          const futureCandles = candles.slice(candleIdx, candleIdx + 30);
           const weightedPrice = getWeighted(futureCandles);
-          if (s.Price < weightedPrice){
+          if (s.Price < weightedPrice) {
             wins++;
             const profit = weightedPrice / s.Price - 1;
             totalProfit += profit;
-          } else if (s.Price > weightedPrice){
+          } else if (s.Price > weightedPrice) {
             losses++;
-            const loss = s.Price / weightedPrice - 1.
+            const loss = s.Price / weightedPrice - 1;
             totalLoss += loss;
           }
-        }        
+        }
       }
     });
     winningRate = ((wins / (wins + losses)) * 100).toFixed(2);
     potentialProfit = ((totalProfit / wins) * 100).toFixed(2);
     potentialLoss = ((totalLoss / losses) * 100).toFixed(2);
-    kellyPercen = (+winningRate / +potentialLoss -
-        (100 - +winningRate) / +potentialProfit) * 100;
-    if (kellyPercen<0){
+    kellyPercen =
+      (+winningRate / +potentialLoss -
+        (100 - +winningRate) / +potentialProfit) *
+      100;
+    if (kellyPercen < 0) {
       kellyPercen = 0;
-    }else{
-      kellyPercen/=10;
+    } else {
+      kellyPercen /= 10;
     }
-    kellyPercen = kellyPercen.toFixed(2)
+    kellyPercen = kellyPercen.toFixed(2);
   }
 
+  let pastNdays = 14;
+  let nDaysRange = 0.0;
+  let avgNDayRange = 0.0;
+  function calcRange() {
+    const pastNCandles = candles.slice(Math.max(candles.length - pastNdays, 0));
+    if (pastNCandles.length === 0) return;
+    let max = pastNCandles[0].Low;
+    let min = pastNCandles[0].High;
+    let totalDayRange = 0.0;
+    pastNCandles.forEach((candle) => {
+      totalDayRange += Math.abs(candle.Open - candle.Close);
+      if (candle.High > max) {
+        max = candle.High;
+      }
+      if (candle.Low < min) {
+        min = candle.Low;
+      }
+    });
+    avgNDayRange = totalDayRange.toFixed(2);
+    nDaysRange = (max - min).toFixed(2);
+  }
 
   // $: if (signals && signals.length > 0 && candles && candles.length > 1) {
   //   let wins = 0;
@@ -338,15 +364,24 @@
     <div class="md:mb-4 flex flex-wrap">
       {#if candles && candles.length > 1}
         <div class="w-full md:w-1/3 px-0 md:pr-2 mb-0">
-          <Input readonly value={increase} label="Last day / first day (%)" />
+          <Input
+            hideDetails
+            readonly
+            value={increase}
+            label="Last day / first day (%)" />
         </div>
       {/if}
       {#if signals && signals.length > 0}
         <div class="w-full md:w-1/3 px-0 mb-0">
-          <Input readonly value={buyIncrease} label="Buy Increase (%)" />
+          <Input
+            hideDetails
+            readonly
+            value={buyIncrease}
+            label="Buy Increase (%)" />
         </div>
         <div class="w-full md:w-1/3 px-0 md:pl-2 mb-0">
           <Input
+            hideDetails
             readonly
             value={buySellIncrease}
             label="Buy+Sell Increase (%)" />
@@ -354,24 +389,7 @@
       {/if}
     </div>
 
-    <div class="md:mb-4 flex flex-wrap">
-      {#if signals && signals.length > 0}
-        <div class="w-full md:w-1/4 px-0 mb-0">
-          <Input readonly value={winningRate} label="Winning Rate (%)" />
-        </div>
-        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
-          <Input readonly value={potentialProfit} label="Potential Profit" />
-        </div>
-        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
-          <Input readonly value={potentialLoss} label="Potential Loss" />
-        </div>
-        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
-          <Input readonly value={kellyPercen} label="Kelly %" />
-        </div>
-      {/if}
-    </div>
-
-    <div class="mb-5">
+    <div class="my-4">
       <div>{periodLabel}</div>
       <Slider bind:value={freq} min={15} max={40} step={1} />
     </div>
@@ -385,6 +403,7 @@
         <Slider bind:value={sellFreq} min={0} max={100} step={1} />
       </div>
     </div>
+
     <div class="my-2">
       {#if $loginUser}
         <Button
@@ -405,6 +424,60 @@
           Login to subscribe
         </Button>
       {/if}
+    </div>
+
+    <div class="pb-4 flex flex-wrap border-b border-orange-600">
+      {#if signals && signals.length > 0}
+        <div class="w-full md:w-1/4 px-0 mb-0">
+          <Input
+            hideDetails
+            readonly
+            value={winningRate}
+            label="Winning Rate (%)" />
+        </div>
+        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
+          <Input
+            hideDetails
+            readonly
+            value={potentialProfit}
+            label="Potential Profit" />
+        </div>
+        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
+          <Input
+            hideDetails
+            readonly
+            value={potentialLoss}
+            label="Potential Loss" />
+        </div>
+        <div class="w-full md:w-1/4 px-0 md:pl-2 mb-0">
+          <Input hideDetails readonly value={kellyPercen} label="Kelly %" />
+        </div>
+      {/if}
+    </div>
+
+    <div class="pt-3 pb-5 flex -mx-1">
+      <div class="w-1/3 px-1">
+        <Input
+          hideDetails
+          bind:value={pastNdays}
+          on:input={calcRange}
+          number
+          label="Past n days" />
+      </div>
+      <div class="w-1/3 px-1">
+        <Input
+          hideDetails
+          readonly
+          value={nDaysRange}
+          label={`${pastNdays} days (max-min)`} />
+      </div>
+      <div class="w-1/3 px-1">
+        <Input
+          hideDetails
+          readonly
+          value={avgNDayRange}
+          label={`Total ${pastNdays} days range`} />
+      </div>
     </div>
   </div>
 {/await}
