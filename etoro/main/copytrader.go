@@ -108,9 +108,24 @@ func GetEligibleTraders() ([]TraderInfo, error) {
 	return filterResp.Items, nil
 }
 
+func GetTradersFromFile() ([]TraderInfo, error) {
+	f, err := os.Open("eligible_traders.json")
+	if err != nil {
+		return nil, err
+	}
+	var resp filterResponse
+	err = json.NewDecoder(f).Decode(&resp)
+	return resp.Items, err
+}
+
 func main() {
 	fmt.Println("test")
-	traderInfos, err := GetEligibleTraders()
+	// traderInfos, err := GetEligibleTraders()
+	traderInfos, err := GetTradersFromFile()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
 	fmt.Println(len(traderInfos))
 	okTraders := make([]TraderInfo, 0, len(traderInfos))
 
@@ -169,7 +184,7 @@ func main() {
 			okTraders = append(okTraders, trader)
 			fmt.Printf("  ::ADDING TRADER: %s. Total Count: %d\n", trader.UserName, len(okTraders))
 		}
-		if len(okTraders) >= 12 {
+		if len(okTraders) >= 3 {
 			break
 		}
 		time.Sleep(5000 * time.Millisecond)
