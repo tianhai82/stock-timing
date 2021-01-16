@@ -78,8 +78,14 @@ func makeRequest(urlStr string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	request.Header.Add("Accept-Encoding", "gzip")
-	request.Header.Add("sec-fetch-mode", "navigate")
-	request.Header.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36")
+	request.Header.Set("sec-fetch-dest", "document")
+	request.Header.Set("sec-fetch-mode", "navigate")
+	request.Header.Set("sec-fetch-site", "none")
+	request.Header.Set("upgrade-insecure-requests", "1")
+	request.Header.Set("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.120 Safari/537.36")
+	// request.Header.Set("Accept-Encoding", "gzip")
+
+	// b, _ := httputil.DumpRequest(request, false)
+	// fmt.Println(string(b))
 	return httpClient.Do(request)
 }

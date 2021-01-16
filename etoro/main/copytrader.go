@@ -98,6 +98,7 @@ type TraderGain struct {
 func GetEligibleTraders() ([]TraderInfo, error) {
 	var filterResp filterResponse
 	urlPeriod := fmt.Sprintf(url, period)
+	println(urlPeriod)
 	err := httprequester.MakeGetRequest(urlPeriod, &filterResp)
 	if err != nil {
 		err = httprequester.MakeGetRequest(urlPeriod, &filterResp)
@@ -120,8 +121,8 @@ func GetTradersFromFile() ([]TraderInfo, error) {
 
 func main() {
 	fmt.Println("test")
-	// traderInfos, err := GetEligibleTraders()
-	traderInfos, err := GetTradersFromFile()
+	traderInfos, err := GetEligibleTraders()
+	// traderInfos, err := GetTradersFromFile()
 	if err != nil {
 		fmt.Println(err)
 		return
