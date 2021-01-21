@@ -121,8 +121,8 @@ func GetTradersFromFile() ([]TraderInfo, error) {
 
 func main() {
 	fmt.Println("test")
-	traderInfos, err := GetEligibleTraders()
-	// traderInfos, err := GetTradersFromFile()
+	// traderInfos, err := GetEligibleTraders()
+	traderInfos, err := GetTradersFromFile()
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -185,7 +185,7 @@ func main() {
 			okTraders = append(okTraders, trader)
 			fmt.Printf("  ::ADDING TRADER: %s. Total Count: %d\n", trader.UserName, len(okTraders))
 		}
-		if len(okTraders) >= 3 {
+		if len(okTraders) >= 10 {
 			break
 		}
 		time.Sleep(5000 * time.Millisecond)
