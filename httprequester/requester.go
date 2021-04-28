@@ -11,13 +11,17 @@ import (
 	"time"
 
 	"github.com/pkg/errors"
-	"golang.org/x/net/publicsuffix"
 )
 
-var httpClient = &http.Client{Timeout: 15 * time.Second}
+var httpClient = &http.Client{
+	Timeout: 15 * time.Second,
+	CheckRedirect: func(req *http.Request, via []*http.Request) error {
+		return http.ErrUseLastResponse
+	},
+}
 
 func init() {
-	jar, err := cookiejar.New(&cookiejar.Options{PublicSuffixList: publicsuffix.List})
+	jar, err := cookiejar.New(nil)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -78,15 +82,18 @@ func makeRequest(urlStr string) (*http.Response, error) {
 	if err != nil {
 		return nil, err
 	}
-	request.Header.Set("sec-ch-ua", `"Google Chrome";v="87", " Not;A Brand";v="99", "Chromium";v="87"`)
-	request.Header.Set("sec-fetch-dest", "document")
-	request.Header.Set("sec-fetch-mode", "navigate")
-	request.Header.Set("sec-fetch-site", "none")
-	request.Header.Set("upgrade-insecure-requests", "1")
-	request.Header.Set("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36")
-	// request.Header.Set("Accept-Encoding", "gzip")
+	request.Header.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9")
+	request.Header.Add("Accept-Encoding", "gzip")
+	request.Header.Add("cache-control", "no-cache")
+	request.Header.Add("sec-ch-ua", `"Google Chrome";v="87", " Not;A Brand";v="99", "Chromium";v="87"`)
+	request.Header.Add("sec-fetch-dest", "document")
+	request.Header.Add("sec-fetch-mode", "navigate")
+	request.Header.Add("sec-fetch-site", "none")
+	request.Header.Add("upgrade-insecure-requests", "1")
+	request.Header.Add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36")
 
-	// b, _ := httputil.DumpRequest(request, false)
+	resp, err := httpClient.Do(request)
+	// b, _ := httputil.DumpResponse(resp, true)
 	// fmt.Println(string(b))
-	return httpClient.Do(request)
+	return resp, err
 }
