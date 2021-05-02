@@ -3,6 +3,7 @@ runtime: go113
 env_variables:
   GIN_MODE: "release"
   MAIL_API_KEY: "${MAIL_API_KEY}"
+  CLIENT_ID: "${CLIENT_ID}"
 
 handlers:
   - url: /.*
