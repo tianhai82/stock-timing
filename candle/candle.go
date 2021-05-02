@@ -4,15 +4,20 @@ import (
 	"fmt"
 
 	"github.com/pkg/errors"
-	"github.com/tianhai82/stock-timing/etoro"
 	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/model"
 	"github.com/tianhai82/stock-timing/sgx"
+	"github.com/tianhai82/stock-timing/tda"
 )
 
 func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
 	if instrumentID >= 0 {
-		return etoro.RetrieveCandle(instrumentID, period)
+		symbol, err := findSymbolFromInstrumentID(instrumentID)
+		if err != nil {
+			fmt.Println(err)
+			return nil, errors.Wrap(err, "fail to find symbol from instrument ID")
+		}
+		return tda.RetrieveHistory(symbol, period)
 	}
 	symbol, err := findSymbolFromInstrumentID(instrumentID)
 	if err != nil {

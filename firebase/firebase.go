@@ -50,7 +50,7 @@ func init() {
 	if err != nil {
 		return
 	}
-	reader, err := bucket.Object("etoro_stocks.json").NewReader(context.Background())
+	reader, err := bucket.Object("etoro_tda.json").NewReader(context.Background())
 	dec := json.NewDecoder(reader)
 	err = dec.Decode(&Instruments)
 	if err != nil {

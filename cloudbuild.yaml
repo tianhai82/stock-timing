@@ -1,7 +1,7 @@
 steps:
   - id: preprocess-resources
     name: 'tianhai/envsubst:0.0.2'
-    env: ["MAIL_API_KEY=$_MAIL_API_KEY"]
+    env: ["MAIL_API_KEY=$_MAIL_API_KEY", "CLIENT_ID=$_CLIENT_ID"]
     args: ["app.yaml"]
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy']

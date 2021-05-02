@@ -104,7 +104,7 @@ func retrieveInstruments(c *gin.Context) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 		return
 	}
-	reader, err := bucket.Object("etoro_stocks.json").NewReader(context.Background())
+	reader, err := bucket.Object("etoro_tda.json").NewReader(context.Background())
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, err.Error())
 		return
