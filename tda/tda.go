@@ -71,15 +71,21 @@ func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]mode
 	if noOfYears == 0 {
 		noOfYears = 1
 	}
+	extendedHours := false
+	endDate := time.Now().Add(24*time.Hour).Unix() * 1000
 	opt := &tdameritrade.PriceHistoryOptions{
-		PeriodType:    "year",
-		Period:        noOfYears,
-		FrequencyType: "daily",
-		Frequency:     1,
+		PeriodType:            "year",
+		Period:                noOfYears,
+		FrequencyType:         "daily",
+		EndDate:               endDate,
+		NeedExtendedHoursData: &extendedHours,
 	}
 	priceHistory, _, err := client.PriceHistory.PriceHistory(context.Background(), instrument.SymbolFull, opt)
 	if err != nil {
 		return nil, err
+	}
+	if len(priceHistory.Candles) > period {
+		priceHistory.Candles = priceHistory.Candles[len(priceHistory.Candles)-period:]
 	}
 	return convertPriceHistoryToCandles(priceHistory, instrument.InstrumentID)
 }
