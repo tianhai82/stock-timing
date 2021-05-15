@@ -34,6 +34,9 @@ func main() {
 	authRouter := rpcsRouter.Group("/auth", authen.AuthCheck)
 	rpcs.AddSubscriptionRpcs(authRouter)
 
+	tdaRouter := rpcsRouter.Group("/tda", authen.TdaAuth)
+	rpcs.AddTdaRpcs(tdaRouter)
+
 	cronRouter := r.Group("/cron")
 	if gin.Mode() != gin.DebugMode {
 		cronRouter.Use(func(c *gin.Context) {
