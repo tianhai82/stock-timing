@@ -10,7 +10,9 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 	"strings"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/tianhai82/stock-timing/firebase"
@@ -56,6 +58,9 @@ func TdaAuth(c *gin.Context) {
 		c.AbortWithStatus(http.StatusInternalServerError)
 		return
 	}
+
+	now := time.Now().UTC().Unix()
+
 	idToken := c.GetHeader("Authorization")
 	if idToken == "" {
 		c.AbortWithStatus(http.StatusUnauthorized)
@@ -73,6 +78,18 @@ func TdaAuth(c *gin.Context) {
 		c.AbortWithStatus(http.StatusUnauthorized)
 		return
 	}
+	reqTime, err := strconv.ParseInt(string(payload), 10, 64)
+	if err != nil {
+		fmt.Println("fail to convert payload to int64", segment[0], err)
+		c.AbortWithStatus(http.StatusUnauthorized)
+		return
+	}
+	if (now-120 > reqTime) || (now+120 < reqTime) {
+		fmt.Println("payload is out of acceptable tme range", reqTime, now)
+		c.AbortWithStatus(http.StatusUnauthorized)
+		return
+	}
+
 	signature, err := base64.RawURLEncoding.DecodeString(segment[1])
 	if err != nil {
 		fmt.Println("fail to decode signature", segment[1], err)
