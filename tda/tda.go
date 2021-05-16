@@ -171,6 +171,7 @@ func RetrieveOptionChain(symbol, contractType, optionRange, fromDate, toDate str
 	urlValue.Add("range", optionRange)
 	urlValue.Add("fromDate", fromDate)
 	urlValue.Add("toDate", toDate)
+	urlValue.Add("includeQuotes", "TRUE")
 	chains, _, err := client.Chains.GetChains(context.Background(), urlValue)
 	return chains, err
 }
