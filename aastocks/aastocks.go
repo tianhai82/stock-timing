@@ -23,6 +23,9 @@ func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]mode
 
 	candles := make([]model.Candle, 0, len(a))
 	for _, i := range a {
+		if strings.HasPrefix(i, "!") {
+			break
+		}
 		split := strings.Split(i, ";")
 		open, err := parseInt(split[1])
 		if err != nil {
@@ -56,8 +59,6 @@ func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]mode
 	}
 	if len(candles) > period {
 		candles = candles[len(candles)-period:]
-	} else if len(candles) < period {
-		return nil, fmt.Errorf("not enough candles")
 	}
 	return candles, nil
 }
