@@ -20,7 +20,7 @@ func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]mode
 	}
 	a := strings.Split(out, "|")
 	a = a[2 : len(a)-1]
-	a = a[len(a)-5:]
+
 	candles := make([]model.Candle, 0, len(a))
 	for _, i := range a {
 		split := strings.Split(i, ";")
