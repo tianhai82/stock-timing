@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/http/cookiejar"
 	"os"
@@ -27,6 +28,58 @@ func init() {
 		return
 	}
 	httpClient.Jar = jar
+}
+
+func MakeGetStringRequest(urlStr string, output *string) (err error) {
+	resp, err := makeRequest(urlStr)
+	if err != nil {
+		err = errors.Wrap(err, "http get fails")
+		return
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+		if resp.StatusCode == 403 {
+			resp, err = makeRequest(urlStr)
+			if err != nil {
+				err = errors.Wrap(err, "http get fails")
+				return
+			}
+			if resp.StatusCode < 200 || resp.StatusCode >= 300 {
+				return errors.New(resp.Status)
+			}
+		} else {
+			return errors.New(resp.Status)
+		}
+	}
+
+	var reader io.ReadCloser
+	respEncoding := resp.Header.Get("Content-Encoding")
+	switch respEncoding {
+	case "gzip":
+		reader, err = gzip.NewReader(resp.Body)
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+		b, err := ioutil.ReadAll(reader)
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		s := string(b)
+		*output = s
+		defer reader.Close()
+	default:
+		b, err := ioutil.ReadAll(resp.Body)
+		if err != nil {
+			fmt.Println(err)
+			return err
+		}
+		s := string(b)
+		output = &s
+	}
+	return
 }
 
 func MakeGetRequest(urlStr string, output interface{}) (err error) {
