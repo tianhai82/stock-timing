@@ -3,6 +3,7 @@ package tda
 import (
 	"context"
 	"fmt"
+	"net/url"
 	"os"
 	"time"
 
@@ -103,6 +104,43 @@ func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]mode
 	}
 	return convertPriceHistoryToCandles(priceHistory, instrument.InstrumentID)
 }
+func RetrieveWeeklyHistory(instrument model.InstrumentDisplayData, period int) ([]model.Candle, error) {
+	noOfMonths := period / 4
+	noOfMonths++
+	noOfYears := 0
+	if noOfMonths > 3 && noOfMonths < 6 {
+		noOfMonths = 6
+	} else if noOfMonths > 6 {
+		noOfYears = period / 52
+		noOfYears++
+	}
+	extendedHours := false
+	endDate := time.Now().Add(24*time.Hour).Unix() * 1000
+	opt := &tdameritrade.PriceHistoryOptions{
+		PeriodType:            "month",
+		Period:                noOfMonths,
+		FrequencyType:         "weekly",
+		EndDate:               endDate,
+		NeedExtendedHoursData: &extendedHours,
+	}
+	if noOfYears > 0 {
+		opt = &tdameritrade.PriceHistoryOptions{
+			PeriodType:            "year",
+			Period:                noOfYears,
+			FrequencyType:         "weekly",
+			EndDate:               endDate,
+			NeedExtendedHoursData: &extendedHours,
+		}
+	}
+	priceHistory, _, err := client.PriceHistory.PriceHistory(context.Background(), instrument.SymbolFull, opt)
+	if err != nil {
+		return nil, err
+	}
+	if len(priceHistory.Candles) > period {
+		priceHistory.Candles = priceHistory.Candles[len(priceHistory.Candles)-period:]
+	}
+	return convertPriceHistoryToCandles(priceHistory, instrument.InstrumentID)
+}
 
 func convertPriceHistoryToCandles(priceHistory *tdameritrade.PriceHistory, instrumentID int) ([]model.Candle, error) {
 	if priceHistory == nil {
@@ -124,4 +162,16 @@ func convertPriceHistoryToCandles(priceHistory *tdameritrade.PriceHistory, instr
 		candles[i] = c
 	}
 	return candles, nil
+}
+
+func RetrieveOptionChain(symbol, contractType, optionRange, fromDate, toDate string) (*tdameritrade.Chains, error) {
+	urlValue := url.Values{}
+	urlValue.Add("symbol", symbol)
+	urlValue.Add("contractType", contractType)
+	urlValue.Add("range", optionRange)
+	urlValue.Add("fromDate", fromDate)
+	urlValue.Add("toDate", toDate)
+	urlValue.Add("includeQuotes", "TRUE")
+	chains, _, err := client.Chains.GetChains(context.Background(), urlValue)
+	return chains, err
 }
