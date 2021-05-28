@@ -12,7 +12,7 @@ import (
 )
 
 func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
-	if instrumentID >= 0 {
+	if instrumentID >= 0 && instrumentID < 1000001 {
 		symbol, err := findSymbolFromInstrumentID(instrumentID)
 		if err != nil {
 			fmt.Println(err)
