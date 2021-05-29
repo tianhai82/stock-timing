@@ -11,7 +11,7 @@ require (
 	github.com/gin-gonic/gin v1.4.0
 	github.com/mattn/go-isatty v0.0.12 // indirect
 	github.com/pkg/errors v0.8.1
-	github.com/tianhai82/go-tdameritrade v0.0.0-20210501065051-1ebac9a1c95c
+	github.com/tianhai82/go-tdameritrade v0.0.0-20210529072856-d02b8a1baf94
 	github.com/tianhai82/oauth2 v0.0.0-20210430113849-0275d4e7bbf1
 	google.golang.org/genproto v0.0.0-20200825200019-8632dd797987
 	gopkg.in/yaml.v2 v2.2.4 // indirect

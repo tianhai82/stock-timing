@@ -151,8 +151,8 @@ github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
 github.com/stretchr/testify v1.4.0 h1:2E4SXV/wtOkTonXsotYi4li6zVWxYlZuYNCXe9XRJyk=
 github.com/stretchr/testify v1.4.0/go.mod h1:j7eGeouHqKxXV5pUuKE4zz7dFj8WfuZ+81PSLYec5m4=
-github.com/tianhai82/go-tdameritrade v0.0.0-20210501065051-1ebac9a1c95c h1:BFRM31cBGDhOOyuWsvzJJ91AIC/fK8s22QtTz5QvWs0=
-github.com/tianhai82/go-tdameritrade v0.0.0-20210501065051-1ebac9a1c95c/go.mod h1:ouZADcAPaU3+o/XoCZkqTjUXzkIvMQYqLQAduW/05v0=
+github.com/tianhai82/go-tdameritrade v0.0.0-20210529072856-d02b8a1baf94 h1:Pn4i3PoKsXX38gdE02RQtsIICjbwbh1NjWHkOzoLJKE=
+github.com/tianhai82/go-tdameritrade v0.0.0-20210529072856-d02b8a1baf94/go.mod h1:ouZADcAPaU3+o/XoCZkqTjUXzkIvMQYqLQAduW/05v0=
 github.com/tianhai82/oauth2 v0.0.0-20210430113849-0275d4e7bbf1 h1:G5P4dOLi+0OyV2rsJNx69DqUetIdaqa0BpPAqj8DFuc=
 github.com/tianhai82/oauth2 v0.0.0-20210430113849-0275d4e7bbf1/go.mod h1:yMKflQXU0iqupZcFQiq8VNUXmGo5Nd6s/cUO0XCwyC0=
 github.com/ugorji/go v1.1.4 h1:j4s+tAvLfL3bZyefP2SEWmhBzmuIlH/eqNuPdFPgngw=
