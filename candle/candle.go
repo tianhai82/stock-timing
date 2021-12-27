@@ -5,6 +5,7 @@ import (
 
 	"github.com/pkg/errors"
 	"github.com/tianhai82/stock-timing/aastocks"
+	"github.com/tianhai82/stock-timing/coinmarketcap"
 	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/model"
 	"github.com/tianhai82/stock-timing/sgx"
@@ -21,13 +22,22 @@ func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
 		return tda.RetrieveHistory(symbol, period)
 	}
 
-	if instrumentID >= 1000001 {
+	if instrumentID >= 1000001 && instrumentID < 2000001 {
 		symbol, err := findSymbolFromInstrumentID(instrumentID)
 		if err != nil {
 			fmt.Println(err)
 			return nil, errors.Wrap(err, "fail to find symbol from instrument ID")
 		}
 		return aastocks.RetrieveHistory(symbol, period)
+	}
+
+	if instrumentID >= 2000001 {
+		symbol, err := findSymbolFromInstrumentID(instrumentID)
+		if err != nil {
+			fmt.Println(err)
+			return nil, errors.Wrap(err, "fail to find symbol from instrument ID")
+		}
+		return coinmarketcap.RetrieveHistory(symbol, period)
 	}
 
 	symbol, err := findSymbolFromInstrumentID(instrumentID)
