@@ -2,6 +2,7 @@ package coinmarketcap
 
 import (
 	"fmt"
+	"math"
 	"sort"
 	"strconv"
 	"time"
@@ -62,8 +63,8 @@ func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]mode
 			InstrumentID: instrument.InstrumentID,
 			FromDate:     t,
 			Open:         point.V[0],
-			High:         point.V[0],
-			Low:          point.V[0],
+			High:         math.Max(point.V[0], close),
+			Low:          math.Min(point.V[0], close),
 			Close:        close,
 		}
 		candles = append(candles, candle)
