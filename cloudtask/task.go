@@ -16,6 +16,7 @@ import (
 	candleStore "github.com/tianhai82/stock-timing/candle"
 	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/mail"
+	"github.com/tianhai82/stock-timing/telegram"
 
 	// "github.com/tianhai82/stock-timing/mail"
 	"github.com/tianhai82/stock-timing/model"
@@ -116,6 +117,12 @@ func analyzeStock(c *gin.Context) {
 			}
 			return true
 		})
+
+		highMd := formMarkdownMsg(highPrices, "HIGH")
+		telegram.SendMessage(highMd, telegram.CHAT_ID, telegram.TOKEN)
+		lowMd := formMarkdownMsg(lowPrices, "LOW")
+		telegram.SendMessage(lowMd, telegram.CHAT_ID, telegram.TOKEN)
+
 		mailApiKey, _ := os.LookupEnv("MAIL_API_KEY")
 		err = mail.Sendmail(mailApiKey, 1, gin.H{
 			"highPrices": highPrices,
@@ -134,6 +141,20 @@ func analyzeStock(c *gin.Context) {
 		}
 	}
 	c.Status(200)
+}
+
+func formMarkdownMsg(analysis []model.EmailAnalysis, highLow string) string {
+	md := fmt.Sprintf("*%s*\n", highLow)
+	for _, p := range analysis {
+		md += fmt.Sprintf(`<a href="%s">%s</a> - %s<br>Current Price: %.3f<br>Price percentile: %.3f<br>`,
+			instrumentURL(p), p.InstrumentDisplayName, p.BuyOrSell, p.CurrentPrice, p.PricePercentile)
+	}
+	md += "<br>"
+	return md
+}
+
+func instrumentURL(an model.EmailAnalysis) string {
+	return fmt.Sprintf("https://stock-timing.web.app/#/%d/%d/%.0f/%.0f", an.InstrumentID, an.Period, an.BuyFreq, an.SellFreq)
 }
 
 func limitToFreq(limit float64) float64 {
