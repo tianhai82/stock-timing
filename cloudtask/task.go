@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"log"
 	"math"
 	"net/http"
 	"os"
@@ -122,6 +123,8 @@ func analyzeStock(c *gin.Context) {
 		telegram.SendMessage(highMd, telegram.CHAT_ID, telegram.TOKEN)
 		lowMd := formMarkdownMsg(lowPrices, "LOW")
 		telegram.SendMessage(lowMd, telegram.CHAT_ID, telegram.TOKEN)
+		log.Default().Println("highMd  |" + highMd)
+		log.Default().Println("lowMd  |" + lowMd)
 
 		mailApiKey, _ := os.LookupEnv("MAIL_API_KEY")
 		err = mail.Sendmail(mailApiKey, 1, gin.H{
