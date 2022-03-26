@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"log"
 	"math"
 	"net/http"
 	"os"
 	"sort"
+	"strings"
 	"time"
 
 	cloudtasks "cloud.google.com/go/cloudtasks/apiv2"
@@ -119,13 +119,12 @@ func analyzeStock(c *gin.Context) {
 			return true
 		})
 
-		highMd := formMarkdownMsg(highPrices, "HIGH")
-		telegram.SendMessage(highMd, telegram.CHAT_ID, telegram.TOKEN)
-		lowMd := formMarkdownMsg(lowPrices, "LOW")
-		telegram.SendMessage(lowMd, telegram.CHAT_ID, telegram.TOKEN)
-		log.Default().Println("highMd  |" + highMd)
-		log.Default().Println("lowMd  |" + lowMd)
-
+		if strings.ToLower(userSubs.UserID) == "tianhai@gmail.com" {
+			highMd := formMarkdownMsg(highPrices, "HIGH")
+			telegram.SendMessage(highMd, telegram.CHAT_ID, telegram.TOKEN)
+			lowMd := formMarkdownMsg(lowPrices, "LOW")
+			telegram.SendMessage(lowMd, telegram.CHAT_ID, telegram.TOKEN)
+		}
 		mailApiKey, _ := os.LookupEnv("MAIL_API_KEY")
 		err = mail.Sendmail(mailApiKey, 1, gin.H{
 			"highPrices": highPrices,
@@ -147,12 +146,12 @@ func analyzeStock(c *gin.Context) {
 }
 
 func formMarkdownMsg(analysis []model.EmailAnalysis, highLow string) string {
-	md := fmt.Sprintf("*%s*\n", highLow)
+	md := fmt.Sprintf("<b>Time To Trade | %s</b>\n", highLow)
 	for _, p := range analysis {
-		md += fmt.Sprintf(`<a href="%s">%s</a> - %s<br>Current Price: %.3f<br>Price percentile: %.3f<br>`,
+		md += fmt.Sprintf(`<a href="%s">%s</a> - %s | Current Price: %.3f | Price percentile: %.3f
+`,
 			instrumentURL(p), p.InstrumentDisplayName, p.BuyOrSell, p.CurrentPrice, p.PricePercentile)
 	}
-	md += "<br>"
 	return md
 }
 
