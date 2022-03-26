@@ -149,10 +149,10 @@ func formMarkdownMsg(analysis []model.EmailAnalysis, highLow string) string {
 	md := fmt.Sprintf("<b>Time To Trade | %s</b>\n\n", highLow)
 	for _, p := range analysis {
 		md += fmt.Sprintf(`<a href="%s">%s</a> - %s
-Current Price: $%.3f (%.3f%%)
+Current Price: $%.3f (%.1f%%)
 
 `,
-			instrumentURL(p), p.InstrumentDisplayName, p.BuyOrSell, p.CurrentPrice, p.PricePercentile)
+			instrumentURL(p), p.InstrumentDisplayName, p.BuyOrSell, p.CurrentPrice, p.PricePercentile*100)
 	}
 	return md
 }
