@@ -10,7 +10,6 @@ import (
 	"os"
 
 	"github.com/tianhai82/stock-timing/firebase"
-	"github.com/tianhai82/stock-timing/model"
 )
 
 const (
@@ -99,8 +98,4 @@ func saveToken(token string) error {
 		return err
 	}
 	return nil
-}
-
-func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]model.Candle, error) {
-	return nil, errors.New("not implemented")
 }
