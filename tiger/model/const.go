@@ -75,4 +75,31 @@ const (
 	INDUSTRY_LIST   = "industry_list"
 	INDUSTRY_STOCKS = "industry_stocks"
 	STOCK_INDUSTRY  = "stock_industry"
+
+	SUBSCRIPTION_QUOTE        = "Quote"
+	SUBSCRIPTION_QUOTE_DEPTH  = "QuoteDepth"
+	SUBSCRIPTION_QUOTE_FUTURE = "Future"
+	SUBSCRIPTION_QUOTE_OPTION = "Option"
+	SUBSCRIPTION_TRADE_TICK   = "TradeTick"
+
+	SUBSCRIPTION_TRADE_ASSET       = "Asset"
+	SUBSCRIPTION_TRADE_POSITION    = "Position"
+	SUBSCRIPTION_TRADE_ORDER       = "OrderStatus"
+	SUBSCRIPTION_TRADE_TRANSACTION = "TradeTransaction"
+
+	P_TIGER_ID           = "tiger_id"
+	P_METHOD             = "method"
+	P_CHARSET            = "charset"
+	P_SIGN_TYPE          = "sign_type"
+	P_SIGN               = "sign"
+	P_TIMESTAMP          = "timestamp"
+	P_VERSION            = "version"
+	P_NOTIFY_URL         = "notify_url"
+	P_DEVICE_ID          = "device_id"
+	P_SDK_VERSION        = "sdk-version"
+	P_SDK_VERSION_PREFIX = "python-"
+	P_BIZ_CONTENT        = "biz_content"
+
+	OPEN_API_SERVICE_VERSION    = "2.0"
+	OPEN_API_SERVICE_VERSION_V3 = "3.0"
 )

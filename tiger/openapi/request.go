@@ -2,7 +2,6 @@ package openapi
 
 import (
 	"encoding/json"
-	"fmt"
 
 	"github.com/tianhai82/stock-timing/tiger/model"
 )
@@ -16,15 +15,18 @@ func (r *OpenApiRequest) GetParams() map[string]string {
 	params := make(map[string]string)
 	params[model.P_METHOD] = r.Method
 	if r.BizModel != nil {
-		v, ok := r.BizModel.(interface{ ToOpenApiDict() map[string]interface{} })
-		if !ok {
-			panic(fmt.Errorf("biz_model must implement ToOpenApiDict method"))
+		bizMap, ok := r.BizModel.(map[string]interface{})
+		if ok {
+			version, ok := bizMap[model.P_VERSION]
+			if ok {
+				params[model.P_VERSION] = version.(string)
+			}
 		}
-		bizContent, err := json.Marshal(v.ToOpenApiDict())
+		bizContent, err := json.Marshal(r.BizModel)
 		if err != nil {
-			panic(err)
+			panic("fail to marshal BizModel: " + err.Error())
 		}
-		params[params.P_BIZ_CONTENT] = string(bizContent)
+		params[model.P_BIZ_CONTENT] = string(bizContent)
 	}
 	return params
 }
