@@ -8,11 +8,9 @@ require (
 	firebase.google.com/go v3.9.0+incompatible
 	github.com/gin-contrib/cors v1.3.0
 	github.com/gin-contrib/static v0.0.0-20190913125243-df30d4057ba1
-	github.com/gin-gonic/gin v1.4.0
-	github.com/mattn/go-isatty v0.0.12 // indirect
+	github.com/gin-gonic/gin v1.8.2
 	github.com/pkg/errors v0.8.1
 	github.com/tianhai82/go-tdameritrade v0.0.0-20210529072856-d02b8a1baf94
 	github.com/tianhai82/oauth2 v0.0.0-20210430113849-0275d4e7bbf1
 	google.golang.org/genproto v0.0.0-20200825200019-8632dd797987
-	gopkg.in/yaml.v2 v2.2.4 // indirect
 )
