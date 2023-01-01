@@ -16,14 +16,16 @@ steps:
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['app', 'deploy', 'cron.yaml']
     waitFor: ['-']
-  - name: 'node:10.10-alpine'
+  - name: 'node:16.17-alpine'
     dir: 'web'
-    args: ['node', '.yarn/releases/yarn-rc.js']
+    entrypoint: yarn
+    args: ['install']
     waitFor: ['-']
     id: 'yarn install'
-  - name: 'node:10.10-alpine'
+  - name: 'node:16.17-alpine'
+    entrypoint: yarn
     dir: 'web'
-    args: ['node', '.yarn/releases/yarn-rc.js', 'build']
+    args: ['build']
     waitFor: ['yarn install']
   - name: 'tianhai/firebase'
     args:
