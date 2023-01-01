@@ -20,8 +20,17 @@ var (
 
 func init() {
 	privateKey = os.Getenv("TIGER_KEY")
+	if privateKey == "" {
+		panic("cannot retrieve TIGER_KEY")
+	}
 	tigerID = os.Getenv("TIGER_ID")
+	if tigerID == "" {
+		panic("cannot retrieve TIGER_ID")
+	}
 	account = os.Getenv("TIGER_ACCOUNT")
+	if account == "" {
+		panic("cannot retrieve TIGER_ACCOUNT")
+	}
 }
 
 func RetrieveHistory(instrument model.InstrumentDisplayData, period int, freq string) ([]model.Candle, error) {

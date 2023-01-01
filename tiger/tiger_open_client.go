@@ -40,6 +40,7 @@ func GetMacAddress() string {
 			break
 		}
 	}
+	macAddress = "00:15:5d:34:01:5e"
 	return macAddress
 }
 
