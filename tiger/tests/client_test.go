@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"encoding/json"
 	"log"
 	"testing"
 	"time"
@@ -11,9 +12,9 @@ import (
 )
 
 const (
-	pk      = ""
-	tigerID = ""
-	account = ""
+	pk      = "MIICXQIBAAKBgQCd/U+3rcSin5XpOPiPlH4oRiquk1J6uXjUkwnXGUmJqJ8VCtNrTRBUFgoKQEUdAksLMRD0EKv35t7GvqtWmT84kUxQknHUk64ike/+5M/PLOyavd2N7vJNUHkSyNSPtiVxyqpnVCgo2TqF86ImWX5w2rnKR6jVzpK+xQLmmuENkwIDAQABAoGBAJ3IPNP48/dhn4rS/dIO/8ti//9nXCj6kETkMCCkvX+AapfOPwTbauI/PHmuZBerkZy0vPSyrbwf0v7zrxQGak6XPGRYJdmE02uKt0uJWbPp2XjMePKfw5fBN5Q7XLLGnTQ4u2niOM0gtGBWj0/2dDCuN6YbYKsZPHUJ8aqhAxghAkEA0K5Cr3RvJyAA4z6iBTCyC95gWQMQ4H9CPeCQL8pwBIv6oOJJtNSnBSFXQp+/LconnQA5ElxFjwSuwwweai3pAwJBAMHQeAuyt/ZI7FXYBnVIkSEE1KAea4Pp0/5/gNiERRy2DNGJLhwqRcmoNiOLyEMs7Sm+mo5gXVi/30Vhdgm+fDECQFfFg9ziX0IYjucF2AXQ1oJxdRrbVEToocb+5gaD4hu3eKIkq5W4f8uDm301TacHySObDWYwkz01XgBB36UPTFsCQQCwiB5foVg4JnHFOu+e8grmhUzZzvtk+p0SSLZmAAwnO5ZvYEC0fLh2FhXByLcOoKQgCrEiD5nWlWVa/4uREoRxAkBx4DLhz03sYRFJ9Ze12LN+OTspC13MQFab7mMg4Z0QAaMGLrcWoa3HtztHRltTmCMG7bogvbu+IzkLPrdJSOed"
+	tigerID = "20151992"
+	account = "50287417"
 )
 
 func TestGetQuotePermission(t *testing.T) {
@@ -43,7 +44,8 @@ func TestGetQuotePermission(t *testing.T) {
 	if err != nil {
 		t.Fatalf("execute failed: %s", err.Error())
 	}
-	log.Printf("resp: %#v", resp)
+	b, _ := json.Marshal(resp)
+	log.Printf("resp: %s", string(b))
 
 	req = &openapi.OpenApiRequest{
 		Method: model.OPTION_BRIEF,

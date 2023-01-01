@@ -5,6 +5,7 @@ import (
 	"crypto"
 	"crypto/rand"
 	"crypto/rsa"
+	"crypto/sha1"
 	"crypto/x509"
 	"encoding/base64"
 	"encoding/json"
@@ -133,8 +134,9 @@ func (c *TigerOpenClient) removeCommonParams(params map[string]string) {
 }
 
 func (c *TigerOpenClient) prepareRequest(request *openapi.OpenApiRequest) ([]byte, error) {
+	request.Timestamp = time.Now().Format("2006-01-02 15:04:05")
 	params := request.GetParams()
-	params[model.P_TIMESTAMP] = time.Now().Format("2006-01-02 15:04:05")
+
 	commonParams := c.getCommonParams(params)
 	allParams := make(map[string]string)
 	for key, value := range params {
@@ -157,24 +159,23 @@ func (c *TigerOpenClient) prepareRequest(request *openapi.OpenApiRequest) ([]byt
 	return b, nil
 }
 
-func (c *TigerOpenClient) parseResponse(responseStr string, timestamp string) map[string]interface{} {
+func (c *TigerOpenClient) parseResponse(responseStr string, timestamp string) (map[string]interface{}, error) {
 
 	responseContent := make(map[string]interface{})
 	if err := json.Unmarshal([]byte(responseStr), &responseContent); err != nil {
-		return nil
+		return nil, err
 	}
 
 	if c.config.TigerPublicKey == "" || responseContent["sign"] == nil || timestamp == "" {
-		return responseContent
+		return responseContent, nil
 	}
 
 	sign := responseContent["sign"].(string)
 	err := verifyWithRsa(c.config.TigerPublicKey, []byte(timestamp), []byte(sign))
 	if err != nil {
-		fmt.Errorf("[%s]response sign verify failed. %s", err, responseStr)
+		return nil, fmt.Errorf("[%s]response sign verify failed. %s", err, responseStr)
 	}
-
-	return responseContent
+	return responseContent, err
 }
 
 func addStartEnd(key string, startMarker string, endMarker string) string {
@@ -193,17 +194,25 @@ func fillPublicKeyMarker(publicKey string) string {
 
 func verifyWithRsa(publicKey string, message []byte, sign []byte) error {
 	publicKey = fillPublicKeyMarker(publicKey)
+
+	block, _ := pem.Decode([]byte(publicKey))
+	if block == nil {
+		return fmt.Errorf("failed to parse PEM block")
+	}
+
 	sign, err := base64.StdEncoding.DecodeString(string(sign))
 	if err != nil {
 		return err
 	}
 
-	pub, err := x509.ParsePKCS1PublicKey([]byte(publicKey))
+	pub, err := x509.ParsePKIXPublicKey(block.Bytes)
 	if err != nil {
 		return err
 	}
 
-	return rsa.VerifyPKCS1v15(pub, crypto.SHA1, message, sign)
+	hashed := sha1.Sum(message)
+
+	return rsa.VerifyPKCS1v15(pub.(*rsa.PublicKey), crypto.SHA1, hashed[:], sign)
 }
 
 func (c *TigerOpenClient) Execute(request *openapi.OpenApiRequest, url string) (map[string]interface{}, error) {
@@ -238,7 +247,14 @@ func (c *TigerOpenClient) Execute(request *openapi.OpenApiRequest, url string) (
 	}
 	params := request.GetParams()
 	timestamp := params[model.P_TIMESTAMP]
-	return c.parseResponse(string(responseBody), timestamp), nil
+	parsedResp, err := c.parseResponse(string(responseBody), timestamp)
+	if err != nil {
+		return nil, err
+	}
+	if parsedResp["code"].(float64) != 0 {
+		return nil, fmt.Errorf("query %s failed: code:%v, message:%v", request.Method, parsedResp["code"], parsedResp["message"])
+	}
+	return parsedResp, nil
 }
 
 func getSignContent(params map[string]string) string {
