@@ -1430,7 +1430,7 @@ fsevents@^1.2.7:
 
 "fsevents@patch:fsevents@^1.2.7#~builtin<compat/fsevents>":
   version: 1.2.11
-  resolution: "fsevents@patch:fsevents@npm%3A1.2.11#~builtin<compat/fsevents>::version=1.2.11&hash=d11327"
+  resolution: "fsevents@patch:fsevents@npm%3A1.2.11#~builtin<compat/fsevents>::version=1.2.11&hash=18f3a7"
   dependencies:
     bindings: ^1.5.0
     nan: ^2.12.1
@@ -2785,6 +2785,13 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
+"picocolors@npm:^0.2.1":
+  version: 0.2.1
+  resolution: "picocolors@npm:0.2.1"
+  checksum: 3b0f441f0062def0c0f39e87b898ae7461c3a16ffc9f974f320b44c799418cabff17780ee647fda42b856a1dc45897e2c62047e1b546d94d6d5c6962f45427b2
+  languageName: node
+  linkType: hard
+
 "picomatch@npm:^2.3.1":
   version: 2.3.1
   resolution: "picomatch@npm:2.3.1"
@@ -2878,13 +2885,12 @@ fsevents@^1.2.7:
   linkType: hard
 
 "postcss@npm:^7.0.11, postcss@npm:^7.0.14, postcss@npm:^7.0.18, postcss@npm:^7.0.21, postcss@npm:^7.0.26":
-  version: 7.0.26
-  resolution: "postcss@npm:7.0.26"
+  version: 7.0.39
+  resolution: "postcss@npm:7.0.39"
   dependencies:
-    chalk: ^2.4.2
+    picocolors: ^0.2.1
     source-map: ^0.6.1
-    supports-color: ^6.1.0
-  checksum: 5fd78f822fd25644d4161c011785700d7ef64f13b12ccbf7182950a405eb56a9cc89afd04cebfe5a436565860d2971013359797b5b54ad43862d5df8380459a1
+  checksum: 4ac793f506c23259189064bdc921260d869a115a82b5e713973c5af8e94fbb5721a5cc3e1e26840500d7e1f1fa42a209747c5b1a151918a9bc11f0d7ed9048e3
   languageName: node
   linkType: hard
 
@@ -3152,7 +3158,7 @@ fsevents@^1.2.7:
 
 "resolve@patch:resolve@^1.11.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.11.1#~builtin<compat/resolve>":
   version: 1.15.0
-  resolution: "resolve@patch:resolve@npm%3A1.15.0#~builtin<compat/resolve>::version=1.15.0&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.15.0#~builtin<compat/resolve>::version=1.15.0&hash=07638b"
   dependencies:
     path-parse: ^1.0.6
   checksum: fd308e2054e85f829a29e2a5f4634942272b9bfc2771f95fbd1c2068f47a7f4f0f5d4ccb11cb4522f9a8490edd036299f7a85e76327ed8b91bd1a41d314e2bf0
