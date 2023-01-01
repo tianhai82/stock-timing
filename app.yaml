@@ -1,4 +1,4 @@
-runtime: go116
+runtime: go117
 
 env_variables:
   GIN_MODE: "release"
