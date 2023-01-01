@@ -5,6 +5,9 @@ env_variables:
   MAIL_API_KEY: "${MAIL_API_KEY}"
   CLIENT_ID: "${CLIENT_ID}"
   TDA_KEY: "${TDA_KEY}"
+  TIGER_KEY: "${TIGER_KEY}"
+  TIGER_ID: "${TIGER_ID}"
+  TIGER_ACCOUNT: "${TIGER_ACCOUNT}"
 
 handlers:
   - url: /.*

@@ -8,3 +8,10 @@ static/global.css
 public/bundle.*
 public/components.*
 public/utils.*
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

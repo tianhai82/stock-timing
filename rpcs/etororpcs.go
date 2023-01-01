@@ -2,11 +2,12 @@ package rpcs
 
 import (
 	"context"
-	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
 	"github.com/gin-gonic/gin"
+
 	"github.com/tianhai82/stock-timing/analyzer"
 	candleStore "github.com/tianhai82/stock-timing/candle"
 	"github.com/tianhai82/stock-timing/firebase"
@@ -53,7 +54,7 @@ func analyseInstrument(c *gin.Context) {
 	}
 	candles, err := candleStore.RetrieveCandles(id, CandlePeriod+period)
 	if err != nil {
-		fmt.Println(err)
+		log.Printf("[analyseInstrument] id:%d, totalPeriod:%s, candleStore.RetrieveCandles failed: %v", id, CandlePeriod+period, err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
 		return
 	}
@@ -86,7 +87,7 @@ func retrieveCandles(c *gin.Context) {
 	}
 	candles, err := candleStore.RetrieveCandles(id, CandlePeriod)
 	if err != nil {
-		fmt.Println(err)
+		log.Printf("[retrieveCandles] id:%d period:%d candleStore.RetrieveCandles failed:%v", id, CandlePeriod, err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
 		return
 	}

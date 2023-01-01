@@ -9,7 +9,7 @@ import (
 	"github.com/tianhai82/stock-timing/firebase"
 	"github.com/tianhai82/stock-timing/model"
 	"github.com/tianhai82/stock-timing/sgx"
-	"github.com/tianhai82/stock-timing/tda"
+	tigerClient "github.com/tianhai82/stock-timing/tiger/client"
 )
 
 func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
@@ -19,7 +19,7 @@ func RetrieveCandles(instrumentID int, period int) ([]model.Candle, error) {
 			fmt.Println(err)
 			return nil, errors.Wrap(err, "fail to find symbol from instrument ID")
 		}
-		return tda.RetrieveHistory(symbol, period)
+		return tigerClient.RetrieveHistory(symbol, period, "day")
 	}
 
 	if instrumentID >= 1000001 && instrumentID < 2000001 {

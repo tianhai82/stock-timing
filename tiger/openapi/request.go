@@ -7,13 +7,15 @@ import (
 )
 
 type OpenApiRequest struct {
-	Method   string
-	BizModel interface{}
+	Method    string
+	Timestamp string
+	BizModel  interface{}
 }
 
 func (r *OpenApiRequest) GetParams() map[string]string {
 	params := make(map[string]string)
 	params[model.P_METHOD] = r.Method
+	params[model.P_TIMESTAMP] = r.Timestamp
 	if r.BizModel != nil {
 		bizMap, ok := r.BizModel.(map[string]interface{})
 		if ok {
