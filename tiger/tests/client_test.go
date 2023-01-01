@@ -20,7 +20,7 @@ const (
 func TestGetQuotePermission(t *testing.T) {
 	client := tiger.NewTigerOpenClient(tiger.NewTigerOpenClientConfig(false, false, pk, tigerID, account), log.Default())
 	req := &openapi.OpenApiRequest{
-		Method: model.GET_QUOTE_PERMISSION,
+		Method: model.GRAB_QUOTE_PERMISSION,
 	}
 	resp, err := client.Execute(req, "")
 	if err != nil {
