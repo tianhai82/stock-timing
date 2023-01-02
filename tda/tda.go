@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"net/url"
-	"os"
 	"time"
 
 	"github.com/tianhai82/go-tdameritrade"
@@ -47,25 +46,25 @@ func (s FirebaseStore) GetState() (string, error) {
 	return cachedState, nil
 }
 
-func init() {
-	authenticator := tdameritrade.NewAuthenticator(
-		&FirebaseStore{},
-		oauth2.Config{
-			ClientID: os.Getenv("CLIENT_ID"),
-			Endpoint: oauth2.Endpoint{
-				TokenURL: "https://api.tdameritrade.com/v1/oauth2/token",
-				AuthURL:  "https://auth.tdameritrade.com/auth",
-			},
-			RedirectURL: "http://localhost:8080/callback",
-		},
-	)
-	var errClient error
-	client, errClient = authenticator.AuthenticatedClient(context.Background(), nil)
-	if errClient != nil {
-		fmt.Println("fail to authenticate", errClient)
-		return
-	}
-}
+// func init() {
+// 	authenticator := tdameritrade.NewAuthenticator(
+// 		&FirebaseStore{},
+// 		oauth2.Config{
+// 			ClientID: os.Getenv("CLIENT_ID"),
+// 			Endpoint: oauth2.Endpoint{
+// 				TokenURL: "https://api.tdameritrade.com/v1/oauth2/token",
+// 				AuthURL:  "https://auth.tdameritrade.com/auth",
+// 			},
+// 			RedirectURL: "http://localhost:8080/callback",
+// 		},
+// 	)
+// 	var errClient error
+// 	client, errClient = authenticator.AuthenticatedClient(context.Background(), nil)
+// 	if errClient != nil {
+// 		fmt.Println("fail to authenticate", errClient)
+// 		return
+// 	}
+// }
 
 func RetrieveHistory(instrument model.InstrumentDisplayData, period int) ([]model.Candle, error) {
 	noOfMonths := period / 20

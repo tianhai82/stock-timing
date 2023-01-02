@@ -36,11 +36,11 @@ func init() {
 func RetrieveHistory(instrument model.InstrumentDisplayData, period int, freq string) ([]model.Candle, error) {
 	client := tiger.NewTigerOpenClient(tiger.NewTigerOpenClientConfig(false, false, privateKey, tigerID, account), log.Default())
 	req := &openapi.OpenApiRequest{
-		Method: tigerModel.GET_QUOTE_PERMISSION,
+		Method: tigerModel.GRAB_QUOTE_PERMISSION,
 	}
 	_, err := client.Execute(req, "")
 	if err != nil {
-		return nil, fmt.Errorf("tigerClient.RetrieveHistory GET_QUOTE_PERMISSION failed: %w", err)
+		return nil, fmt.Errorf("tigerClient.RetrieveHistory GRAB_QUOTE_PERMISSION failed: %w", err)
 	}
 
 	req = &openapi.OpenApiRequest{

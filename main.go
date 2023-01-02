@@ -37,6 +37,9 @@ func main() {
 	tdaRouter := rpcsRouter.Group("/tda", authen.TdaAuth)
 	rpcs.AddTdaRpcs(tdaRouter)
 
+	tigerRouter := rpcsRouter.Group("/tiger")
+	rpcs.AddTigerRpcs(tigerRouter)
+
 	cronRouter := r.Group("/cron")
 	if gin.Mode() != gin.DebugMode {
 		cronRouter.Use(func(c *gin.Context) {
