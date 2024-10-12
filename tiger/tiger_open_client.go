@@ -21,6 +21,7 @@ import (
 
 	"github.com/tianhai82/stock-timing/tiger/model"
 	"github.com/tianhai82/stock-timing/tiger/openapi"
+	"go.uber.org/ratelimit"
 )
 
 const (
@@ -216,7 +217,10 @@ func verifyWithRsa(publicKey string, message []byte, sign []byte) error {
 	return rsa.VerifyPKCS1v15(pub.(*rsa.PublicKey), crypto.SHA1, hashed[:], sign)
 }
 
+var ratelimiter = ratelimit.New(1) // per second
+
 func (c *TigerOpenClient) Execute(request *openapi.OpenApiRequest, url string) (map[string]interface{}, error) {
+	ratelimiter.Take()
 	if url == "" {
 		url = c.config.ServerURL
 	}

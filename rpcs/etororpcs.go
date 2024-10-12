@@ -54,7 +54,7 @@ func analyseInstrument(c *gin.Context) {
 	}
 	candles, err := candleStore.RetrieveCandles(id, CandlePeriod+period)
 	if err != nil {
-		log.Printf("[analyseInstrument] id:%d, totalPeriod:%s, candleStore.RetrieveCandles failed: %v", id, CandlePeriod+period, err)
+		log.Printf("[analyseInstrument] id:%d, totalPeriod:%d, candleStore.RetrieveCandles failed: %v", id, CandlePeriod+period, err)
 		c.AbortWithStatusJSON(http.StatusInternalServerError, "retrieval failed")
 		return
 	}
