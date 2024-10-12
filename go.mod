@@ -12,11 +12,13 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/tianhai82/go-tdameritrade v0.0.0-20210529072856-d02b8a1baf94
 	github.com/tianhai82/oauth2 v0.0.0-20210430113849-0275d4e7bbf1
+	go.uber.org/ratelimit v0.3.1
 	google.golang.org/genproto v0.0.0-20200825200019-8632dd797987
 )
 
 require (
 	cloud.google.com/go/storage v1.10.0 // indirect
+	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
