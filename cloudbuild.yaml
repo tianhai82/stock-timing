@@ -1,41 +1,42 @@
 steps:
   - id: preprocess-resources
-    name: 'tianhai/envsubst:0.0.2'
-    env: [
-      "MAIL_API_KEY=$_MAIL_API_KEY", 
-      "CLIENT_ID=$_CLIENT_ID", 
-      "TDA_KEY=$_TDA_KEY", 
-      "TIGER_KEY=$_TIGER_KEY",
-      "TIGER_ID=$_TIGER_ID",
-      "TIGER_ACCOUNT=$_TIGER_ACCOUNT",
-    ]
+    name: "tianhai/envsubst:0.0.2"
+    env:
+      [
+        "MAIL_API_KEY=$_MAIL_API_KEY",
+        "CLIENT_ID=$_CLIENT_ID",
+        "TDA_KEY=$_TDA_KEY",
+        "TIGER_KEY=$_TIGER_KEY",
+        "TIGER_ID=$_TIGER_ID",
+        "TIGER_ACCOUNT=$_TIGER_ACCOUNT",
+      ]
     args: ["app.yaml"]
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy']
-    waitFor: ['preprocess-resources']
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy', 'cron.yaml']
-    waitFor: ['-']
-  - name: 'node:16.17-alpine'
-    dir: 'web'
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy", "--no-cache"]
+    waitFor: ["preprocess-resources"]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy", "cron.yaml"]
+    waitFor: ["-"]
+  - name: "node:16.17-alpine"
+    dir: "web"
     entrypoint: yarn
-    args: ['install']
-    waitFor: ['-']
-    id: 'yarn install'
-  - name: 'node:16.17-alpine'
+    args: ["install"]
+    waitFor: ["-"]
+    id: "yarn install"
+  - name: "node:16.17-alpine"
     entrypoint: yarn
-    dir: 'web'
-    args: ['build']
-    waitFor: ['yarn install']
-  - name: 'tianhai/firebase'
+    dir: "web"
+    args: ["build"]
+    waitFor: ["yarn install"]
+  - name: "tianhai/firebase"
     args:
       [
-        'deploy',
-        '--project',
-        'stock-timing',
-        '--only',
-        'hosting',
-        '--token',
-        '$_FIREBASE_TOKEN',
+        "deploy",
+        "--project",
+        "stock-timing",
+        "--only",
+        "hosting",
+        "--token",
+        "$_FIREBASE_TOKEN",
       ]
-timeout: '900s'
+timeout: "900s"
