@@ -1,6 +1,6 @@
 module github.com/tianhai82/stock-timing
 
-go 1.17
+go 1.22.8
 
 require (
 	cloud.google.com/go v0.65.0

@@ -1,4 +1,4 @@
-runtime: go119
+runtime: go122
 
 env_variables:
   GIN_MODE: "release"
@@ -12,4 +12,3 @@ env_variables:
 handlers:
   - url: /.*
     script: auto
-
